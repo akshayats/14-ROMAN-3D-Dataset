@@ -49,189 +49,168 @@ Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
+\begin{quote}\
 
-I am changing this file
-
-
-
-This electronic document is a “live” template. The various components of your paper [title, text, heads, etc.] are already defined on the style sheet, as illustrated by the portions given in this document.
-
+Humans subconsciously exploit various strong correlations amidst different object instances, classes and between different object classes and scene types when analysing indoor environments. Correlations in naive, logical object co-occurrences have been exploited along with the extraction of vision based object-intrinsic descriptive features in previous research. In this paper, we present several alternative learning techniques to model and make estimates of scenes based on a variety of spatial relations - geometric extrinsic features with different amounts of discretization, which capture \textit{how} the objects co-occur; and compare their efficacy in the context of object classification in real-world table-top scenes. We investigate the possibilities of using such techniques to refine the results from a traditional vision-perception system. We also contribute a unique, long-term periodic, large 3D dataset of 20 office table-top scenes, manually annotated with 18 object classes. Apart from our current comparison, we foresee that the dataset will be useful for applications such as generalized learning of spatial models, learning object data structuring based on semantic hierarchy, learning best suited semantic abstractions and grammar for long term autonomy, ground truth for vision-perception systems etc.
+\end{quote}
 \end{abstract}
 
+\section{Introduction}
+\label{sec:Introduction}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{INTRODUCTION}
 
-This template provides authors with most of the formatting specifications needed for preparing electronic versions of their papers. All standard paper components have been specified for three reasons: (1) ease of use when formatting individual papers, (2) automatic compliance to electronic requirements that facilitate the concurrent or later production of electronic products, and (3) conformity of style throughout a conference proceedings. Margins, column widths, line spacing, and type styles are built-in; examples of the type styles are provided throughout this document and are identified in italic type, within parentheses, following the example. Some components, such as multi-leveled equations, graphics, and tables are not prescribed, although the various table text styles are provided. The formatter will need to create these components, incorporating the applicable criteria that follow.
+Robotics is beginning to pervade into human life as a direct consequence of the recent amalgamation of computers into almost all avenues of human life. Research in intelligent robotics is ardently sought after by many current academics because of the utility that our society can expect to obtain from augmenting itself with robots. The main drawback of naive computer programs is that they perform \emph{only} instructed tasks, withal discounting the incredibly utilitarian character of accurate repetitive performance with virtually no signs of fatiguing. The research in intelligent robotics is to tackle this issue, by which, new age robots can learn about human nature, activities, needs, actions, reactions and seamlessly integrate into their environment to make for more efficient living.
 
-\section{PROCEDURE FOR PAPER SUBMISSION}
+With the above concept in mind, consider the need for robots to learn, understand and generalize about spatial configurations of human environments and the many animate and inanimate objects they contain. Ideally, given a collection of supervised observations and provided with the intelligence of one of the relevant state-of-the-art machine learning techniques the problem seems straight forward. However some of these ideal conditions are very hard to fulfil. Consider a human environment viz. office, supermarket, bank, cafeteria etc. the general description of the task of the robot installed there is to check on the working humans, monitor the environment, raise alarms if something out of the ordinary is observed and also react and display proactivity toward human occupations as an ultimate goal. For this to be effected, the robot is required to use the signals from it's sensors, extract semantics from the signals, understand configuration, activities and normality of both from the semantics and ultimately try to gain view of human intent. Other profitable attributes that such robots could have are that of generalization of gained knowledge and transferability of such knowledge to it's peers.
 
-\subsection{Selecting a Template (Heading 2)}
+Robots thusly, need to gain knowledge about the objects in the human environment. This primarily entails the recognition of the class of the many objects in the environment in the presence of instance and pose variations and occlusions. Classification of objects in the environment based on structure or function can have different utilities such as passive or active surveillance and activity observations. Post object classification, a scene classification analysis needs to be done which means to consider all the recognized object class instances together to understand the configuration of the scene as a whole. Understanding that the presence and pose of particular object as an effect of the scene in question; understanding that the configuration of objects in a scene are not independent events but is because of interrelated causality amongst the objects in the scene, is quite powerful, to obtain a holistic view for the performance demanded from these robots.
 
-First, confirm that you have the correct template for your paper size. This template has been tailored for output on the US-letter paper size. 
-It may be used for A4 paper size if the paper size setting is suitably modified.
+A technical challenge that comes in the way of learning spatial models that represent objects in a human environment encompassing the interrelations, variations over different spans of time and space and instances involves handling a plethora of data received from the sensors. Consider only an RGB-D sensor such as Asus Xtion mounted on a patrolling robot that sweeps the environment once every hour. Even, if a perfect vision system for object recognition is in use, consider the amount of representative metric data generated per object, per scene, per time instance and hence for different instances of the same scene (e.g. Office Desk or Cafeteria Table) over spans of time, grows at a large order. Using this data to get one generalized model of \textit{Office Table} or \textit{Cafeteria Table} capturing the essences of variation over time and instances of the environment and it's components is quite close to impossible without extracting some intelligent features over the objects/scene or mapping them onto a lesser dimensional subspace.
 
-\subsection{Maintaining the Integrity of the Specifications}
+The state-of-the-art stand-alone vision-perception based systems extract descriptive features from images to recognize objects. The characteristic parametrizations of these descriptive features typical and intrinsic to each object is what helps the perception system classify the objects. However, a lot of non-descriptive features are also available but rarely exploited e.g. spatial configurations of a group of different objects which usually occur together, functional information, contextual information, pose and placement with respect to a global origin etc. Such features extracted from object constellations, given their semantic data, are called \textit{Spatial Relations} (SR) or \textit{Qualitative Spatial Relations} (QSR) based on amount of discretization and similarity to human perception. A few such techniques are proposed in this paper to provide openings toward further such research for long-term autonomous learning robots.
 
-The template is used to format your paper and style the text. All margins, column widths, line spaces, and text fonts are prescribed; please do not alter them. You may note peculiarities. For example, the head margin in this template measures proportionately more than is customary. This measurement and others are deliberate, using specifications that anticipate your paper as one part of the entire proceedings, and not as an independent document. Please do not revise any of the current designations
+These extrinsic or spatial features based systems can be further developed for activity recognition, and understanding the human environment and it's components at a higher level of semantic abstraction. Theses systems that do mainly object or scene-classification could currently work alongside already present vision-perception systems and augment the performance to obtain better accuracy. They could provide prior probabilities for object labels or finding them in a scene. They could also help calculate the posterior probabilities of the object labels to disambiguate a recognition system, once it has actually detected the objects or even labelled them (verification).
 
-\section{MATH}
+Training such long-term intelligent systems to learn about human environments from such non-descriptive features requires large amounts of data. As current robotic platforms usually use RGB-D sensors and perform analyses on 3D data, large amounts of periodic \textit{point-cloud} images of the same scenes over periodic instances of time is required. These point clouds need to be annotated for ground truth data about objects in the environment. Such a large dataset has been developed for one category of scenes and is available for use. This data set is one of it's kind and can be used by the researchers doing vision-perception and/or robotics.
 
-Before you begin to format your paper, first write and save the content as a separate text file. Keep your text and graphic files separate until after the text has been formatted and styled. Do not use hard tabs, and limit use of hard returns to only one return at the end of a paragraph. Do not add any kind of pagination anywhere in the paper. Do not number text heads-the template will do that for you.
+\subsubsection*{Points discussed}
+\begin{enumerate}
+	\item Overview of the problem - why?
+	\begin{enumerate}
+		\item Not only desktops
+		\item How do we treat object classification
+	\end{enumerate}
+	\item Generalize and Transfer Knowledge
+	\item How are objects correlated, search becomes easier
+	\item Understanding a model for inter object influence for inference
+	\item No benchmarks yet or datasets having 3D spatial information
+	\begin{itemize}
+		\item time
+		\item complete scenes
+		\item different people
+		\item different types of people
+	\end{itemize}
+	\item need to structure data -- metric is tedious, because of large amounts of data
+	\item Contributions:
+	\begin{itemize}
+		\item A big 3D data set, annotated -- benchmark for results, folding data, classification.
+		\item suggest SR and QSR
+		\item something that could augment perception systems
+	\end{itemize}
+\end{enumerate}
 
-Finally, complete content and organizational editing before formatting. Please take note of the following items when proofreading spelling and grammar:
+\section{Related Work}
+\label{sec:Related Work}
 
-\subsection{Abbreviations and Acronyms} Define abbreviations and acronyms the first time they are used in the text, even after they have been defined in the abstract. Abbreviations such as IEEE, SI, MKS, CGS, sc, dc, and rms do not have to be defined. Do not use abbreviations in the title or heads unless they are unavoidable.
 
-\subsection{Units}
 
-\begin{itemize}
+Spatial relations have been used previously to provide contextual information to vision-related work. \cite{MyungJin:CVPR2010}used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams. For example, \cite{Krishna:ECAI2010} demonstrate the learning of activity phases in airport videos using spatial relations between tracked objects, and \cite{Behera2012} use spatial relations to monitor objects and activities in videos of a constrained workflow environment. Recent work has used object co-occurrence to provide context in visual  tasks. Examples in 2D include object co-occurrence statistics in class-based image segmentation~\cite{Ladicky:IJCV2013}; and the use of object presence to provide context in activity recognition~\cite{Li:2012}. However, all this previous work is restricted to 2D images, whereas our approaches work with spatial context in 3D (RGB-D) data. Authors have also worked with spatial context in 3D, including parsing a 2D image of a 3D scene into a simulated 3D field before extracting geometric and contextual features between the objects \cite{Xiao:SIGGRAPH2012}. Our approaches to encoding 3D spatial context could be applied in these cases, and we use richer, structured models of object relations.
 
-\item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary units (in parentheses). An exception would be the use of English units as identifiers in trade, such as “3.5-inch disk drive”.
-\item Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity that you use in an equation.
-\item Do not mix complete spellings and abbreviations of units: “Wb/m2” or “webers per square meter”, not “webers/m2”.  Spell out units when they appear in text: “. . . a few henries”, not “. . . a few H”.
-\item Use a zero before decimal points: “0.25”, not “.25”. Use “cm3”, not “cc”. (bullet list)
+Apart from using the statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene, i.e. the extrinsic, geometric spatial relations between the objects. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. They also use spatial information for context-based object search using Graph Kernel Methods. The method is further developed to provide synthetic scene examples using spatial relations \cite{Fisher:ACMT2012}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In \cite{Lin:ICCV2013} a technique is developed for automatic annotation of 3D objects. It uses intrinsic appearance features and geometric features and is employed to build an object and scene classifier using conditional random fields. In \cite{kasper:2011} the authors utilise both geometric single object features and pair-wise spatial relations between objects to develop an empirical base for scene understanding. Recent studies \cite{Southey:2007,kasper:2011} compute statistics of spatial relations of objects and use it for conditional object recognition for service robotics. Whilst our techniques are comparable to those in the literature, our contribution comes from the explicit comparison of different representations of spatial context (metric vs qualitative) on a novel, long-term learning task. Additionally our qualitative approach relies on relationships which could be provided through other mechanisms than unsupervised machine learning (e.g. through a human tutor describing a spatial scene), and in this way bootstrap the system using expert knowledge.
 
-\end{itemize}
+Our work is evaluated on a new 3D long-term dataset. Other datasets exist: The \textit{B3DO dataset} \cite{Janoch:ICCV2011} which contains many single-snapshot instances of indoor human environments having a variety in viewpoints, object-classes, scene-classes and instances. This dataset is in the form of RGB and depth image pairs with manual 2D annotations of object classes, capturing many unique scenes with the sole aim of finding more realistic scenes which are difficult for PSs to perform scene classification. \textit{NYU Depth V1-2} \cite{Silberman:ECCV2012} datasets contain different instance examples of object-classes and scene-classes. Each image instance is a combo of synchronous RGB and D images of a different scene-class with semantic annotation provided to every pixel. This dataset is aimed at helping PSs with automatic semantic segmentation and scene classification. The \textit{3D IKEA database} \cite{Swadzba:RAS2012} has been collected using robotic maneuvering in different scene-class instances. The aim is to test scene-classification algorithms based on large furniture level objects. The \textit{WRGBD dataset} \cite{Lai:ICRA2011} is aimed to support object classification methods and contains many instances of isolated objects in .pcd format. Annotation is done by assigning every pixel a correct semantic label.None of these datasets contain periodically collected data or easily usable spatial annotations of objects which are key for long-term autonomous scene-learning, based on spatial relations.
 
 
-\subsection{Equations}
+\begin{enumerate}
+	\item QSR - LEEDS activity recognition
 
-The equations are an exception to the prescribed specifications of this template. You will need to determine whether or not your equation should be typed using either the Times New Roman or the Symbol font (please no other font). To create multileveled equations, it may be necessary to treat the equation as a graphic and insert it into the text after your paper is styled. Number equations consecutively. Equation numbers, within parentheses, are to position flush right, as in (1), using a right tab stop. To make your equations more compact, you may use the solidus ( / ), the exp function, or appropriate exponents. Italicize Roman symbols for quantities and variables, but not Greek symbols. Use a long dash rather than a hyphen for a minus sign. Punctuate equations with commas or periods when they are part of a sentence, as in
+\end{enumerate}
 
-$$
-\alpha + \beta = \chi \eqno{(1)}
-$$
 
-Note that the equation is centered using a center tab stop. Be sure that the symbols in your equation have been defined before or immediately following the equation. Use “(1)”, not “Eq. (1)” or “equation (1)”, except at the beginning of a sentence: “Equation (1) is . . .”
 
-\subsection{Some Common Mistakes}
-\begin{itemize}
+\section{Test Case / Working Example}
+\label{sec:Test Case}
 
+The members of this research team are working for a EU-Research project\cite{Behera2012} by the name of \textit{Spatio-Temporal Representations and Activities for Cognitive Control in Long-Term Scenarios} (STRANDS) which involves developing a long-term autonomous robot with a SCITOS G5 \cite{}, with an RGB-D camera as a vision sensor, so that this robot can be used to augment tedious observe-learn-serve tasks in human environments.
 
-\item The word “data” is plural, not singular.
-\item The subscript for the permeability of vacuum ?0, and other common scientific constants, is zero with subscript formatting, not a lowercase letter “o”.
-\item In American English, commas, semi-/colons, periods, question and exclamation marks are located within quotation marks only when a complete thought or name is cited, such as a title or full quotation. When quotation marks are used, instead of a bold or italic typeface, to highlight a word or phrase, punctuation should appear outside of the quotation marks. A parenthetical phrase or statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.)
-\item A graph within a graph is an “inset”, not an “insert”. The word alternatively is preferred to the word “alternately” (unless you really mean something that alternates).
-\item Do not use the word “essentially” to mean “approximately” or “effectively”.
-\item In your paper title, if the words “that uses” can accurately replace the word “using”, capitalize the “u”; if not, keep using lower-cased.
-\item Be aware of the different meanings of the homophones “affect” and “effect”, “complement” and “compliment”, “discreet” and “discrete”, “principal” and “principle”.
-\item Do not confuse “imply” and “infer”.
-\item The prefix “non” is not a word; it should be joined to the word it modifies, usually without a hyphen.
-\item There is no period after the “et” in the Latin abbreviation “et al.”.
-\item The abbreviation “i.e.” means “that is”, and the abbreviation “e.g.” means “for example”.
+\textit{Security Guard for Office} is a test case for the project and by the end of the project it is required to develop a robotic intelligence which would learn the map of the area to be patrolled, the objects present in the office, the human activities in the office at different times of the day, week, month and year, normality and abnormality about these aspects and alarm raising protocols if abnormalities have been detected. 
 
-\end{itemize}
+This translates to an action plan for the robot in which it patrols the working environment and learns the allowed variations of different room-level objects such as chairs, tables, shelves etc. As a nested action plan, the robot must look at table-tops of the office inhabitants and learn about the allowed variations of the objects on them. The objects could generally change place, within certain semantic bounds (A chair is generally in front of a table, almost never on a table); some objects could be missing at times (coffee mug) which is normal, but some other objects are rarely moved (monitor). Certain specific instructions might be passed on - like a "clean desk policy" which means that the desk needs to be rid of any paper material post working hours but is allowed otherwise during working hours. All these are many rules and quite specific to circumstances for a programmer to practically specify in the execution code of the robot, hence the need of intelligent robots. The ultimate aim of this aspect of the robot learning would be to be able generalize the learnt knowledge about Table Tops to Rooms or to different kind of Table Tops with objects never seen before. e.g. Learn about table tops in an office environment and be able to generalize to table tops in a cafeteria.
 
+The STRANDS robot, is expected to observe environments continuously and adapt their learnt algorithm based on new allowed variations and/or human reinforcements. It is required to learn general structures of environment settings and object spatial configuration properties and come up with a general structure for say, \textit{Office Room}, \textit{Office Table}, \textit{Cafeteria Table}. At the next level of intelligence it must be able to learn what is normal for particular people in the environment if it is feasible or find generalized structures over time or other different parameters e.g. category of researcher, winter, holiday season etc. At a higher level of semantic mapping, the robot could also learn about the variations in particular scene classes e.g. \textit{Office Rooms}, \textit{Office Kitchen}, \textit{Office Lobby}, \textit{Office Bathroom}.
 
-\section{USING THE TEMPLATE}
+The project has begun with a focus on Office Tables. The aim is to learn spatial models for general allowed configurations of sets of objects usually found on Office Tables, across variations in time and people. Once there are general spatial models of Office Table, security protocols and action-reaction mechanisms can be specified or learnt. These can also act as a tool to aide vision-perception systems. In an "\textit{Object Search}" task the robot could use the knowledge from the spatial configuration to obtain prior stochastics about where an object could most probably be found. In the "\textit{Object Recognition}" task the learned spatial models could provide prior information to process a portion of the RGB-D image for locating a particular object that is usually present there because of the spatial configurations of the remaining recognized objects, but cannot be currently found because of noise such as: occlusions, sensor infidelity etc. The learnt spatial models can also provide for the posterior probabilities of the recognizer to disambiguate between recognised objects.
 
-Use this sample document as your LaTeX source file to create your document. Save this file as {\bf root.tex}. You have to make sure to use the cls file that came with this distribution. If you use a different style file, you cannot expect to get required margins. Note also that when you are creating your out PDF file, the source file is only part of the equation. {\it Your \TeX\ $\rightarrow$ PDF filter determines the output file size. Even if you make all the specifications to output a letter file in the source - if your filter is set to produce A4, you will only get A4 output. }
+The following sections elaborate on mainly two things: the dataset constructed for this purpose and comparisons of different spatial modelling techniques on the developed data to provide suggestive insights on the kind of qualitative, non-descriptive features for human environment modelling.
 
-It is impossible to account for all possible situation, one would encounter using \TeX. If you are using multiple \TeX\ files you must make sure that the ``MAIN`` source file is called root.tex - this is particularly important if your conference is using PaperPlaza's built in \TeX\ to PDF conversion tool.
+\subsubsection*{Points Discussed}
+\begin{enumerate}
+	\item To be specific lets look at STRANDS for evaluating concepts
+	\item What is test case in STRANDS
+	\begin{itemize}
+		\item See structure
 
-\subsection{Headings, etc}
+	\end{itemize}
+\end{enumerate}
 
-Text heads organize the topics on a relational, hierarchical basis. For example, the paper title is the primary text head because all subsequent material relates and elaborates on this one topic. If there are two or more sub-topics, the next level head (uppercase Roman numerals) should be used and, conversely, if there are not at least two sub-topics, then no subheads should be introduced. Styles named “Heading 1”, “Heading 2”, “Heading 3”, and “Heading 4” are prescribed.
 
-\subsection{Figures and Tables}
 
-Positioning Figures and Tables: Place figures and tables at the top and bottom of columns. Avoid placing them in the middle of columns. Large figures and tables may span across both columns. Figure captions should be below the figures; table heads should appear above the tables. Insert figures and tables after they are cited in the text. Use the abbreviation “Fig. 1”, even at the beginning of a sentence.
 
-\begin{table}[h]
-\caption{An Example of a Table}
-\label{table_example}
-\begin{center}
-\begin{tabular}{|c||c|}
-\hline
-One & Two\\
-\hline
-Three & Four\\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
+\section{Dataset}
+\label{sec:Dataset}
 
-   \begin{figure}[thpb]
-      \centering
-      \framebox{\parbox{3in}{We suggest that you use a text box to insert a graphic (which is ideally a 300 dpi TIFF or EPS file, with all fonts embedded) because, in an document, this method is somewhat more stable than directly inserting a picture.
-}}
-      %\includegraphics[scale=1.0]{figurefile}
-      \caption{Inductance of oscillation winding on amorphous
-       magnetic core versus DC bias magnetic field}
-      \label{figurelabel}
-   \end{figure}
-   
+It is convenient to perceive a structure of the objects in the environments as if on a "nested table-top system". Table-tops are the most commonly present large objects in any floor map. It is more likely that objects on a table have more correlation amidst them, than when compared to those objects not on that same table e.g. \textit{Pen} has more semantic/functional correlation with a \textit{Laptop} (on the table) than a \textit{Couch} (not on that table). At the next level of semantic abstraction we can imagine all the objects in a room to be on a "table-top" which is the floor. With this kind of perception, the first dataset has been constructed, periodically observing table-tops of researchers at KTH University.
 
-Figure Labels: Use 8 point Times New Roman for Figure labels. Use words rather than symbols or abbreviations when writing Figure axis labels to avoid confusing the reader. As an example, write the quantity “Magnetization”, or “Magnetization, M”, not just “M”. If including units in the label, present them within parentheses. Do not label axes only with units. In the example, write “Magnetization (A/m)” or “Magnetization {A[m(1)]}”, not just “A/m”. Do not label axes with a ratio of quantities and units. For example, write “Temperature (K)”, not “Temperature/K.”
+It is required for such a long-term autonomous learning to have entire views of the scenes to model the interrelations amidst the member objects. Apart from being variant over object instances across different scenes, the data needed to be periodic over time at a scale of couple of hours so as to capture the individual and group variations in position and pose when there has been regular/irregular human interaction involved. The currently available datasets either are of individual objects or single instances of entire rooms. The required regularity in instances and time was the main motivation for the construction of this dataset.
 
-\section{CONCLUSIONS}
+\subsection{Dataset Details}
+A 3D dataset " \textit{Tables for Spatial Modelling}" has been created by KTH, Royal Institute of Technology. The dataset is a collection of human annotated office tables of researchers at KTH. This is the ground truth data to train models for spatial configuration of Office Tables.
 
-A conclusion section is not required. Although a conclusion may review the main points of the paper, do not replicate the abstract as the conclusion. A conclusion might elaborate on the importance of the work or suggest applications and extensions. 
+The data was collected using a freely available software called \textit{SCENECT} \cite{} and an \textit{Asus Xtion Pro} RGB-D camera. A \textit{Scene} is defined to be a single instance of a table-top of one person at one time instance. There is one 3D colour image in the form of a point cloud per scene (.pcl format). Every scene is a reconstructed version of the raw data stream obtained by a person scanning a table-top with real time visual feedback using SCENECT. The software has in-built real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
 
-\addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
-                                  % on the last page of the document manually. It shortens
-                                  % the textheight of the last page by a suitable amount.
-                                  % This command does not take effect until the next page
-                                  % so it should come on the page before the last. Make
-                                  % sure that you do not shorten the textheight too much.
+The scenes were recorded as periodically as possible and at three fixed time instances of the day: Morning (09:00 hrs), Afternoon (13:00 hrs)and Evening (18:00 hrs). The scenes were collected for 19 days, 3 times per day and for the same 20 different tables. Depending on who the table belongs to and the date and time of the recording, each table-top scene recording receives a \textit{Scene\_ID}. These Scene\_IDs help in slicing across the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, or people\{Akshaya, Yuquan, Carl,...\}, or day \{2013-11-01, 2013-11-06, 2013-11-13,...\}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out objects of interest from the point clouds. On an average 12 different objects were labelled per scene. The objects belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Mobile, Keys, Headphones, Telephone, Pencil, Rubber, Notebook, Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and each object are available in the .xml and .json formats. Each scene data has a nested list of object data, and each object data has the following information about the object - \{Position, Orientation, Size, Date and Time of recording, Person ID, Point Indices of the point cloud that have been labelled as belonging to the Object\}.
 
+\subsection{Design}
 
+\subsubsection*{Points Discussed}
+\begin{enumerate}
+	\item Why did we collect it the way we did?
+	\item What did we collect?
+	\item Time and people level slicings
+	\item weekends and weekdays
+	\item different times of the day
+\end{enumerate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Implementation or execution}
 
+\subsubsection*{Points Discussed}
+\begin{enumerate}
+	\item Annotation Tool
+	\item Tools for collecting Asus Scenect
+	\item 
+	\item 
+\end{enumerate}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{APPENDIX}
 
-Appendixes should appear before the acknowledgment.
 
-\section*{ACKNOWLEDGMENT}
+\section{Analysis}
+\label{sec:Analysis}
 
-The preferred spelling of the word “acknowledgment” in America is without an “e” after the “g”. Avoid the stilted expression, “One of us (R. B. G.) thanks . . .”  Instead, try “R. B. G. thanks”. Put sponsor acknowledgments in the unnumbered footnote on the first page.
+\subsubsection*{Points Discussed}
+\begin{enumerate}
+	\item Scatter plots
+	\item Histograms
+	\item 
+	\item 
+\end{enumerate}
 
+\section{Conclusions}
+\label{sec:Conclusions}
+\section{Future Work}
+\label{sec:Future Work}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-References are important to the reader; therefore, each citation must be complete and correct. If at all possible, references should be commonly available publications.
-
-
-
-\begin{thebibliography}{99}
-
-\bibitem{c1} G. O. Young, “Synthetic structure of industrial plastics (Book style with paper title and editor),” 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 15–64.
-\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123–135.
-\bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
-\bibitem{c4} B. Smith, “An approach to graphs of linear forms (Unpublished work style),” unpublished.
-\bibitem{c5} E. H. Miller, “A note on reflector arrays (Periodical style—Accepted for publication),” IEEE Trans. Antennas Propagat., to be publised.
-\bibitem{c6} J. Wang, “Fundamentals of erbium-doped fiber amplifiers arrays (Periodical style—Submitted for publication),” IEEE J. Quantum Electron., submitted for publication.
-\bibitem{c7} C. J. Kaufman, Rocky Mountain Research Lab., Boulder, CO, private communication, May 1995.
-\bibitem{c8} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, “Electron spectroscopy studies on magneto-optical media and plastic substrate interfaces(Translation Journals style),” IEEE Transl. J. Magn.Jpn., vol. 2, Aug. 1987, pp. 740–741 [Dig. 9th Annu. Conf. Magnetics Japan, 1982, p. 301].
-\bibitem{c9} M. Young, The Techincal Writers Handbook.  Mill Valley, CA: University Science, 1989.
-\bibitem{c10} J. U. Duncombe, “Infrared navigation—Part I: An assessment of feasibility (Periodical style),” IEEE Trans. Electron Devices, vol. ED-11, pp. 34–39, Jan. 1959.
-\bibitem{c11} S. Chen, B. Mulgrew, and P. M. Grant, “A clustering technique for digital communications channel equalization using radial basis function networks,” IEEE Trans. Neural Networks, vol. 4, pp. 570–578, July 1993.
-\bibitem{c12} R. W. Lucky, “Automatic equalization for digital communication,” Bell Syst. Tech. J., vol. 44, no. 4, pp. 547–588, Apr. 1965.
-\bibitem{c13} S. P. Bingulac, “On the compatibility of adaptive controllers (Published Conference Proceedings style),” in Proc. 4th Annu. Allerton Conf. Circuits and Systems Theory, New York, 1994, pp. 8–16.
-\bibitem{c14} G. R. Faulhaber, “Design of service systems with priority reservation,” in Conf. Rec. 1995 IEEE Int. Conf. Communications, pp. 3–8.
-\bibitem{c15} W. D. Doyle, “Magnetization reversal in films with biaxial anisotropy,” in 1987 Proc. INTERMAG Conf., pp. 2.2-1–2.2-6.
-\bibitem{c16} G. W. Juette and L. E. Zeffanella, “Radio noise currents n short sections on bundle conductors (Presented Conference Paper style),” presented at the IEEE Summer power Meeting, Dallas, TX, June 22–27, 1990, Paper 90 SM 690-0 PWRS.
-\bibitem{c17} J. G. Kreifeldt, “An analysis of surface-detected EMG as an amplitude-modulated noise,” presented at the 1989 Int. Conf. Medicine and Biological Engineering, Chicago, IL.
-\bibitem{c18} J. Williams, “Narrow-band analyzer (Thesis or Dissertation style),” Ph.D. dissertation, Dept. Elect. Eng., Harvard Univ., Cambridge, MA, 1993. 
-\bibitem{c19} N. Kawasaki, “Parametric study of thermal and chemical nonequilibrium nozzle flow,” M.S. thesis, Dept. Electron. Eng., Osaka Univ., Osaka, Japan, 1993.
-\bibitem{c20} J. P. Wilkinson, “Nonlinear resonant circuit devices (Patent style),” U.S. Patent 3 624 12, July 16, 1990. 
-
-
-
-
-
-
-\end{thebibliography}
-
+\subsubsection*{Points Discussed}
+\begin{enumerate}
+	\item Room level data set
+	\item Which QSR for which purpose?
+\end{enumerate}
+\section{Acknowledgements}
+\label{sec:Acknowledgements}
+Adria, Kaushik Desai, Malepati Sai Akhil, Prasad NR, Gaurav Agrawal, Janardhan N, Mayank Jha, Nishan Shetty, MSRIT Bangalore, CVAP-KTH, Accel Partners, STRANDS project
 
 
 
