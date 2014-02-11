@@ -105,30 +105,24 @@ Our work is evaluated on a new 3D long-term dataset. Other datasets exist: The \
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Motivating Example}
-\label{sec:Motivating Example}
+\section{Motivating Scenario}
+\label{sec:Motivating Scenario}
 
-We are investigating systems that operate for a long time in environments populated by humans. As a motivating example we will look at 
-security guard in an office building. The robot patrols the working environment and should learn the allowed variations of different parts of space. In this work we focus on desktops the robot must look at table-tops of the office inhabitants and learn 
-about the allowed variations of the objects on them. The objects could generally change place, within certain semantic bounds (A chair is 
-generally in front of a table, almost never on a table); some objects could be missing at times (coffee mug) which is normal, but some other 
-objects are rarely moved (monitor). Certain specific instructions might be passed on - like a "clean desk policy" which means that the desk 
-needs to be rid of any paper material post working hours but is allowed otherwise during working hours. All these are many rules and quite 
-specific to circumstances for a programmer to practically specify in the execution code of the robot, hence the need of intelligent robots. 
-The ultimate aim of this aspect of the robot learning would be to be able generalize the learnt knowledge about Table Tops to Rooms or to 
-different kind of Table Tops with objects never seen before. e.g. Learn about table tops in an office environment and be able to generalize 
-to table tops in a cafeteria.
+We are investigating systems that operate for long periods of time in environments populated by humans. 
+As a motivating scenario we will look at security guard in an office building. The robot patrols the working environment and should learn 
+models of what the environment normally looks like and what variations there are. In an implementation of such a system the robot tell when 
+something differs from the ordinary too much and then raise an alarm. Initially we will focus on desktop scenes. We are interested in models 
+for individual desks and as well as general models of desks. Our working hypotheses is that there is some general rules for how desks are 
+organized that we want to be able to extract and later exploit when building the models. We expect that object will change place, within certain semantic bounds. Some objects could be missing at times (coffee mug) which is normal, but some other objects are rarely moved (monitor).
 
-The STRANDS robot, is expected to observe environments continuously and adapt their learnt algorithm based on new allowed variations and/or human reinforcements. It is required to learn general structures of environment settings and object spatial configuration properties and come up with a general structure for say, \textit{Office Room}, \textit{Office Table}, \textit{Cafeteria Table}. At the next level of intelligence it must be able to learn what is normal for particular people in the environment if it is feasible or find generalized structures over time or other different parameters e.g. category of researcher, winter, holiday season etc. At a higher level of semantic mapping, the robot could also learn about the variations in particular scene classes e.g. \textit{Office Rooms}, \textit{Office Kitchen}, \textit{Office Lobby}, \textit{Office Bathroom}.
+Another aim is to be able to transfer knowledge from one environment to the next. This would allow a robot that just entered a new 
+environment to be functional from the start. Concretely this would correspond to having a reasonable prior which can then be adapted when 
+new observations are available. What information is general and what is environment specific? How do we represent the knowledge in a way that caters for the knowledge transfer, the ability to learn from few samples and adapting existing models? These are some further examples of questions that we want to study.
 
-The project has begun with a focus on Office Tables. The aim is to learn spatial models for general allowed configurations of sets of objects usually found on Office Tables, across variations in time and people. Once there are general spatial models of Office Table, security protocols and action-reaction mechanisms can be specified or learnt. These can also act as a tool to aide vision-perception systems. In an "\textit{Object Search}" task the robot could use the knowledge from the spatial configuration to obtain prior stochastics about where an object could most probably be found. In the "\textit{Object Recognition}" task the learned spatial models could provide prior information to process a portion of the RGB-D image for locating a particular object that is usually present there because of the spatial configurations of the remaining recognized objects, but cannot be currently found because of noise such as: occlusions, sensor infidelity etc. The learnt spatial models can also provide for the posterior probabilities of the recognizer to disambiguate between recognised objects.
-
-The following sections elaborate on mainly two things: the dataset constructed for this purpose and comparisons of different spatial modelling techniques on the developed data to provide suggestive insights on the kind of qualitative, non-descriptive features for human environment modelling.
+To study these questions we need data to learn from. The data need to capture both variations across different desks but also over time. None of the datasets available (see Section~/ref{sec:Related Work}) meet these requirements which is the motivation for the work behind the dataset that we present in this paper.
 
 \subsubsection*{Points Discussed}
 \begin{enumerate}
-	\item To be specific lets look at STRANDS for evaluating concepts
-	\item What is test case in STRANDS
 	\item This section should stress why it is important to gather to such datasets
 	\item what type of data do we really need? - hint it
 	\item reference to related work section to show that this dataset is unique.
