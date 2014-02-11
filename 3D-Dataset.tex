@@ -26,7 +26,6 @@
 Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
 }
 
-
 \author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Kaushik Desai$^{1}$, Adria Gallart$^{1}$, Malepati Sai Akhil$^{2}$, Gaurav Agrawal$^{2}$,\\Mayank Jha$^{2}$, Janardhan HR$^{2}$, Nishan Shetty$^{2}$, Prasad NR$^{2}$, John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
 \thanks{*This work was supported by STRANDS}% <-this % stops a space
 \thanks{$^{1}$ KTH Royal Institute of Technology
@@ -38,18 +37,16 @@ Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
 
 \begin{document}
 
-
-
 \maketitle
 \thispagestyle{empty}
 \pagestyle{empty}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 \begin{quote}\
 
 Humans subconsciously exploit various strong correlations amidst different object instances, classes and between different object classes and scene types when analysing indoor environments. Correlations in naive, logical object co-occurrences have been exploited along with the extraction of vision based object-intrinsic descriptive features in previous research. In this paper, we present several alternative learning techniques to model and make estimates of scenes based on a variety of spatial relations - geometric extrinsic features with different amounts of discretization, which capture \textit{how} the objects co-occur; and compare their efficacy in the context of object classification in real-world table-top scenes. We investigate the possibilities of using such techniques to refine the results from a traditional vision-perception system. We also contribute a unique, long-term periodic, large 3D dataset of 20 office table-top scenes, manually annotated with 18 object classes. Apart from our current comparison, we foresee that the dataset will be useful for applications such as generalized learning of spatial models, learning object data structuring based on semantic hierarchy, learning best suited semantic abstractions and grammar for long term autonomy, ground truth for vision-perception systems etc.
+
 \end{quote}
 \end{abstract}
 
@@ -102,19 +99,17 @@ Apart from using the statistics of co-occurrence, a lot of information can be ex
 
 Our work is evaluated on a new 3D long-term dataset. Other datasets exist: The \textit{B3DO dataset} \cite{Janoch:ICCV2011} which contains many single-snapshot instances of indoor human environments having a variety in viewpoints, object-classes, scene-classes and instances. This dataset is in the form of RGB and depth image pairs with manual 2D annotations of object classes, capturing many unique scenes with the sole aim of finding more realistic scenes which are difficult for PSs to perform scene classification. \textit{NYU Depth V1-2} \cite{Silberman:ECCV2012} datasets contain different instance examples of object-classes and scene-classes. Each image instance is a combo of synchronous RGB and D images of a different scene-class with semantic annotation provided to every pixel. This dataset is aimed at helping PSs with automatic semantic segmentation and scene classification. The \textit{3D IKEA database} \cite{Swadzba:RAS2012} has been collected using robotic maneuvering in different scene-class instances. The aim is to test scene-classification algorithms based on large furniture level objects. The \textit{WRGBD dataset} \cite{Lai:ICRA2011} is aimed to support object classification methods and contains many instances of isolated objects in .pcd format. Annotation is done by assigning every pixel a correct semantic label.None of these datasets contain periodically collected data or easily usable spatial annotations of objects which are key for long-term autonomous scene-learning, based on spatial relations.
 
-
 \begin{enumerate}
-	\item QSR - LEEDS activity recognition
   \item More on dataset papers
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Motivating example}
-\label{sec:Test Case}
+\section{Motivating Example}
+\label{sec:Motivating Example}
 
 We are investigating systems that operate for a long time in environments populated by humans. As a motivating example we will look at 
-security guard in an office building. The robot patrols the working environment and should learn the allowed variations of different parts of space. In this work we focus on desktops ahe robot must look at table-tops of the office inhabitants and learn 
+security guard in an office building. The robot patrols the working environment and should learn the allowed variations of different parts of space. In this work we focus on desktops the robot must look at table-tops of the office inhabitants and learn 
 about the allowed variations of the objects on them. The objects could generally change place, within certain semantic bounds (A chair is 
 generally in front of a table, almost never on a table); some objects could be missing at times (coffee mug) which is normal, but some other 
 objects are rarely moved (monitor). Certain specific instructions might be passed on - like a "clean desk policy" which means that the desk 
@@ -134,10 +129,9 @@ The following sections elaborate on mainly two things: the dataset constructed f
 \begin{enumerate}
 	\item To be specific lets look at STRANDS for evaluating concepts
 	\item What is test case in STRANDS
-	\begin{itemize}
-		\item See structure
-
-	\end{itemize}
+	\item This section should stress why it is important to gather to such datasets
+	\item what type of data do we really need? - hint it
+	\item reference to related work section to show that this dataset is unique.
 \end{enumerate}
 
 
@@ -151,15 +145,6 @@ It is convenient to perceive a structure of the objects in the environments as i
 
 It is required for such a long-term autonomous learning to have entire views of the scenes to model the interrelations amidst the member objects. Apart from being variant over object instances across different scenes, the data needed to be periodic over time at a scale of couple of hours so as to capture the individual and group variations in position and pose when there has been regular/irregular human interaction involved. The currently available datasets either are of individual objects or single instances of entire rooms. The required regularity in instances and time was the main motivation for the construction of this dataset.
 
-\subsection{Dataset Details}
-A 3D dataset " \textit{Tables for Spatial Modelling}" has been created by KTH, Royal Institute of Technology. The dataset is a collection of human annotated office tables of researchers at KTH. This is the ground truth data to train models for spatial configuration of Office Tables.
-
-The data was collected using a freely available software called \textit{SCENECT} \cite{} and an \textit{Asus Xtion Pro} RGB-D camera. A \textit{Scene} is defined to be a single instance of a table-top of one person at one time instance. There is one 3D colour image in the form of a point cloud per scene (.pcl format). Every scene is a reconstructed version of the raw data stream obtained by a person scanning a table-top with real time visual feedback using SCENECT. The software has in-built real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
-
-The scenes were recorded as periodically as possible and at three fixed time instances of the day: Morning (09:00 hrs), Afternoon (13:00 hrs)and Evening (18:00 hrs). The scenes were collected for 19 days, 3 times per day and for the same 20 different tables. Depending on who the table belongs to and the date and time of the recording, each table-top scene recording receives a \textit{Scene\_ID}. These Scene\_IDs help in slicing across the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, or people\{Akshaya, Yuquan, Carl,...\}, or day \{2013-11-01, 2013-11-06, 2013-11-13,...\}.
-
-A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out objects of interest from the point clouds. On an average 12 different objects were labelled per scene. The objects belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Mobile, Keys, Headphones, Telephone, Pencil, Rubber, Notebook, Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and each object are available in the .xml and .json formats. Each scene data has a nested list of object data, and each object data has the following information about the object - \{Position, Orientation, Size, Date and Time of recording, Person ID, Point Indices of the point cloud that have been labelled as belonging to the Object\}.
-
 \subsection{Design}
 
 \subsubsection*{Points Discussed}
@@ -169,16 +154,30 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 	\item Time and people level slicings
 	\item weekends and weekdays
 	\item different times of the day
+	\item We want the data to have these properties and hence we designed the dataset in this way.
 \end{enumerate}
 
-\subsection{Implementation or execution}
+\subsection{Dataset Realization}
+A 3D dataset " \textit{Tables for Spatial Modelling}" has been created by KTH, Royal Institute of Technology. The dataset is a collection of human annotated office tables of researchers at KTH. This is the ground truth data to train models for spatial configuration of Office Tables.
 
+The data was collected using a freely available software called \textit{SCENECT} \cite{} and an \textit{Asus Xtion Pro} RGB-D camera. A \textit{Scene} is defined to be a single instance of a table-top of one person at one time instance. There is one 3D colour image in the form of a point cloud per scene (.pcl format). Every scene is a reconstructed version of the raw data stream obtained by a person scanning a table-top with real time visual feedback using SCENECT. The software has in-built real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
+
+The scenes were recorded as periodically as possible and at three fixed time instances of the day: Morning (09:00 hrs), Afternoon (13:00 hrs)and Evening (18:00 hrs). The scenes were collected for 19 days, 3 times per day and for the same 20 different tables. Depending on who the table belongs to and the date and time of the recording, each table-top scene recording receives a \textit{Scene\_ID}. These Scene\_IDs help in slicing across the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, or people\{Akshaya, Yuquan, Carl,...\}, or day \{2013-11-01, 2013-11-06, 2013-11-13,...\}.
+
+A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out objects of interest from the point clouds. On an average 12 different objects were labelled per scene. The objects belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Mobile, Keys, Headphones, Telephone, Pencil, Rubber, Notebook, Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and each object are available in the .xml and .json formats. Each scene data has a nested list of object data, and each object data has the following information about the object - \{Position, Orientation, Size, Date and Time of recording, Person ID, Point Indices of the point cloud that have been labelled as belonging to the Object\}.
 \subsubsection*{Points Discussed}
 \begin{enumerate}
 	\item Annotation Tool
 	\item Tools for collecting Asus Scenect
 	\item 
-	\item 
+\end{enumerate}
+
+\subsection{Dataset Summary}
+\begin{enumerate}
+	\item Dataset details - days, objects, people, times
+	\item \textbf{figure} showing variations over different times of day, different people
+	\item details of XML and JSON files
+	\item \textbf{figure} Histograms of object occurrences
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -188,14 +187,19 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 
 \subsubsection*{Points Discussed}
 \begin{enumerate}
-	\item Scatter plots
-	\item Histograms
+	\item \textbf{figure} Scatter plot for variation within person ID
+	\item \textbf{figure} Scatter plot for variation wrt object type
+	\item \textbf{figure} Scatter plot for variation considering different landmark - trajectors.
+	\item \textbf{figure} Scatter plot of 2D footprints of objects
+	\item General conclusions about above figures.
 	\item 
 	\item 
 \end{enumerate}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 \label{sec:Conclusions}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
 \label{sec:Future Work}
@@ -208,8 +212,6 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
 \label{sec:Acknowledgements}
-Adria, Kaushik Desai, Malepati Sai Akhil, Prasad NR, Gaurav Agrawal, Janardhan N, Mayank Jha, Nishan Shetty, MSRIT Bangalore, CVAP-KTH, Accel Partners, STRANDS project
-
-
+CVAP-KTH, Accel Partners, STRANDS project
 
 \end{document}
