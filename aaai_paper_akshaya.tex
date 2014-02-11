@@ -1,53 +1,31 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%2345678901234567890123456789012345678901234567890123456789012345678901234567890
-%        1         2         3         4         5         6         7         8
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article}
+\usepackage{aaai}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\pdfinfo{
+/Title (3D Data for Long-Term Spatial Learning and Comparison of Intelligent Methods)
+/Author (Akshaya, Chris, Lars, Marina, Rares, John, Patric, Nick)}
+\setcounter{secnumdepth}{0}
 
-\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
 
-%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
-
-\IEEEoverridecommandlockouts                              % This command is only needed if 
-                                                          % you want to use the \thanks command
-
-\overrideIEEEmargins                                      % Needed to meet printer requirements.
-
-% See the \addtolength command later in the file to balance the column lengths
-% on the last page of the document
-
-% The following packages can be found on http:\\www.ctan.org
-%\usepackage{graphics} % for pdf, bitmapped graphics files
-%\usepackage{epsfig} % for postscript graphics files
-%\usepackage{mathptmx} % assumes new font selection scheme installed
-%\usepackage{times} % assumes new font selection scheme installed
-%\usepackage{amsmath} % assumes amsmath package installed
-%\usepackage{amssymb}  % assumes amsmath package installed
-
-\title{\LARGE \bf
-Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
+% Self Included Packages:
+\usepackage{color}
+ \begin{document}
+% The file aaai.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+%
+\title{Comparison of Spatial Relations Based Object Classification and Scene Understanding Techniques Using a Large Annotated 3D Scene-Object Dataset
 }
-
-
-\author{Albert Author$^{1}$ and Bernard D. Researcher$^{2}$% <-this % stops a space
-\thanks{*This work was not supported by any organization}% <-this % stops a space
-\thanks{$^{1}$Albert Author is with Faculty of Electrical Engineering, Mathematics and Computer Science,
-        University of Twente, 7500 AE Enschede, The Netherlands
-        {\tt\small albert.author@papercept.net}}%
-\thanks{$^{2}$Bernard D. Researcheris with the Department of Electrical Engineering, Wright State University,
-        Dayton, OH 45435, USA
-        {\tt\small b.d.researcher@ieee.org}}%
+\author{Akshaya, Chris, Lars, Marina, Rares, John, Patric, Nick\\
+KTH Royal Institute of Technology\\
+University of Birmingham
 }
-
-
-\begin{document}
-
-
-
 \maketitle
-\thispagestyle{empty}
-\pagestyle{empty}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 \begin{quote}\
 
@@ -55,20 +33,27 @@ Humans subconsciously exploit various strong correlations amidst different objec
 \end{quote}
 \end{abstract}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Introduction}
 \label{sec:Introduction}
 
-Objects pervade human environments. If robots are to perform useful service tasks for humans it is crucial that they are able to locate and identify a wide variety of objects in everyday environments. State-of-the-art object recognition/classification typically relies on the extraction features to be matched against models built through machine learning techniques. As - the number of objects a given system is trained to recognise - increases, the uncertainty of individual recognition results tends to increase as greater number of objects increases the chance of overlapping features existence. The reliability of such recognisers is also affected when used on real robots in everyday environments, as objects may be partially occluded by scene clutter or only visible from certain angles, both potentially reducing the visibility of features for their trained models. In this paper we argue that the performance of a robot on an object recognition task can be increased by the addition of \emph{contextual knowledge} about the scene the objects are found in. In particular we demonstrate how models of the \emph{spatial configuration} of objects, learnt over prior observations of real scenes, can allow a robot to recognise the objects in unseen scenes more reliably. 
+{\color{red}NEEDS trimming, too long- TSA} 
 
-Our work is performed in the context of developing a mobile service robot for long-term autonomy in indoor human environments, from offices to hospitals. The ability for a robot to run for weeks or months in its task environment opens up a new range of possibilities in terms of capabilities. In particular, any task the robot performs will be done in an environment it may have visited many times before, and we wish to find ways to capture the contextual knowledge gained from previous visits in a way that enables subsequent behaviour to be improved. The use of context to improve object recognition is just one example of this new robotics paradigm. In this paper we focus on the task of \emph{table-top scene understanding}, and more specifically what objects are present on a table-top. Whilst the objects present on a single table may change in position, their overall arrangement has some regularity over time as influenced by the use to which the table is put. For example, if this table is used for computing, then a (relatively static) monitor will be present, with a keyboard in front of it and mouse to one side. A drink, or paper and a pen, may be within an arms length of the keyboard, as may headphones or a cellphone. This arrangement may vary across different tables in the same building, but the overall pattern of arrangements will contain some structure. It is this structure we aim to exploit in order to improve the recognition of table-top objects, e.g. knowing that the object to the right of a keyboard is more likely to be a mouse than a cellphone. 
+Robotics is beginning to pervade into human life as a direct consequence of the recent amalgamation of computers into almost all avenues of human life. Research in intelligent robotics is ardently sought after by many current academics because of the utility that our society can expect to obtain from augmenting itself with robots. The main drawback of naive computer programs is that they perform \emph{only} instructed tasks, withal discounting the incredibly utilitarian character of accurate repetitive performance with virtually no signs of fatiguing. The research in intelligent robotics is to tackle this issue, by which, new age robots can learn about human nature, activities, needs, actions, reactions and seamlessly integrate into their environment to make for more efficient living.
 
-As the absolute positions of objects on a table (or their relative positions with respect to some fixed part of the table) is unlikely to generalise across a range of different tables, we are investigating \emph{relational} models of space, i.e. ways of encoding the position of a target object relative to the position of one or more landmark objects. Using a novel data set of table-top scenes (described in Section~\ref{sec:Dataset}), in this paper we explore the performance of a variety of representations for relative object position, plus inference techniquess for operating on them, on the task of table-top scene understanding (Section \ref{sec:Techniques}). In particular we investigate representations that use varying forms of spatial relations, from geometric ones such as distances and angles to more qualitative spatial relations such as \textit{Left} and \textit{Behind} as a means for capturing observations of object configurations over time. The contributions this paper makes are: (1) A novel comparison between mechanisms for representing, learning and inference on object spatial configurations using spatial relations. (2) An evaluation of the use of these mechanisms for augmenting a robot's vision based \textit{perceptual system} (PS). (3) A new large 3D annotated table-top benchmark dataset.
+With the above concept in mind, consider the need for robots to learn, understand and generalize about spatial configurations of human environments and the many animate and inanimate objects they contain. Ideally, given a collection of supervised observations and provided with the intelligence of one of the relevant state-of-the-art machine learning techniques the problem seems straight forward. However some of these ideal conditions are very hard to fulfil. Consider a human environment viz. office, supermarket, bank, cafeteria etc. the general description of the task of the robot installed there is to check on the working humans, monitor the environment, raise alarms if something out of the ordinary is observed and also react and display proactivity toward human occupations as an ultimate goal. For this to be effected, the robot is required to use the signals from it's sensors, extract semantics from the signals, understand configuration, activities and normality of both from the semantics and ultimately try to gain view of human intent. Other profitable attributes that such robots could have are that of generalization of gained knowledge and transferability of such knowledge to it's peers.
+
+Robots thusly, need to gain knowledge about the objects in the human environment. This primarily entails the recognition of the class of the many objects in the environment in the presence of instance and pose variations and occlusions. Classification of objects in the environment based on structure or function can have different utilities such as passive or active surveillance and activity observations. Post object classification, a scene classification analysis needs to be done which means to consider all the recognized object class instances together to understand the configuration of the scene as a whole. Understanding that the presence and pose of particular object as an effect of the scene in question; understanding that the configuration of objects in a scene are not independent events but is because of interrelated causality amongst the objects in the scene, is quite powerful, to obtain a holistic view for the performance demanded from these robots.
+
+A technical challenge that comes in the way of learning spatial models that represent objects in a human environment encompassing the interrelations, variations over different spans of time and space and instances involves handling a plethora of data received from the sensors. Consider only an RGB-D sensor such as Asus Xtion mounted on a patrolling robot that sweeps the environment once every hour. Even, if a perfect vision system for object recognition is in use, consider the amount of representative metric data generated per object, per scene, per time instance and hence for different instances of the same scene (e.g. Office Desk or Cafeteria Table) over spans of time, grows at a large order. Using this data to get one generalized model of \textit{Office Table} or \textit{Cafeteria Table} capturing the essences of variation over time and instances of the environment and it's components is quite close to impossible without extracting some intelligent features over the objects/scene or mapping them onto a lesser dimensional subspace.
+
+The state-of-the-art stand-alone vision-perception based systems extract descriptive features from images to recognize objects. The characteristic parametrizations of these descriptive features typical and intrinsic to each object is what helps the perception system classify the objects. However, a lot of non-descriptive features are also available but rarely exploited e.g. spatial configurations of a group of different objects which usually occur together, functional information, contextual information, pose and placement with respect to a global origin etc. Such features extracted from object constellations, given their semantic data, are called \textit{Spatial Relations} (SR) or \textit{Qualitative Spatial Relations} (QSR) based on amount of discretization and similarity to human perception. A few such techniques are proposed in this paper to provide openings toward further such research for long-term autonomous learning robots.
+
+These extrinsic or spatial features based systems can be further developed for activity recognition, and understanding the human environment and it's components at a higher level of semantic abstraction. Theses systems that do mainly object or scene-classification could currently work alongside already present vision-perception systems and augment the performance to obtain better accuracy. They could provide prior probabilities for object labels or finding them in a scene. They could also help calculate the posterior probabilities of the object labels to disambiguate a recognition system, once it has actually detected the objects or even labelled them (verification).
+
+Training such long-term intelligent systems to learn about human environments from such non-descriptive features requires large amounts of data. As current robotic platforms usually use RGB-D sensors and perform analyses on 3D data, large amounts of periodic \textit{point-cloud} images of the same scenes over periodic instances of time is required. These point clouds need to be annotated for ground truth data about objects in the environment. Such a large dataset has been developed for one category of scenes and is available for use. This data set is one of it's kind and can be used by the researchers doing vision-perception and/or robotics.
 
 \subsubsection*{Points discussed}
 \begin{enumerate}
-	\item \textbf{Make this more "Human Oriented"}
 	\item Overview of the problem - why?
 	\begin{enumerate}
 		\item Not only desktops
@@ -93,12 +78,12 @@ As the absolute positions of objects on a table (or their relative positions wit
 	\end{itemize}
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Related Work}
 \label{sec:Related Work}
 
-Spatial relations have been used previously to provide contextual information to vision-related work. \cite{MyungJin:CVPR2010}used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams. For example, \cite{Krishna:ECAI2010} demonstrate the learning of activity phases in airport videos using spatial relations between tracked objects, and \cite{Behera2012} use spatial relations to monitor objects and activities in videos of a constrained workflow environment. Recent work has used object co-occurrence to provide context in visual  tasks. Examples in 2D include object co-occurrence statistics in class-based image segmentation~\cite{Ladicky:IJCV2013}; and the use of object presence to provide context in activity recognition~\cite{Li:2012}. However, all this previous work is restricted to 2D images, whereas our approaches work with spatial context in 3D (RGB-D) data. Authors have also worked with spatial context in 3D, including parsing a 2D image of a 3D scene into a simulated 3D field before extracting geometric and contextual features between the objects \cite{Xiao:SIGGRAPH2012}. Our approaches to encoding 3D spatial context could be applied in these cases, and we use richer, structured models of object relations.
+
+
+Spatial relations have been used previously to provide contextual information to vision-related work. \citeauthor{MyungJin:CVPR2010}~\shortcite{MyungJin:CVPR2010} used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams. For example, \citeauthor{Krishna:ECAI2010}~\shortcite{Krishna:ECAI2010} demonstrate the learning of activity phases in airport videos using spatial relations between tracked objects, and \citeauthor{Behera2012}~\shortcite{Behera2012} use spatial relations to monitor objects and activities in videos of a constrained workflow environment. Recent work has used object co-occurrence to provide context in visual  tasks. Examples in 2D include object co-occurrence statistics in class-based image segmentation~\cite{Ladicky:IJCV2013}; and the use of object presence to provide context in activity recognition~\cite{Li:2012}. However, all this previous work is restricted to 2D images, whereas our approaches work with spatial context in 3D (RGB-D) data. Authors have also worked with spatial context in 3D, including parsing a 2D image of a 3D scene into a simulated 3D field before extracting geometric and contextual features between the objects \cite{Xiao:SIGGRAPH2012}. Our approaches to encoding 3D spatial context could be applied in these cases, and we use richer, structured models of object relations.
 
 Apart from using the statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene, i.e. the extrinsic, geometric spatial relations between the objects. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. They also use spatial information for context-based object search using Graph Kernel Methods. The method is further developed to provide synthetic scene examples using spatial relations \cite{Fisher:ACMT2012}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In \cite{Lin:ICCV2013} a technique is developed for automatic annotation of 3D objects. It uses intrinsic appearance features and geometric features and is employed to build an object and scene classifier using conditional random fields. In \cite{kasper:2011} the authors utilise both geometric single object features and pair-wise spatial relations between objects to develop an empirical base for scene understanding. Recent studies \cite{Southey:2007,kasper:2011} compute statistics of spatial relations of objects and use it for conditional object recognition for service robotics. Whilst our techniques are comparable to those in the literature, our contribution comes from the explicit comparison of different representations of spatial context (metric vs qualitative) on a novel, long-term learning task. Additionally our qualitative approach relies on relationships which could be provided through other mechanisms than unsupervised machine learning (e.g. through a human tutor describing a spatial scene), and in this way bootstrap the system using expert knowledge.
 
@@ -110,7 +95,7 @@ Our work is evaluated on a new 3D long-term dataset. Other datasets exist: The \
 
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Test Case / Working Example}
 \label{sec:Test Case}
@@ -138,7 +123,7 @@ The following sections elaborate on mainly two things: the dataset constructed f
 \end{enumerate}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 \section{Dataset}
@@ -178,7 +163,8 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 	\item 
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \section{Analysis}
 \label{sec:Analysis}
@@ -193,20 +179,19 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 
 \section{Conclusions}
 \label{sec:Conclusions}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
 \label{sec:Future Work}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection*{Points Discussed}
 \begin{enumerate}
 	\item Room level data set
 	\item Which QSR for which purpose?
 \end{enumerate}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
 \label{sec:Acknowledgements}
 Adria, Kaushik Desai, Malepati Sai Akhil, Prasad NR, Gaurav Agrawal, Janardhan N, Mayank Jha, Nishan Shetty, MSRIT Bangalore, CVAP-KTH, Accel Partners, STRANDS project
 
-
+\bibliographystyle{aaai}
+\bibliography{references}
 
 \end{document}
