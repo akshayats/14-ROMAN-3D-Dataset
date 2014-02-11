@@ -107,19 +107,24 @@ Our work is evaluated on a new 3D long-term dataset. Other datasets exist: The \
 
 \begin{enumerate}
 	\item QSR - LEEDS activity recognition
-
+  \item More on dataset papers
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Test Case / Working Example}
+\section{Motivating example}
 \label{sec:Test Case}
 
-The members of this research team are working for a EU-Research project\cite{Behera2012} by the name of \textit{Spatio-Temporal Representations and Activities for Cognitive Control in Long-Term Scenarios} (STRANDS) which involves developing a long-term autonomous robot with a SCITOS G5 \cite{}, with an RGB-D camera as a vision sensor, so that this robot can be used to augment tedious observe-learn-serve tasks in human environments.
-
-\textit{Security Guard for Office} is a test case for the project and by the end of the project it is required to develop a robotic intelligence which would learn the map of the area to be patrolled, the objects present in the office, the human activities in the office at different times of the day, week, month and year, normality and abnormality about these aspects and alarm raising protocols if abnormalities have been detected. 
-
-This translates to an action plan for the robot in which it patrols the working environment and learns the allowed variations of different room-level objects such as chairs, tables, shelves etc. As a nested action plan, the robot must look at table-tops of the office inhabitants and learn about the allowed variations of the objects on them. The objects could generally change place, within certain semantic bounds (A chair is generally in front of a table, almost never on a table); some objects could be missing at times (coffee mug) which is normal, but some other objects are rarely moved (monitor). Certain specific instructions might be passed on - like a "clean desk policy" which means that the desk needs to be rid of any paper material post working hours but is allowed otherwise during working hours. All these are many rules and quite specific to circumstances for a programmer to practically specify in the execution code of the robot, hence the need of intelligent robots. The ultimate aim of this aspect of the robot learning would be to be able generalize the learnt knowledge about Table Tops to Rooms or to different kind of Table Tops with objects never seen before. e.g. Learn about table tops in an office environment and be able to generalize to table tops in a cafeteria.
+We are investigating systems that operate for a long time in environments populated by humans. As a motivating example we will look at 
+security guard in an office building. The robot patrols the working environment and should learn the allowed variations of different parts of space. In this work we focus on desktops ahe robot must look at table-tops of the office inhabitants and learn 
+about the allowed variations of the objects on them. The objects could generally change place, within certain semantic bounds (A chair is 
+generally in front of a table, almost never on a table); some objects could be missing at times (coffee mug) which is normal, but some other 
+objects are rarely moved (monitor). Certain specific instructions might be passed on - like a "clean desk policy" which means that the desk 
+needs to be rid of any paper material post working hours but is allowed otherwise during working hours. All these are many rules and quite 
+specific to circumstances for a programmer to practically specify in the execution code of the robot, hence the need of intelligent robots. 
+The ultimate aim of this aspect of the robot learning would be to be able generalize the learnt knowledge about Table Tops to Rooms or to 
+different kind of Table Tops with objects never seen before. e.g. Learn about table tops in an office environment and be able to generalize 
+to table tops in a cafeteria.
 
 The STRANDS robot, is expected to observe environments continuously and adapt their learnt algorithm based on new allowed variations and/or human reinforcements. It is required to learn general structures of environment settings and object spatial configuration properties and come up with a general structure for say, \textit{Office Room}, \textit{Office Table}, \textit{Cafeteria Table}. At the next level of intelligence it must be able to learn what is normal for particular people in the environment if it is feasible or find generalized structures over time or other different parameters e.g. category of researcher, winter, holiday season etc. At a higher level of semantic mapping, the robot could also learn about the variations in particular scene classes e.g. \textit{Office Rooms}, \textit{Office Kitchen}, \textit{Office Lobby}, \textit{Office Bathroom}.
 
