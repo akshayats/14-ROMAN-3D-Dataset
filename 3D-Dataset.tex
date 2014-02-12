@@ -15,12 +15,15 @@
 % on the last page of the document
 
 % The following packages can be found on http:\\www.ctan.org
-%\usepackage{graphics} % for pdf, bitmapped graphics files
-%\usepackage{epsfig} % for postscript graphics files
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{epsfig} % for postscript graphics files
 %\usepackage{mathptmx} % assumes new font selection scheme installed
 %\usepackage{times} % assumes new font selection scheme installed
 %\usepackage{amsmath} % assumes amsmath package installed
 %\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{subfig}
+
+\graphicspath{{images/}}
 
 \title{\LARGE \bf
 Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
@@ -174,10 +177,78 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 	\item \textbf{figure} Histograms of object occurrences
 \end{enumerate}
 
+\begin{figure}[t]
+\begin{center}
+\subfloat[][]{\label{fig:HistOfObjects}\includegraphics[width=0.8\linewidth]{HistOfObjects_crp.pdf}}\\
+\subfloat[][]{\label{fig:RawPCD}\includegraphics[width=0.7\linewidth]{pcd.png}}\\
+\subfloat[][]{\label{fig:RawPCDAnnotated}\includegraphics[width=0.7\linewidth]{pcd_annotated.png}}
+\caption{(a) Objects annotated in 3D Long-Term Dataset, sorted in descending order of count of occurrences. X-axis$=$Object Name, Y-axis$=$Occurrence Count. (b) Screenshot of one table scene, along with it's annotations in (c).}
+
+\end{center}
+\end{figure}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Analysis}
 \label{sec:Analysis}
+
+\begin{figure*}
+\begin{tabular}{ccc}
+\includegraphics[height=2.5cm]{David_Mor_131110}&
+\includegraphics[height=2.5cm]{Nils_Mor_131111}&
+\includegraphics[height=2.5cm]{Puren_Eve_131029}\\
+\includegraphics[height=2.5cm]{David_Eve_131110}&
+\includegraphics[height=2.5cm]{Nils_Eve_131111}&
+\includegraphics[height=2.5cm]{Puren_Mor_131110}
+\end{tabular}
+\label{fig:examplescenes}
+\caption{Each column shows a different person's desk. The first two columns show desks in the evening and the morning of the same day whereas the last column shows a desk 12 days apart in time.}
+\end{figure*}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\linewidth]{keyboard_mouse_raw-crop}
+\includegraphics[width=0.8\linewidth]{keyboard_mouse-crop}
+\end{center}
+\label{fig:scatter-keyboard-mouse}
+\caption{This figure investigates the correlation in position of keyboard and mouse. Top: The green circles shows the position of the centroid of each keyboard that exist in a scene where there is at least one mouse. The black crosses show the position of all mice in scenes with at least one keyboard. The red square shows the mean position of all keyboards. Bottom: By shifting the position of keyboard and mouse such that the keyboards are at the mean keyboard position we can illustrate the position of the mouse relative to the keyboard. As expected most mice are to the right of the keyboard.} 
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\subfloat[][]{\label{fig:scatter-monitor-keybard}\includegraphics[width=0.8\linewidth]{monitor_keyboard-crop}}\quad
+\subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{keyboard_mug-crop}}\\
+\subfloat[][]{\label{fig:scater-keyboard-papers}\includegraphics[width=0.8\linewidth]{keyboard_papers-crop}}
+\end{center}
+\label{fig:scatter-rest}
+\caption{The figures show the relative position of a) keyboard w.r.t. monitor, b) mug w.r.t. keyboard and c) papers w.r.t. keyboard. Qualitatively keyboards are mostly infront of monitors, mugs are around the keyboard and the position of papers is mosty independent on the position of the keyboard.} 
+\end{figure}
+
+
+\begin{figure*}
+\begin{center}
+\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& $C_{1}$ & $C_{2}$ & $C_{3}$ & $C_{4}$ & $C_{5}$ & $C_{6}$ & $C_{7}$ & $C_{8}$ & $C_{9}$ & $C_{10}$ & $C_{11}$ & $C_{12}$ & $C_{13}$\\ \hline \hline
+$C_1$: Keyboard & 0.76 & 3.54 & 2.79 & 4.01 & 3.56 & 4.57 & 4.00 & 3.78 & 3.11 & 3.18 & 2.78 & 3.25 & 2.95 \\ \hline
+$C_2$: Monitor & 3.41 & 1.65 & 3.35 & 4.06 & 3.39 & 4.63 & 4.19 & 3.86 & 3.48 & 3.16 & 3.01 & 3.37 & 2.95 \\ \hline
+$C_3$: Mouse & 2.89 & 3.59 & 0.73 & 3.81 & 3.59 & 4.56 & 3.96 & 3.84 & 3.30 & 3.09 & 3.02 & 3.27 & 2.93 \\ \hline
+$C_4$: Mug & 4.08 & 4.21 & 3.71 & 0.74 & 3.67 & 4.47 & 3.99 & 3.73 & 2.85 & 2.78 & 3.06 & 3.17 & 3.08 \\ \hline
+$C_5$: Laptop & 3.79 & 3.60 & 3.67 & 3.70 & 0.05 & 4.34 & 3.67 & 3.23 & 3.09 & 2.86 & 2.69 & 3.30 & 2.47 \\ \hline
+$C_6$: Papers & 4.45 & 4.50 & 4.22 & 4.41 & 4.01 & 2.76 & 4.30 & 3.84 & 3.41 & 3.49 & 3.29 & 3.72 & 3.36 \\ \hline
+$C_7$: Book & 3.96 & 3.93 & 3.81 & 3.86 & 3.67 & 4.49 & 0.77 & 3.42 & 2.76 & 2.93 & 2.59 & 3.35 & 2.81 \\ \hline
+$C_8$: Notebook & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 0.28 & 1.83 & 2.40 & 1.81 & 2.62 & 1.97 \\ \hline
+$C_9$: Mobile & 3.37 & 3.50 & 3.30 & 3.09 & 3.19 & 3.79 & 3.13 & 1.83 & 0.00 & 1.91 & 1.75 & 2.28 & 1.28 \\ \hline
+$C_{10}$: Glass & 3.46 & 3.60 & 3.28 & 2.89 & 3.05 & 3.96 & 2.70 & 2.04 & 2.08 & 0.41 & 2.15 & 2.57 & 1.35 \\ \hline
+$C_{11}$: Flask & 2.98 & 3.28 & 3.22 & 3.13 & 2.87 & 3.68 & 2.88 & 2.06 & 1.75 & 2.20 & 0.00 & 2.80 & 1.44 \\ \hline
+$C_{12}$: Bottle & 3.47 & 3.64 & 3.44 & 3.42 & 3.17 & 4.03 & 3.33 & 2.58 & 2.55 & 2.45 & 2.77 & 1.03 & 2.74 \\ \hline
+$C_{13}$: Jug & 3.05 & 3.34 & 2.85 & 3.11 & 2.54 & 3.56 & 2.81 & 1.97 & 1.28 & 1.55 & 1.43 & 2.95 & 0.00 \\ \hline
+\end{tabular}
+\label{fig:entropy}
+\caption{The table shows the entropy in the spread in positions that results when looking at the position of one object (columns) with respect to that of another one (rows). As we can see papers have high entropy in combination with all other objects which indicates that the distribution of relative positions is close to uniform. Other combinations such as Keyboard and Mouse have much lower entropy, that is, more peaky distribution showing a stronger correlation.}
+\end{center}
+\end{figure*}
 
 \subsubsection*{Points Discussed}
 \begin{enumerate}
@@ -197,15 +268,20 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
 \label{sec:Future Work}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Points Discussed}
 \begin{enumerate}
 	\item Room level data set
 	\item Which QSR for which purpose?
 \end{enumerate}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
 \label{sec:Acknowledgements}
 CVAP-KTH, Accel Partners, STRANDS project
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
 
 \end{document}
