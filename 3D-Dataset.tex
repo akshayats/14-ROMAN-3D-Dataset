@@ -96,19 +96,6 @@ As the absolute positions of objects on a table (or their relative positions wit
 \section{Related Work}
 \label{sec:Related Work}
 
-\begin{figure*}
-\begin{center}
-\includegraphics[height=2.5cm]{David_Mor_131110} \quad
-\includegraphics[height=2.5cm]{Nils_Mor_131111} \quad
-\includegraphics[height=2.5cm]{Puren_Eve_131029}\\ \smallskip
-\includegraphics[height=2.5cm]{David_Eve_131110} \enskip
-\includegraphics[height=2.5cm]{Nils_Eve_131111} \enskip
-\includegraphics[height=2.5cm]{Puren_Mor_131110}
-\label{fig:examplescenes}
-\caption{Each column shows a different person's desk. The first two columns show desks in the evening and the morning of the same day whereas the last column shows a desk 12 days apart in time.}
-\end{center}
-\end{figure*}
-
 Spatial relations have been used previously to provide contextual information to vision-related work. \cite{MyungJin:CVPR2010}used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams. For example, \cite{Krishna:ECAI2010} demonstrate the learning of activity phases in airport videos using spatial relations between tracked objects, and \cite{Behera2012} use spatial relations to monitor objects and activities in videos of a constrained workflow environment. Recent work has used object co-occurrence to provide context in visual  tasks. Examples in 2D include object co-occurrence statistics in class-based image segmentation~\cite{Ladicky:IJCV2013}; and the use of object presence to provide context in activity recognition~\cite{Li:2012}. However, all this previous work is restricted to 2D images, whereas our approaches work with spatial context in 3D (RGB-D) data. Authors have also worked with spatial context in 3D, including parsing a 2D image of a 3D scene into a simulated 3D field before extracting geometric and contextual features between the objects \cite{Xiao:SIGGRAPH2012}. Our approaches to encoding 3D spatial context could be applied in these cases, and we use richer, structured models of object relations.
 
 Apart from using the statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene, i.e. the extrinsic, geometric spatial relations between the objects. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. They also use spatial information for context-based object search using Graph Kernel Methods. The method is further developed to provide synthetic scene examples using spatial relations \cite{Fisher:ACMT2012}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In \cite{Lin:ICCV2013} a technique is developed for automatic annotation of 3D objects. It uses intrinsic appearance features and geometric features and is employed to build an object and scene classifier using conditional random fields. In \cite{kasper:2011} the authors utilise both geometric single object features and pair-wise spatial relations between objects to develop an empirical base for scene understanding. Recent studies \cite{Southey:2007,kasper:2011} compute statistics of spatial relations of objects and use it for conditional object recognition for service robotics. Whilst our techniques are comparable to those in the literature, our contribution comes from the explicit comparison of different representations of spatial context (metric vs qualitative) on a novel, long-term learning task. Additionally our qualitative approach relies on relationships which could be provided through other mechanisms than unsupervised machine learning (e.g. through a human tutor describing a spatial scene), and in this way bootstrap the system using expert knowledge.
@@ -157,16 +144,30 @@ To study these questions we need data to learn from. The data need to capture bo
 \section{Dataset}
 \label{sec:Dataset}
 
+\begin{figure*}
+\begin{center}
+\includegraphics[height=2.5cm]{David_Mor_131110} \quad
+\includegraphics[height=2.5cm]{Nils_Mor_131111} \quad
+\includegraphics[height=2.5cm]{Puren_Eve_131029}\\ \smallskip
+\includegraphics[height=2.5cm]{David_Eve_131110} \enskip
+\includegraphics[height=2.5cm]{Nils_Eve_131111} \enskip
+\includegraphics[height=2.5cm]{Puren_Mor_131110}
+\caption{Each column shows a different person's table in top view. The first row displays the morning scenes and the second row displays the evening scenes. The first two columns contain scenes from the same day, whereas the third column shows scenes 12 days apart in time. Notice in Column 1: the slight changes in position of the keyboard, mouse, papers and pen; Column 2: the relatively big changes in position of laptop, mouse, papers, pen, keyboard, lamp. When objects in columns 1,2,3 are compared there is a certain generality in structure (keyboards are always in front of monitors), but also a specificity for each person (occurrence of headphones, position of mouse wrt.\ keyboard). The clutter in column 3 is significantly more in row 2 than row 1 implying the time since the last time the person tidied-up his/her table. Cluttered tables in columns 2,3 belong to graduate students and a more orderly table in column 1 to a senior researcher, lightly suggesting a characteristic of type of researcher.}
+\label{fig:Example Scenes}
+\end{center}
+\end{figure*}
+
 Most of the human outdoor and especially indoor environments, are characterized by a supporting surface on which all relevant objects are placed e.g. Land - buildings, living room floor - furniture, dining table - cutlery and dishes etc. It is hence convenient to perceive a structure for the object arrangement in the human environments to be as if on a "nested table-top system". Table-tops are the most commonly present large objects in any floor map. They provide for a favourable prototypical example for analysis of object organization structure. Moreover, it is highly likely that objects on a "table" have more semantic and organizational correlation amidst them, than when compared to those objects not on that same "table" e.g. \textit{Pen} has more semantic/functional correlation with a \textit{Laptop} (on the table) than a \textit{Couch} (not on that table, here the "table" references to the floor of the room).
 
-With the aim of exploring possibilities to understand, learn and model these organizational formalities amongst objects in human indoor environments, a first, pertinent dataset has been composed by periodically capturing observations of entire table-tops of a fixed set of researchers at a computer science research facility; It is called \textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-TOTAL). These observations have been made periodically with intervals of few hours, over many days and various instances of object classes. The dataset therefore captures the individual and group variation in object position and pose due to humans and their interaction with the environment. The required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets either are of individual objects or singular instances of entire rooms.
-
+With the aim of exploring possibilities to understand, learn and model these organizational formalities amongst objects in human indoor environments, a first, pertinent dataset called \textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-TOTAL), has been composed by periodically capturing observations of entire table-tops of a fixed set of researchers at a computer science research facility. A singular observation of a table-top of one person at a single instance in time, captured in image format, is termed as a \textit{scene}.
 %% Blind %%
 %KTH University.
+These scenes have been captured with intervals of few hours, over many days and various instances of object classes. The dataset therefore captures the individual and group variation in object position and pose due to humans and their interaction with the environment. The required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets either are of individual objects or singular instances of entire rooms.
 
 It is required for such a long-term autonomous learning to have entire views of the scenes to model the interrelations amidst the member objects. Apart from being variant over object instances across different scenes, the data needed to be periodic over time at a scale of couple of hours so as to capture the individual and group variations in position and pose when there has been regular/irregular human interaction involved. The currently available datasets either are of individual objects or single instances of entire rooms. The required regularity in instances and time was the main motivation for the construction of this dataset (Section~\ref{sec:Related Work}).
 
-\subsection{Dataset Design}
+\subsection{Dataset Design and Concept}
+\label{ssec:Dataset Design and Concept}
 
 %\subsubsection*{Points Discussed}
 %\begin{enumerate}
@@ -179,44 +180,37 @@ It is required for such a long-term autonomous learning to have entire views of 
 %\end{enumerate}
 The target research groups to benefit from this dataset are of the kind that develops artificial intelligence for autonomous robots augmenting human activities (especially if they are fatiguing) within indoor human environments. Hence, it becomes essential for robotic learning to pay attention to variances in human environments wrt. scales of time, space and instances in the same space. The dataset has been composed by capturing and manually annotating 3D images of office type table-tops, for a fixed set of people, at fixed times of the day and for a span of many days.
 
-Observing the table-tops of the same set of people at different times of the day gives insight about the daily interactions a human has with his table and over many days gives an understanding of the gradual variances in their table-top setups. If the data is observed for an entire week, including weekends, features in the table-top configurations, that can be used for estimation of the type of the day of the week, can also be extracted (Weekdays, Fridays, Weekends). Table-top models can also be learnt for all the people put together -- which gives a gross functional representation of a typical table-top in general for research employees in office environments -- or for individual people which helps to gain functional representations of office table-tops for individuals, seniority, gender and so on. Finally, when trying to find general models over any of these types of data partition, the model learns to be able to generalize over different instances of a fixed set of object classes. In summary: When the dataset is partitioned in different ways with respect to time, people or instances, it richly yields knowledge and hence representations of table-tops in office environments.
+Observing the table-tops of the same set of people at different times of the day gives insight about the daily interactions a human has with his table and over many days gives an understanding of the gradual variances in their table-top setups. If the data is observed for an entire week, including weekends, features in the table-top configurations, that can be used for estimation of the type of the day of the week, can be extracted (e.g.\ Weekdays, Fridays, Weekends). Table-top models can also be learnt for all the people put together -- which gives a gross functional representation of a typical table-top in general for research employees in office environments -- or for individual people which helps to gain functional representations of office table-tops for individuals, seniority, gender and so on (Figure~\ref{fig:Example Scenes}). Finally, when trying to find general models over any of these types of data partition, the model learns to be able to generalize over different instances of a fixed set of object classes. In summary: When the dataset is partitioned in different ways with respect to time, people or instances, it richly yields knowledge and hence representations of table-tops in office environments.
 
-As explained in Section~\ref{sec:Motivating Scenario} our research intentions are to provide intelligence to an long-term operating, autonomous, human activity augmenting robot for indoor human environments. The concept of composing the 3D-TOTAL dataset follows naturally from this research motivation.
+As explained in Section~\ref{sec:Motivating Scenario} our research intentions are to provide intelligence to an long-term operating, autonomous, human activity augmenting robot for indoor human environments. Thusly, the concept of composing the 3D-TOTAL dataset follows naturally from this research motivation.
 
 \subsection{Dataset Realization}
-\subsubsection*{Points Discussed}
-\begin{enumerate}
-	\item Annotation Tool
-	\item Tools for collecting Asus Scenect
-	\item 
-\end{enumerate}
-
-In 3D-TOTAL, a \textit{Scene} is defined to be a single instance of a table-top of one person at a single instance in time. 3D images of scenes were captured regularly at 3 times a day for 19 days for 20 people. Each scene has been manually annotated to obtain information about common objects-of-interest generally and regularly present, when observed across the many scenes.
+\label{ssec:Dataset Realization}
+%\subsubsection*{Points Discussed}
+%\begin{enumerate}
+%	\item Annotation Tool
+%	\item Tools for collecting Asus Scenect
+%	\item 
+%\end{enumerate}
+In 3D-TOTAL, 3D images of scenes were captured regularly at 3 times a day for 19 days for 20 people. Each scene has been manually annotated to obtain information about common objects-of-interest generally and regularly present, when observed across the many scenes.
 
 The data was collected using the \textit{SCENECT} software \cite{Buerkler:Online2012} and an \textit{Asus Xtion Pro} RGB-D camera. There is one 3D colour point cloud per scene (.pcd format). Every scene is a reconstructed version of the raw data stream obtained by manual detailed scanning of a table-top with real time visual feedback using SCENECT. The software has in-built -- real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
 
 The scenes were recorded as periodically as possible and at three fixed time instances of the day: \emph{Morning} (09:00 hrs), \emph{Afternoon} (13:00 hrs) and \emph{Evening} (18:00 hrs). Scenes contain tables of 20 different people collected over 19 days including weekends. A \textit{Scene\_ID} is attached to each scene to indicate who the table belongs to and the date and time of the recording. These Scene\_IDs help in partitioning the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, person \{Anna, Bob, Carl, \dots\}, or day \{2013-11-01, 2013-11-06, 2013-11-13, \dots\}.
 
-A 3D annotation tool was developed for manually segmenting out objects-of-interest from the point clouds. On average, 12 different objects were labelled per scene depending upon feasibility and occurrence. The objects belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Cellphone, Keys, Headphones, Telephone, Pencil, Eraser, Notebook, Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and object is available in  XML and JSON formats. Each scene has a nested list of object data containing \{Position, Orientation, Size, Date and Time of recording, Person ID, Point Indices of the point cloud that have been labelled as belonging to the Object\}. This manual annotation provides the required ground truth data for long term autonomous learning.
-
-
-
-
-
-
-The data was collected using a freely available software called \textit{SCENECT} \cite{} and an \textit{Asus Xtion Pro} RGB-D camera. A \textit{Scene} is defined to be a single instance of a table-top of one person at one time instance. There is one 3D colour image in the form of a point cloud per scene (.pcl format). Every scene is a reconstructed version of the raw data stream obtained by a person scanning a table-top with real time visual feedback using SCENECT. The software has in-built real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
-
-The scenes were recorded as periodically as possible and at three fixed time instances of the day: Morning (09:00 hrs), Afternoon (13:00 hrs)and Evening (18:00 hrs). The scenes were collected for 19 days, 3 times per day and for the same 20 different tables. Depending on who the table belongs to and the date and time of the recording, each table-top scene recording receives a \textit{Scene\_ID}. These Scene\_IDs help in slicing across the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, or people\{Akshaya, Yuquan, Carl,...\}, or day \{2013-11-01, 2013-11-06, 2013-11-13,...\}.
-
-A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out objects of interest from the point clouds. On an average 12 different objects were labelled per scene. The objects belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Mobile, Keys, Headphones, Telephone, Pencil, Rubber, Notebook, Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and each object are available in the .xml and .json formats. Each scene data has a nested list of object data, and each object data has the following information about the object - \{Position, Orientation, Size, Date and Time of recording, Person ID, Point Indices of the point cloud that have been labelled as belonging to the Object\}.
+A 3D annotation tool was developed for manually segmenting out objects-of-interest from the point clouds. On average, 12 different objects were labelled, including repeating instances of the same object class, per scene depending upon feasibility and occurrence. The objects belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Cellphone, Keys, Headphones, Telephone, Pencil, Eraser, Notebook, Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and object is available in  XML and JSON formats. Each scene has a nested list of object data containing \{Position, Orientation, Size, Date and Time of recording, Person ID, Point Indices of the point cloud that have been labelled as belonging to the Object\}. This manual annotation provides the required ground truth data for long term autonomous learning.
 
 \subsection{Dataset Summary}
-\begin{enumerate}
-	\item Dataset details - days, objects, people, times
-	\item \textbf{figure} showing variations over different times of day, different people
-	\item details of XML and JSON files
-	\item \textbf{figure} Histograms of object occurrences
-\end{enumerate}
+\label{ssec:Dataset Summary}
+This section gives a brief summary of the dataset to serve as a quick reference.
+
+\noindent 3D-TOTAL has:
+\begin{itemize}
+	\item scenes collected from 20 unique tables, 3 times a day for 19 days and hence in total, approximately 1140 scenes.
+	\item each scene manually annotated with 18 possible object classes and an average of 12 object instances, from these classes, annotated per scene.
+	\item has annotation stored in XML and JSON formats containing scene instance and it's object instances' specifications.
+	\item occurrences of object instances as depicted in Figure~\ref{fig:HistOfObjects} and annotations as exemplified in Figure~\ref{fig:RawPCD},\ref{fig:RawPCDAnnotated}
+\end{itemize}
 
 \begin{figure}[t]
 \begin{center}
@@ -224,7 +218,6 @@ A \textit{3D Annotation Tool} was developed at KTH for manually segmenting out o
 \subfloat[][]{\label{fig:RawPCD}\includegraphics[width=0.7\linewidth]{pcd.png}}\\
 \subfloat[][]{\label{fig:RawPCDAnnotated}\includegraphics[width=0.7\linewidth]{pcd_annotated.png}}
 \caption{(a) Objects annotated in 3D Long-Term Dataset, sorted in descending order of count of occurrences. X-axis$=$Object Name, Y-axis$=$Occurrence Count. (b) Screenshot of one table scene, along with it's annotations in (c).}
-
 \end{center}
 \end{figure}
 
