@@ -251,7 +251,7 @@ In the top part of the figure, the green circles shows the position of the centr
 keyboard that exist in a scene where there is at least one mouse. The red square shows the mean position of all these centroids. The black 
 crosses show the position of all mice in scenes with at least one keyboard. In the bottom part of the figure the position of the mouse 
 relative to the keyboard is shown. As expected most mice are qualitatively to the right of the keyboard. There are some outliers but simply 
-encoding the position of the mouse as being to the right of a keyboard would capture a lot of the information. 
+encoding the position of the mouse as being to the right of a keyboard would capture most of the information. Notice how this structure in the data is lost, at least visually, when looking at the position of the keyboard and mouse in the table frame (top figure) and how it pops out when looking at the relatiev positions (bottom figure). We want our representation to be able to capitalize of this structure and clearly in this case the position of the keyboard contains almost all information that is needed to represent the position of the mouse as well.
 
 \begin{figure}
 \begin{center}
@@ -320,12 +320,14 @@ completely uncorrelated with the position of the keyboard.
 \label{fig:scatter-rest}
 \end{figure}
 
-To summarize the analysis, we have shown that the data has many structural properties that a method for representing and reasoning abouts 
-pace should make use of. If the aim is to represent typical configuration of objects, this preliminary analysis suggest that a significnat 
-part of such knowledge can be encoded well with qualiative spatial relations, such as the mouse is to the right of the keyboard, while 
+To summarize the analysis, we have shown that the data has many structural properties that a method for representing and reasoning about 
+pace should make use of. If the aim is to represent typical configuration of objects, this preliminary analysis suggest that a significant 
+part of such knowledge can be encoded well with qualitative spatial relations, such as the mouse is to the right of the keyboard, while 
 keeping in mind that this is typical case and not the only possible situation. We can also see that a system that observes these desks for 
 an extended period of time will be able to learn quite a lot about the habits of the owners of the desks and even the current activity in 
-many cases. 
+many cases. It is important to differentiate between typical knowledge, i.e., knowledge about what the world typically is like and specific 
+instance knowledge. It is the first kind of knowledge that we believe that qualitative spatial representations will be most beneficial. 
+Specific instance knowledge is captured compactly and accurately metrically. 
 
 \subsubsection*{Points Discussed}
 \begin{enumerate}
