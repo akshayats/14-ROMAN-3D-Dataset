@@ -271,9 +271,19 @@ E=-\sum (\frac{n_i}{N})ln(\frac{n_i}{N})
 \end{equation}
 where $n_i$ is the number of samples that fall in cell $i$ in a grid discretization of the table and N is the total number of samples. Each 
 sample correspond to one object pair in one scene. The true entropy will only be estimated well when $N$ is large. We therefore limit this 
-investigation to pairs of objects that occur more than a certain number of times in the data. Figure~\ref{fig:entropy} shows these entropies for 10 of the objects in the dataset. From this figure we can, for example, see the low entropy in the relation between keyboard and mouse (element 1,3 and 3,1 in the matrix). The relative positions of monitors and keyboards also have a fairly low entropy. We also see that the position of papers is largely uncorrelated with many other objects (uniform distribution gives high entropy). 
+investigation to pairs of objects that occur more than a certain number of times in the data. Figure~\ref{fig:entropy} shows these entropies 
+for 10 of the objects in the dataset. From this figure we can, for example, see the low entropy in the relation between keyboard and mouse (
+element 1,3 and 3,1 in the matrix). The relative positions of monitors and keyboards also have a fairly low entropy. We also see that the 
+position of papers is largely uncorrelated with many other objects (uniform distribution gives high entropy). 
 
-In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. Figure~\ref{fig:scatter-monitor-keyboard} shows the position of the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are played mostly infront of monitors is supported by data. In Figure~\ref{fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ the keyboard. We see that the mug is rarely very close to the center of the keyboard but rather positioned along a circle around the keyboard. Taking function into acocunt in the analysis could suggest that the mug is in fact often placed at arms length from the person working on the desk to keep it far away from the keyboard but still within reach. This would mean that the mug as in fact positioned along a circle centered at the shoulder of the person. We see a bias towards the right side, a result of most people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see that the position of paper is almost completely uncorrelated with the position of the keyboard.
+In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. Figure~\ref{fig:scatter-monitor-keyboard} shows the position of 
+the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are played mostly infront of monitors is supported by data. In Figure~\ref
+{fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ the keyboard. We see that the mug is rarely very close to the center of the 
+keyboard but rather positioned along a circle around the keyboard. Taking function into acocunt in the analysis could suggest that the mug 
+is in fact often placed at arms length from the person working on the desk to keep it far away from the keyboard but still within reach. 
+This would mean that the mug as in fact positioned along a circle centered at the shoulder of the person. We see a bias towards the right 
+side, a result of most people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see that the position of paper is almost 
+completely uncorrelated with the position of the keyboard.
 
 \begin{figure}
 \begin{center}
@@ -309,7 +319,12 @@ In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. Figu
 \label{fig:scatter-rest}
 \end{figure}
 
-To summarize the analysis, we have shown that the data has many structural properties that a method for representing and reasoning abouts pace should make use of. If the aim is to represent typical configuration of objects, this preliminary analysis suggest that a significnat part of such knowledge can be encoded well with qualiative spatial relations, such as the mouse is to the right of the keyboard, while keeping in mind that this is typical case and not the only possible situation. We can also see that a system that observes these desks for an extended period of time will be able to learn quite a lot about the habits of the owners of the desks and even the current activity in many cases. 
+To summarize the analysis, we have shown that the data has many structural properties that a method for representing and reasoning abouts 
+pace should make use of. If the aim is to represent typical configuration of objects, this preliminary analysis suggest that a significnat 
+part of such knowledge can be encoded well with qualiative spatial relations, such as the mouse is to the right of the keyboard, while 
+keeping in mind that this is typical case and not the only possible situation. We can also see that a system that observes these desks for 
+an extended period of time will be able to learn quite a lot about the habits of the owners of the desks and even the current activity in 
+many cases. 
 
 \subsubsection*{Points Discussed}
 \begin{enumerate}
