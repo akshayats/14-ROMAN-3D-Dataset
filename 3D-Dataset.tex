@@ -152,7 +152,7 @@ To study these questions we need data to learn from. The data need to capture bo
 \includegraphics[height=2.5cm]{David_Eve_131110} \enskip
 \includegraphics[height=2.5cm]{Nils_Eve_131111} \enskip
 \includegraphics[height=2.5cm]{Puren_Mor_131110}
-\caption{Each column shows a different person's table in top view. The first row displays the morning scenes and the second row displays the evening scenes. The first two columns contain scenes from the same day, whereas the third column shows scenes 12 days apart in time. Notice in Column 1: the slight changes in position of the keyboard, mouse, papers and pen; Column 2: the relatively big changes in position of laptop, mouse, papers, pen, keyboard, lamp. When objects in columns 1,2,3 are compared there is a certain generality in structure (keyboards are always in front of monitors), but also a specificity for each person (occurrence of headphones, position of mouse wrt.\ keyboard). The clutter in column 3 is significantly more in row 2 than row 1 implying the time since the last time the person tidied-up his/her table. Cluttered tables in columns 2,3 belong to graduate students and a more orderly table in column 1 to a senior researcher, lightly suggesting a characteristic of type of researcher.}
+\caption{Each column shows a different person's office table in top view at two different times. The tables in teh first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 says apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit. }
 \label{fig:Example Scenes}
 \end{center}
 \end{figure*}
@@ -227,13 +227,60 @@ This section gives a brief summary of the dataset to serve as a quick reference.
 \section{Analysis}
 \label{sec:Analysis}
 
+In this section we perform a first analysis of the data to highlight some ainteresting spects of it. In particular we want to show that 
+there are structures in the data that can be exploited by a system for more efficient representations and better reasoning using less data.
+
+Figure ~\ref{fig:Example Scenes} shows three desktop scenes. Each column shows a desk at two different times. The leftmost two columns 
+contain scenes from the same day, whereas the third column shows scenes 12 days apart in time. Notice in Column 1: the slight changes in 
+position of the keyboard, mouse, papers and pen; Column 2: the relatively big changes in position of laptop, mouse, papers, pen, keyboard, 
+lamp. When objects in columns 1,2,3 are compared there is a certain generality in structure (keyboards are always in front of monitors), but 
+also a specificity for each person (occurrence of headphones, position of mouse wrt.\ keyboard). Studying the scenes could allow a system to 
+infer things related to behaviour of people as well as activity. We can see that there are changes to the first desk suggesting that someone 
+was there during and that ths person is quite well-ordered. The second table misses the laptop in the second observation. This suggest that 
+the person has left the desk, maybe for the day if it is late. The third desk seems to be occupied by someone that is less sensitive to 
+clutter.
+
+As mentioned before, one of our hypotheses is that a qualitative model will be needed to achieve efficient and powerful representations of 
+space, at least if the amount of data is limited as it will be in most cases. Such qualitative models could allow some of the inherent 
+structure in the environment be encoded in the representation itself. We have already seen in Figure~\ref{fig:Example Scenes} that monitors 
+are typically in the back while the keyboard is in front of it. The leftmost table shows an example of a mouse being to the right of a 
+keyboard. This is something that we would also expect to hold in many cases. Figure~\ref{fig:scatter-keyboard-mouse} shows a scatter plot 
+over the position of keyboard and mouse. The table outline gives an example of a prototypical desk to make it easier to interpret the data. 
+In the top part of the figure, the green circles shows the position of the centroid of each 
+keyboard that exist in a scene where there is at least one mouse. The red square shows the mean position of all these centroids. The black 
+crosses show the position of all mice in scenes with at least one keyboard. In the bottom part of the figure the position of the mouse 
+relative to the keyboard is shown. As expected most mice are qualitatively to the right of the keyboard. There are some outliers but simply 
+encoding the position of the mouse as being to the right of a keyboard would capture a lot of the information. 
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{keyboard_mouse_raw-crop}
 \includegraphics[width=0.8\linewidth]{keyboard_mouse-crop}
 \end{center}
+\caption{Top: The green circles shows the positions keyboards(red square shows mean of keyboards). The black crosses show the position of all mice in these scenes. Bottom: Mean position of keyboards (red square) and relative position of mouse relative to it.} 
 \label{fig:scatter-keyboard-mouse}
-\caption{This figure investigates the correlation in position of keyboard and mouse. Top: The green circles shows the position of the centroid of each keyboard that exist in a scene where there is at least one mouse. The black crosses show the position of all mice in scenes with at least one keyboard. The red square shows the mean position of all keyboards. Bottom: By shifting the position of keyboard and mouse such that the keyboards are at the mean keyboard position we can illustrate the position of the mouse relative to the keyboard. As expected most mice are to the right of the keyboard.} 
+\end{figure}
+
+To further investigate the correlation between different object classes, and thus look for other inherent structures in the data, we look at 
+the relative position of all objects of class $C_j$ w.r.t.\ to another objects of class $C_i$ present in the same scene. To get a quick 
+overview of the type of distributions this results in we look at the entropy of these distributions. A large entropy (closer to uniform 
+distribution) would suggest that the objects are largely uncorrelated and a small entropy a more peaky distrubution and likely a stronger 
+correlation between the objects. We calculate the entropy as 
+\begin{equation}
+E=-\sum (\frac{n_i}{N})ln(\frac{n_i}{N})
+\end{equation}
+where $n_i$ is the number of samples that fall in cell $i$ in a grid discretization of the table and N is the total number of samples. Each 
+sample correspond to one object pair in one scene. The true entropy will only be estimated well when $N$ is large. We therefore limit this 
+investigation to pairs of objects that occur more than a certain number of times in the data. Figure~\ref{fig:entropy} shows these entropies for 10 of the objects in the dataset. From this figure we can, for example, see the low entropy in the relation between keyboard and mouse (element 1,3 and 3,1 in the matrix). The relative positions of monitors and keyboards also have a fairly low entropy. We also see that the position of papers is largely uncorrelated with many other objects (uniform distribution gives high entropy). 
+
+In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. Figure~\ref{fig:scatter-monitor-keyboard} shows the position of the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are played mostly infront of monitors is supported by data. In Figure~\ref{fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ the keyboard. We see that the mug is rarely very close to the center of the keyboard but rather positioned along a circle around the keyboard. Taking function into acocunt in the analysis could suggest that the mug is in fact often placed at arms length from the person working on the desk to keep it far away from the keyboard but still within reach. This would mean that the mug as in fact positioned along a circle centered at the shoulder of the person. We see a bias towards the right side, a result of most people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see that the position of paper is almost completely uncorrelated with the position of the keyboard.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\linewidth]{entropy_matrix-crop}
+\end{center}
+\caption{The figure illustrates the entropy in the distribution of relative positions of one objects (column) w.r.t. to another objects (row). Dark red indicates high entropy (more uniform distr.) and dark blue low entropy (peakier distr.). We show this for a subset of objects from the database; 1:keyboard, 2:monitor, 3:mouse, 4:mug, 5:laptop, 6:papers, 7:book, 8:bottle, 9:jug, 10:notebook. }
+\label{fig:entropy}
 \end{figure}
 
 %\begin{itemize}	
@@ -254,24 +301,15 @@ This section gives a brief summary of the dataset to serve as a quick reference.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\linewidth]{entropy_matrix-crop}
-\label{fig:entropy}
-\caption{The figure illustrates the entropy in the distribution of relative positions between a landmark (row) and trajector (column). We show this for a subset of obects from the database. Only objects that occur frequently enough are displayed. The objects in are (in order): 1:keyboard, 2:monitor, 3:mouse, 4:mug, 5:laptop, 6:papers, 7:book, 8:bottle, 9:jug, 10:notebook. Dark red indicates high entropy, i.e., closer to a uniform distribution and dark blue corresponds to low entropy, i.e., a peakier distribution.}
-\end{center}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
 \subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{monitor_keyboard-crop}}\quad
 \subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{keyboard_mug-crop}}\\
 \subfloat[][]{\label{fig:scatter-keyboard-papers}\includegraphics[width=0.8\linewidth]{keyboard_papers-crop}}
 \end{center}
-\label{fig:scatter-rest}
 \caption{The figures show the relative position of a) keyboard w.r.t. monitor, b) mug w.r.t. keyboard and c) papers w.r.t. keyboard. Qualitatively keyboards are mostly infront of monitors, mugs are around the keyboard and the position of papers is mostly independent on the position of the keyboard.} 
+\label{fig:scatter-rest}
 \end{figure}
 
-
+To summarize the analysis, we have shown that the data has many structural properties that a method for representing and reasoning abouts pace should make use of. If the aim is to represent typical configuration of objects, this preliminary analysis suggest that a significnat part of such knowledge can be encoded well with qualiative spatial relations, such as the mouse is to the right of the keyboard, while keeping in mind that this is typical case and not the only possible situation. We can also see that a system that observes these desks for an extended period of time will be able to learn quite a lot about the habits of the owners of the desks and even the current activity in many cases. 
 
 \subsubsection*{Points Discussed}
 \begin{enumerate}
