@@ -64,32 +64,32 @@ Our work is performed in the context of developing a mobile service robot for lo
 
 As the absolute positions of objects on a table (or their relative positions with respect to some fixed part of the table) is unlikely to generalise across a range of different tables, we are investigating \emph{relational} models of space, i.e. ways of encoding the position of a target object relative to the position of one or more landmark objects. Using a novel data set of table-top scenes (described in Section~\ref{sec:Dataset}), in this paper we explore the performance of a variety of representations for relative object position, plus inference techniquess for operating on them, on the task of table-top scene understanding (Section \ref{sec:Techniques}). In particular we investigate representations that use varying forms of spatial relations, from geometric ones such as distances and angles to more qualitative spatial relations such as \textit{Left} and \textit{Behind} as a means for capturing observations of object configurations over time. The contributions this paper makes are: (1) A novel comparison between mechanisms for representing, learning and inference on object spatial configurations using spatial relations. (2) An evaluation of the use of these mechanisms for augmenting a robot's vision based \textit{perceptual system} (PS). (3) A new large 3D annotated table-top benchmark dataset.
 
-\subsubsection*{Points discussed}
-\begin{enumerate}
-	\item \textbf{Make this more "Human Oriented"}
-	\item Overview of the problem - why?
-	\begin{enumerate}
-		\item Not only desktops
-		\item How do we treat object classification
-	\end{enumerate}
-	\item Generalize and Transfer Knowledge
-	\item How are objects correlated, search becomes easier
-	\item Understanding a model for inter object influence for inference
-	\item No benchmarks yet or datasets having 3D spatial information
-	\begin{itemize}
-		\item time
-		\item complete scenes
-		\item different people
-		\item different types of people
-	\end{itemize}
-	\item need to structure data -- metric is tedious, because of large amounts of data
-	\item Contributions:
-	\begin{itemize}
-		\item A big 3D data set, annotated -- benchmark for results, folding data, classification.
-		\item suggest SR and QSR
-		\item something that could augment perception systems
-	\end{itemize}
-\end{enumerate}
+%\subsubsection*{Points discussed}
+%\begin{enumerate}
+%	\item \textbf{Make this more "Human Oriented"}
+%	\item Overview of the problem - why?
+%	\begin{enumerate}
+%		\item Not only desktops
+%		\item How do we treat object classification
+%	\end{enumerate}
+%	\item Generalize and Transfer Knowledge
+%	\item How are objects correlated, search becomes easier
+%	\item Understanding a model for inter object influence for inference
+%	\item No benchmarks yet or datasets having 3D spatial information
+%	\begin{itemize}
+%		\item time
+%		\item complete scenes
+%		\item different people
+%		\item different types of people
+%	\end{itemize}
+%	\item need to structure data -- metric is tedious, because of large amounts of data
+%	\item Contributions:
+%	\begin{itemize}
+%		\item A big 3D data set, annotated -- benchmark for results, folding data, classification.
+%		\item suggest SR and QSR
+%		\item something that could augment perception systems
+%	\end{itemize}
+%\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -98,23 +98,22 @@ As the absolute positions of objects on a table (or their relative positions wit
 
 The dataset constructed by this work is motivated mainly by research pertaining to automatic learning about indoor human environments for long term autonomous, human activity augmenting robots. This requires certain characteristics datasets that were explored for in our survey of state-of-the-art datasets. The \textit{B3DO dataset} \cite{Janoch:ICCV2011} contains many single-snapshot instances of indoor human environments having a variety in viewpoints, object-classes, scene-classes and instances. This dataset is in the form of RGB and depth image pairs with manual 2D annotations of object classes. It captures many singular snapshots of unique scenes with the sole aim of collecting such realistic scenes on which scene classification and object classification is difficult for vision based perception systems (VPS). The objects have been manually annotated in the RGB and D frames correspondingly, using 2D bounding boxes.
 \textit{NYU Depth V1-2} \cite{Silberman:ECCV2012} datasets contain different instance examples of object-classes and scene-classes. Each image instance is a combo of synchronous RGB+D images of a different scene-class, with labelling provided by manual annotation. Moreover, automated pixel clustering is conducted by using features in the RGB and D images separately and annotation of the clusters has been done manually, thereby assigning a semantic label to every pixel. The dataset contains a wide range of singular snapshots of indoor scenes from commercial and residential buildings. This dataset is primarily aimed at evaluating VPS aiming at automatic semantic segmentation and scene classification.
+
 The \textit{3D IKEA database} \cite{Swadzba:RAS2012} has been collected using robotic manoeuvring in different scene-class instances. The aim is to test scene-classification algorithms based on large, furniture level objects. These scene data are 3D point clouds formed by stitching a series of time synchronized RGB+D images. There are very few small objects in the scenes and the annotations are provided at the scene-class level. This dataset is aimed to support the research in the area of automatic scene labelling.
+
 The \textit{WRGBD dataset} \cite{Lai:ICRA2011} is aimed to support object classification methods and contains many scene instances of isolated objects in .pcd format. Annotation is done by assigning every pixel a correct semantic label in each scene. Each point cloud is developed from a series of synchronized RGB+D images.
 
---Building a database of 3D scenes from user annotations 
+The system constructed by \cite{Russell:CVPR2009} can be used to automatically generate 3D datasets of scenes using rough human annotations on 2D images. The system infers 3D information from the scene using the semantics of the annotated properties of the important planes in the image. The dataset thus includes a large set of singular scenes, indoor and outdoor from very particular viewpoints, with annotations to the image components provided manually.
+The dataset provided by \cite{Sun:ECCV2010} contains a collection of 3D images of a few table-top objects in clear view and cluttered view. This dataset has been constructed to aid VPS for object classification and segmentation functioning on 3D data. Other datasets that have been developed have mainly been for training VPS for robust indoor object classification on 3D data \cite{WillowGarage:2011,Kimmel:ACCV2010}.
+However, none of these datasets contain the following three properties in their scenes:
+\begin{itemize}
+	\item complete 3D scene instances of a particular scene type (e.g.\ office table-tops, office rooms, cafeteria tables, hospital ward-rooms etc.)
+	\item instances of subsets of objects-of-interest co-occurring in the scenes -- manually annotated for ground truth.
+	\item long term periodic observations of the same set of scenes.
+\end{itemize}
+which are key for long-term autonomous scene model learning.
 
---A category-level 3-d database: Putting the kinect to work. In: ICCV Workshop on
-Consumer Depth Cameras for Computer Vision. 
- 
- 
- 
-None of these datasets contain periodically collected data or easily usable spatial annotations of objects which are key for long-term autonomous scene-learning, based on spatial relations.
-
-The required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets either are of individual objects or singular instances of entire rooms
-
-Spatial relations have been used previously to provide contextual information to vision-related work. \cite{MyungJin:CVPR2010}used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams. For example, \cite{Krishna:ECAI2010} demonstrate the learning of activity phases in airport videos using spatial relations between tracked objects, and \cite{Behera2012} use spatial relations to monitor objects and activities in videos of a constrained workflow environment. Recent work has used object co-occurrence to provide context in visual  tasks. Examples in 2D include object co-occurrence statistics in class-based image segmentation~\cite{Ladicky:IJCV2013}; and the use of object presence to provide context in activity recognition~\cite{Li:2012}. However, all this previous work is restricted to 2D images, whereas our approaches work with spatial context in 3D (RGB-D) data. Authors have also worked with spatial context in 3D, including parsing a 2D image of a 3D scene into a simulated 3D field before extracting geometric and contextual features between the objects \cite{Xiao:SIGGRAPH2012}. Our approaches to encoding 3D spatial context could be applied in these cases, and we use richer, structured models of object relations.
-
-Apart from using the statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene, i.e. the extrinsic, geometric spatial relations between the objects. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. They also use spatial information for context-based object search using Graph Kernel Methods. The method is further developed to provide synthetic scene examples using spatial relations \cite{Fisher:ACMT2012}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In \cite{Lin:ICCV2013} a technique is developed for automatic annotation of 3D objects. It uses intrinsic appearance features and geometric features and is employed to build an object and scene classifier using conditional random fields. In \cite{kasper:2011} the authors utilise both geometric single object features and pair-wise spatial relations between objects to develop an empirical base for scene understanding. Recent studies \cite{Southey:2007,kasper:2011} compute statistics of spatial relations of objects and use it for conditional object recognition for service robotics. Whilst our techniques are comparable to those in the literature, our contribution comes from the explicit comparison of different representations of spatial context (metric vs qualitative) on a novel, long-term learning task. Additionally our qualitative approach relies on relationships which could be provided through other mechanisms than unsupervised machine learning (e.g. through a human tutor describing a spatial scene), and in this way bootstrap the system using expert knowledge.
+Long-term autonomous characteristic and spatial scene understanding is the aim of our future research work (Section~\ref{sec:Motivating Scenario}). Scene learning and understanding can become a very expensive task if the raw data grabbed by the sensors is used in terms of metric measurements, as available. Many recent researchers have tried to show that learning and modelling human environments increase in efficacy if the scene is perceived by not just using metric descriptive features extracted on the scene components but a lot also from the geometric, qualitative spatial features extracted from the objects. Spatial relations have been used previously to provide contextual information to vision-related work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams~\cite{Krishna:ECAI2010} and~\cite{Behera2012} use spatial relations to monitor objects and activities in videos of a constrained workflow environment. Recent work has used object co-occurrence to provide context in visual tasks. The researchers of~\cite{Li:2012} use object presence to provide context in activity recognition. Apart from using the statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In~\cite{Southey:2007,kasper:2011} the authors utilise both geometric single object features and pair-wise spatial relations between objects to develop an empirical base for scene understanding. In our future work we aim to provide different representations of spatial context for a novel, long-term, learning task. Additionally the usage of such features leads to increased compatibility for robots to function using semi-supervised learning and in this way bootstrap the system using expert knowledge from humans.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Motivating Scenario}
@@ -153,7 +152,7 @@ To study these questions we need data to learn from. The data need to capture bo
 \includegraphics[height=2.5cm]{David_Eve_131110} \enskip
 \includegraphics[height=2.5cm]{Nils_Eve_131111} \enskip
 \includegraphics[height=2.5cm]{Puren_Mor_131110}
-\caption{Each column shows a different person's office table in top view at two different times. The tables in teh first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 says apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit. }
+\caption{Each column shows a different person's office table in top view at two different times. The tables in the first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 says apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit. }
 \label{fig:Example Scenes}
 \end{center}
 \end{figure*}
