@@ -62,7 +62,7 @@ Objects pervade human environments. If robots are to perform useful service task
 
 Our work is performed in the context of developing a mobile service robot for long-term autonomy in indoor human environments, from offices to hospitals. The ability for a robot to run for weeks or months in its task environment opens up a new range of possibilities in terms of capabilities. In particular, any task the robot performs will be done in an environment it may have visited many times before, and we wish to find ways to capture the contextual knowledge gained from previous visits in a way that enables subsequent behaviour to be improved. The use of context to improve object recognition is just one example of this new robotics paradigm. In this paper we focus on the task of \emph{table-top scene understanding}, and more specifically what objects are present on a table-top. Whilst the objects present on a single table may change in position, their overall arrangement has some regularity over time as influenced by the use to which the table is put. For example, if this table is used for computing, then a (relatively static) monitor will be present, with a keyboard in front of it and mouse to one side. A drink, or paper and a pen, may be within an arms length of the keyboard, as may headphones or a cellphone. This arrangement may vary across different tables in the same building, but the overall pattern of arrangements will contain some structure. It is this structure we aim to exploit in order to improve the recognition of table-top objects, e.g. knowing that the object to the right of a keyboard is more likely to be a mouse than a cellphone. 
 
-As the absolute positions of objects on a table (or their relative positions with respect to some fixed part of the table) is unlikely to generalise across a range of different tables, we are investigating \emph{relational} models of space, i.e. ways of encoding the position of a target object relative to the position of one or more landmark objects. Using a novel data set of table-top scenes (described in Section~\ref{sec:Dataset}), in this paper we explore the performance of a variety of representations for relative object position, plus inference techniquess for operating on them, on the task of table-top scene understanding (Section \ref{sec:Techniques}). In particular we investigate representations that use varying forms of spatial relations, from geometric ones such as distances and angles to more qualitative spatial relations such as \textit{Left} and \textit{Behind} as a means for capturing observations of object configurations over time. The contributions this paper makes are: (1) A novel comparison between mechanisms for representing, learning and inference on object spatial configurations using spatial relations. (2) An evaluation of the use of these mechanisms for augmenting a robot's vision based \textit{perceptual system} (PS). (3) A new large 3D annotated table-top benchmark dataset.
+As the absolute positions of objects on a table (or their relative positions with respect to some fixed part of the table) is unlikely to generalise across a range of different tables, we are investigating \emph{relational} models of space, i.e. ways of encoding the position of a target object relative to the position of one or more landmark objects. Using a novel data set of table-top scenes (described in Section~\ref{sec:Dataset}), in this paper we explore the performance of a variety of representations for relative object position, plus inference techniques for operating on them, on the task of table-top scene understanding (Section \ref{sec:Techniques}). In particular we investigate representations that use varying forms of spatial relations, from geometric ones such as distances and angles to more qualitative spatial relations such as \textit{Left} and \textit{Behind} as a means for capturing observations of object configurations over time. The contributions this paper makes are: (1) A novel comparison between mechanisms for representing, learning and inference on object spatial configurations using spatial relations. (2) An evaluation of the use of these mechanisms for augmenting a robot's vision based \textit{perceptual system} (PS). (3) A new large 3D annotated table-top benchmark dataset.
 
 %\subsubsection*{Points discussed}
 %\begin{enumerate}
@@ -113,7 +113,9 @@ However, none of these datasets contain the following three properties in their 
 \end{itemize}
 which are key for long-term autonomous scene model learning.
 
-Long-term autonomous characteristic and spatial scene understanding is the aim of our future research work (Section~\ref{sec:Motivating Scenario}). Scene learning and understanding can become a very expensive task if the raw data grabbed by the sensors is used in terms of metric measurements, as available. Many recent researchers have tried to show that learning and modelling human environments increase in efficacy if the scene is perceived by not just using metric descriptive features extracted on the scene components but a lot also from the geometric, qualitative spatial features extracted from the objects. Spatial relations have been used previously to provide contextual information to vision-related work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams~\cite{Krishna:ECAI2010} and~\cite{Behera2012} use spatial relations to monitor objects and activities in videos of a constrained workflow environment. Recent work has used object co-occurrence to provide context in visual tasks. The researchers of~\cite{Li:2012} use object presence to provide context in activity recognition. Apart from using the statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In~\cite{Southey:2007,kasper:2011} the authors utilise both geometric single object features and pair-wise spatial relations between objects to develop an empirical base for scene understanding. In our future work we aim to provide different representations of spatial context for a novel, long-term, learning task. Additionally the usage of such features leads to increased compatibility for robots to function using semi-supervised learning and in this way bootstrap the system using expert knowledge from humans.
+Long-term autonomous characteristic and spatial human indoor scene understanding is the aim of our immediate research work (Section~\ref{sec:Motivating Scenario}). Scene learning and understanding can become a very expensive task if the raw data grabbed by the sensors is used in terms of metric measurements, as available. Many recent researchers have tried to show that learning and modelling human environments increase in efficacy if the scene is perceived by not just using metric descriptive features extracted on the scene components but a lot also from the geometric, qualitative spatial features extracted from them. Spatial relations have been used previously to provide contextual information to vision-related work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams~\cite{Krishna:ECAI2010, Behera2012}. Recent work has used object co-occurrence to provide context in visual tasks such as activity recognition~\cite{Li:2012}. Apart from using the mere statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In~\cite{Southey:2007,kasper:2011} the authors utilise both geometric features on objects and spatial relations between objects for scene understanding.
+
+In our future work we aim to provide different representations of spatial context for a novel, long-term, learning task. Additionally the usage of such features leads to increased compatibility for robots to function using semi-supervised learning and in this way bootstrap the system using expert knowledge from humans.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Motivating Scenario}
@@ -138,7 +140,6 @@ To study these questions we need data to learn from. The data need to capture bo
 	\item what type of data do we really need? - hint it
 	\item reference to related work section to show that this dataset is unique.
 \end{enumerate}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dataset}
@@ -168,7 +169,6 @@ It is required for such a long-term autonomous learning to have entire views of 
 
 \subsection{Dataset Design and Concept}
 \label{ssec:Dataset Design and Concept}
-
 %\subsubsection*{Points Discussed}
 %\begin{enumerate}
 %	\item Why did we collect it the way we did?
@@ -203,7 +203,6 @@ A 3D annotation tool was developed for manually segmenting out objects-of-intere
 \subsection{Dataset Summary}
 \label{ssec:Dataset Summary}
 This section gives a brief summary of the dataset to serve as a quick reference.
-
 \noindent 3D-TOTAL has:
 \begin{itemize}
 	\item scenes collected from 20 unique tables, 3 times a day for 19 days and hence in total, approximately 1140 scenes.
@@ -221,13 +220,12 @@ This section gives a brief summary of the dataset to serve as a quick reference.
 \end{center}
 \end{figure}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Analysis}
 \label{sec:Analysis}
 
-In this section we perform a first analysis of the data to highlight some ainteresting spects of it. In particular we want to show that 
+In this section we perform a first analysis of the data to highlight some interesting aspects of it. In particular we want to show that 
 there are structures in the data that can be exploited by a system for more efficient representations and better reasoning using less data.
 
 Figure ~\ref{fig:Example Scenes} shows three desktop scenes. Each column shows a desk at two different times. The leftmost two columns 
@@ -236,7 +234,7 @@ position of the keyboard, mouse, papers and pen; Column 2: the relatively big ch
 lamp. When objects in columns 1,2,3 are compared there is a certain generality in structure (keyboards are always in front of monitors), but 
 also a specificity for each person (occurrence of headphones, position of mouse wrt.\ keyboard). Studying the scenes could allow a system to 
 infer things related to behaviour of people as well as activity. We can see that there are changes to the first desk suggesting that someone 
-was there during and that ths person is quite well-ordered. The second table misses the laptop in the second observation. This suggest that 
+was there during and that this person is quite well-ordered. The second table misses the laptop in the second observation. This suggest that 
 the person has left the desk, maybe for the day if it is late. The third desk seems to be occupied by someone that is less sensitive to 
 clutter.
 
@@ -250,7 +248,7 @@ In the top part of the figure, the green circles shows the position of the centr
 keyboard that exist in a scene where there is at least one mouse. The red square shows the mean position of all these centroids. The black 
 crosses show the position of all mice in scenes with at least one keyboard. In the bottom part of the figure the position of the mouse 
 relative to the keyboard is shown. As expected most mice are qualitatively to the right of the keyboard. There are some outliers but simply 
-encoding the position of the mouse as being to the right of a keyboard would capture most of the information. Notice how this structure in the data is lost, at least visually, when looking at the position of the keyboard and mouse in the table frame (top figure) and how it pops out when looking at the relatiev positions (bottom figure). We want our representation to be able to capitalize of this structure and clearly in this case the position of the keyboard contains almost all information that is needed to represent the position of the mouse as well.
+encoding the position of the mouse as being to the right of a keyboard would capture most of the information. Notice how this structure in the data is lost, at least visually, when looking at the position of the keyboard and mouse in the table frame (top figure) and how it pops out when looking at the relative positions (bottom figure). We want our representation to be able to capitalize of this structure and clearly in this case the position of the keyboard contains almost all information that is needed to represent the position of the mouse as well.
 
 \begin{figure}
 \begin{center}
@@ -264,7 +262,7 @@ encoding the position of the mouse as being to the right of a keyboard would cap
 To further investigate the correlation between different object classes, and thus look for other inherent structures in the data, we look at 
 the relative position of all objects of class $C_j$ w.r.t.\ to another objects of class $C_i$ present in the same scene. To get a quick 
 overview of the type of distributions this results in we look at the entropy of these distributions. A large entropy (closer to uniform 
-distribution) would suggest that the objects are largely uncorrelated and a small entropy a more peaky distrubution and likely a stronger 
+distribution) would suggest that the objects are largely uncorrelated and a small entropy a more peaky distribution and likely a stronger 
 correlation between the objects. We calculate the entropy as 
 \begin{equation}
 E=-\sum (\frac{n_i}{N})ln(\frac{n_i}{N})
@@ -277,10 +275,10 @@ element 1,3 and 3,1 in the matrix). The relative positions of monitors and keybo
 position of papers is largely uncorrelated with many other objects (uniform distribution gives high entropy). 
 
 In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. Figure~\ref{fig:scatter-monitor-keyboard} shows the position of 
-the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are played mostly infront of monitors is supported by data. In Figure~\ref
+the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are played mostly in front of monitors is supported by data. In Figure~\ref
 {fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ the keyboard. We see that the mug is rarely very close to the center of the 
 keyboard but rather positioned along a circle around the keyboard. Taking function into account in the analysis could suggest that the mug 
-is in fact often placed at arms length from the person working on the desk to keep it at safe distance fromthe keyboard but still within 
+is in fact often placed at arms length from the person working on the desk to keep it at safe distance from the keyboard but still within 
 reach. We see a bias towards the right side, a result of most people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see 
 that the position of paper is almost completely uncorrelated with the position of the keyboard.
 
