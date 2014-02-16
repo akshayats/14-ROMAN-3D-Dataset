@@ -62,6 +62,7 @@ Humans subconsciously exploit various strong correlations amidst different objec
 \label{sec:Introduction}
 
 {\color{blue} AK: Needs shortening, has been modified from AAAI paper.}
+{\color{red} PJ: Shorted and removed some things that are central to this paper.}
 
 In the last decades, computers have become part of human activities in all avenues of 
 life and the field of intelligent autonomous robotics shows signs to follow in a 
@@ -161,27 +162,67 @@ depth and provide an analysis of it in Section~\ref{sec:Analysis}. We summarize 
 \label{sec:Related Work}
 
 {\color{blue} AK: Maybe needs shortening.}
+{\color{red} PJ: Edited and shorted a bit.}
 
-The dataset constructed by this work is motivated mainly by research pertaining to automatic learning about indoor human environments for long term autonomous, human activity augmenting robots. This requires certain characteristics datasets that were explored for in our survey of state-of-the-art datasets. The \textit{B3DO dataset} \cite{Janoch:ICCV2011} contains many single-snapshot instances of indoor human environments having a variety in viewpoints, object-classes, scene-classes and instances. This dataset is in the form of RGB and depth image pairs with manual 2D annotations of object classes. It captures many singular snapshots of unique scenes with the sole aim of collecting such realistic scenes on which scene classification and object classification is difficult for vision based perception systems (VPS). The objects have been manually annotated in the RGB and D frames correspondingly, using 2D bounding boxes.
-\textit{NYU Depth V1-2} \cite{Silberman:ECCV2012} datasets contain different instance examples of object-classes and scene-classes. Each image instance is a combo of synchronous RGB+D images of a different scene-class, with labelling provided by manual annotation. Moreover, automated pixel clustering is conducted by using features in the RGB and D images separately and annotation of the clusters has been done manually, thereby assigning a semantic label to every pixel. The dataset contains a wide range of singular snapshots of indoor scenes from commercial and residential buildings. This dataset is primarily aimed at evaluating VPS aiming at automatic semantic segmentation and scene classification.
+The dataset constructed in this work is motivated mainly by research pertaining to automatic learning about indoor human environments for 
+long term autonomous robots. This requires certain characteristics of a dataset.
 
-The \textit{3D IKEA database} \cite{Swadzba:RAS2012} has been collected using robotic manoeuvring in different scene-class instances. The aim is to test scene-classification algorithms based on large, furniture level objects. These scene data are 3D point clouds formed by stitching a series of time synchronized RGB+D images. There are very few small objects in the scenes and the annotations are provided at the scene-class level. This dataset is aimed to support the research in the area of automatic scene labelling.
+The \textit{B3DO dataset}~\cite{Janoch:ICCV2011} contains many single-snapshot instances of indoor human 
+environments having a variety in viewpoints, object-classes, scene-classes and instances. This dataset is in the form of RGB and depth image 
+pairs with manual 2D annotations of object classes. It captures single snapshots of unique scenes for which scene classification and object 
+classification is difficult for vision based perception systems (VPS).
+The \textit{NYU Depth V1-2}\cite{Silberman:ECCV2012} datasets contain different instance examples of object-classes and scene-classes 
+captured with RGB+D images. Automated pixel clustering is conducted by using features in the RGB and D images separately and annotation of 
+the clusters has been done manually, thereby assigning a semantic label to every pixel. The dataset contains a wide range of singular 
+snapshots of indoor scenes from commercial and residential buildings. This dataset is primarily aimed at evaluating VPS aiming at automatic 
+semantic segmentation and scene classification.
 
-The \textit{WRGBD dataset} \cite{Lai:ICRA2011} is aimed to support object classification methods and contains many scene instances of isolated objects in .pcd format. Annotation is done by assigning every pixel a correct semantic label in each scene. Each point cloud is developed from a series of synchronized RGB+D images.
+The \textit{3D IKEA database}~\cite{Swadzba:RAS2012} has been collected using a robot moving in different scene-class instances. The 
+aim is to test scene-classification algorithms based on large, furniture level objects. 3D point clouds are formed by 
+stitching a series of RGB+D images. There are very few small objects in the scenes and the annotations are provided at the 
+scene-class level. The \textit{WRGBD dataset}~\cite{Lai:ICRA2011} is aimed to support object classification methods and contains many scene 
+instances of isolated objects in point cloud format. Annotation is done by assigning every pixel a semantic label in each scene. Each point 
+cloud is created from a series of RGB+D images.
 
-The system constructed by \cite{Russell:CVPR2009} can be used to automatically generate 3D datasets of scenes using rough human annotations on 2D images. The system infers 3D information from the scene using the semantics of the annotated properties of the important planes in the image. The dataset thus includes a large set of singular scenes, indoor and outdoor from very particular viewpoints, with annotations to the image components provided manually.
-The dataset provided by \cite{Sun:ECCV2010} contains a collection of 3D images of a few table-top objects in clear view and cluttered view. This dataset has been constructed to aid VPS for object classification and segmentation functioning on 3D data. Other datasets that have been developed have mainly been for training VPS for robust indoor object classification on 3D data \cite{WillowGarage:2011,Kimmel:ACCV2010}.
+The system constructed by~\cite{Russell:CVPR2009} can be used to automatically generate 3D datasets of scenes using rough human annotations 
+on 2D images as input. The system infers 3D information from the scene using the semantics of the annotated properties of important planes 
+in the image. The generated dataset thus includes a large set of singular scenes, indoor and outdoor from very particular viewpoints, with 
+annotations to the image components provided manually.
+
+The Kinect@Home project~\cite{Goransson13a} has collected a large set of crowd sourced data. People having access to a kinect like sensor 
+have captured and uploaded data from their own environments. The data is in the form of RGB-D video sequences. The data covers a large 
+variety of different scene types and range from single objects to whole rooms. No annotation is availble.
+
+The dataset provided by~\cite{Sun:ECCV2010} contains a collection of 3D images of a few table-top objects in clear view and cluttered view. 
+This dataset has been constructed to aid VPS for object classification and segmentation functioning on 3D data. Other datasets that have 
+been developed have mainly been for training VPS for robust indoor object classification on 3D data~\cite{WillowGarage:2011,Kimmel:ACCV2010}.
 However, none of these datasets contain the following three properties in their scenes:
 \begin{itemize}
-	\item complete 3D scene instances of a particular scene type (e.g.\ office table-tops, office rooms, cafeteria tables, hospital ward-rooms etc.)
+	\item complete 3D scene instances of a particular scene type (e.g.\ office table-tops, office rooms, cafeteria tables, hospital ward-
+	rooms etc.)
 	\item instances of subsets of objects-of-interest co-occurring in the scenes -- manually annotated for ground truth.
 	\item long term periodic observations of the same set of scenes.
 \end{itemize}
 which are key for long-term autonomous scene model learning.
 
-Long-term autonomous characteristic and spatial human indoor scene understanding is the aim of our immediate research work (Section~\ref{sec:Motivating Scenario}). Scene learning and understanding can become a very expensive task if the raw data grabbed by the sensors is used in terms of metric measurements, as available. Many recent researchers have tried to show that learning and modelling human environments increase in efficacy if the scene is perceived by not just using metric descriptive features extracted on the scene components but a lot also from the geometric, qualitative spatial features extracted from them. Spatial relations have been used previously to provide contextual information to vision-related work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are commonly used in activity recognition from video streams~\cite{Krishna:ECAI2010, Behera2012}. Recent work has used object co-occurrence to provide context in visual tasks such as activity recognition~\cite{Li:2012}. Apart from using the mere statistics of co-occurrence, a lot of information can be exploited from \textit{how} the objects co-occur in the scene. Recent work in 3D semantic labelling has used such geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based on contextual information is conducted by \cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, furniture and locations is used for pruning in object search problems in human environments. In~\cite{Southey:2007,kasper:2011} the authors utilise both geometric features on objects and spatial relations between objects for scene understanding.
+Scene learning and understanding can become a very expensive task if the raw data acquired by the 
+sensors is used in terms of metric measurements. Many recent works have investigated how learning and modelling human 
+environments increase in efficacy if qualitative spatial features are used instead of metric ones. Spatial relations have been used 
+previously to provide contextual information to vision-related work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations 
+alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are 
+commonly used in activity recognition from video streams~\cite{Krishna:ECAI2010, Behera2012}. Recent work has used object co-occurrence to 
+provide context in visual tasks such as activity recognition~\cite{Li:2012}. Apart from using the mere statistics of co-occurrence, a lot of 
+information can be exploited from \textit{how} the objects co-occur in the scene. Recent work in 3D semantic labelling has used such 
+geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification 
+accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based 
+on contextual information is conducted by~\cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, 
+furniture and locations is used for pruning in object search problems in human environments. In~\cite{Southey:2007,kasper:2011} the authors 
+utilise both geometric features on objects and spatial relations between objects for scene understanding.
 
-In our future work we aim to provide different representations of spatial context for a novel, long-term, learning task. Additionally the usage of such features leads to increased compatibility for robots to function using semi-supervised learning and in this way bootstrap the system using expert knowledge from humans.
+In our future work we aim to provide different representations of spatial context for a novel, long-term, learning task. Additionally the 
+usage of such features leads to increased compatibility for robots to function using semi-supervised learning and in this way bootstrap the 
+system using expert knowledge from humans.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Motivating Scenario}
@@ -265,7 +306,7 @@ As explained in Section~\ref{sec:Motivating Scenario} our research intentions ar
 %\end{enumerate}
 In 3D-TOTAL, 3D images of scenes were captured regularly at 3 times a day for 19 days for 20 people. Each scene has been manually annotated to obtain information about common objects-of-interest generally and regularly present, when observed across the many scenes.
 
-The data was collected using the \textit{SCENECT} software \cite{Buerkler:Online2012} and an \textit{Asus Xtion Pro} RGB-D camera. There is one 3D colour point cloud per scene (.pcd format). Every scene is a reconstructed version of the raw data stream obtained by manual detailed scanning of a table-top with real time visual feedback using SCENECT. The software has in-built -- real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
+The data was collected using the \textit{SCENECT} software~\cite{Buerkler:Online2012} and an \textit{Asus Xtion Pro} RGB-D camera. There is one 3D colour point cloud per scene (.pcd format). Every scene is a reconstructed version of the raw data stream obtained by manual detailed scanning of a table-top with real time visual feedback using SCENECT. The software has in-built -- real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
 
 The scenes were recorded as periodically as possible and at three fixed time instances of the day: \emph{Morning} (09:00 hrs), \emph{Afternoon} (13:00 hrs) and \emph{Evening} (18:00 hrs). Scenes contain tables of 20 different people collected over 19 days including weekends. A \textit{Scene\_ID} is attached to each scene to indicate who the table belongs to and the date and time of the recording. These Scene\_IDs help in partitioning the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, person \{Anna, Bob, Carl, \dots\}, or day \{2013-11-01, 2013-11-06, 2013-11-13, \dots\}.
 
