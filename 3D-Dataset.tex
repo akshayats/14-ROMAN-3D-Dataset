@@ -62,7 +62,7 @@ Humans subconsciously exploit various strong correlations amidst different objec
 \label{sec:Introduction}
 
 {\color{blue} AK: Needs shortening, has been modified from AAAI paper.}
-{\color{red} PJ: Shorted and removed some things that are central to this paper.}
+{\color{red} PJ: Shorted and removed some things that are central to this paper. I think that the aim should be that this paper is cited not only for the dataset BUT also for showing, with hard data and not hand waving, that there are structures that can be exploited when building models and performing inference.}
 
 In the last decades, computers have become part of human activities in all avenues of 
 life and the field of intelligent autonomous robotics shows signs to follow in a 
@@ -119,12 +119,13 @@ information.
 As a mean to study this, we have constructed a novel benchmark 3D data set of office type 
 table-top scenes called \textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-
 TOTAL)\footnote{\url{http://www.cas.kth.se/data/3D-TOTAL/}} observing the same set of select tables, over many times a day and over many 
-days in a month. Objects-of-interest have been manually annotated in 3D to provide ground truth data. The 3D-TOTAL dataset and the 
-accompanying analysis are the two most important contributions of this paper.
+days in a month. Objects-of-interest have been manually annotated in 3D to provide ground truth data. 
 
+The main contributions of this paper are 3D-TOTAL dataset and the accompanying analysis that clearly show the potential presented by the 
+structures that are inherent in the scenes for building models and for performing inference. 
 The rest of the paper is structured in the following way: We survey the related work in Section~\ref{sec:Related Work} and present an 
-example scenario for in Section~\ref{sec:Motivating Scenario}. In Section~\ref{sec:Dataset} we exhibit 3D-TOTAL in 
-depth and provide an analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
+example scenario for in Section~\ref{sec:Motivating Scenario}. In Section~\ref{sec:Dataset} we exhibit 3D-TOTAL in depth and provide an 
+analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
 
 
 % FROM AAAI -- (described in Section~\ref{sec:Dataset}), in this paper we explore the performance of a variety of representations for relative object position, plus inference techniques for operating on them, on the task of table-top scene understanding (Section \ref{sec:Techniques}). In particular we investigate representations that use varying forms of spatial relations, from geometric ones such as distances and angles to more qualitative spatial relations such as \textit{Left} and \textit{Behind} as a means for capturing observations of object configurations over time. The contributions this paper makes are: (1) A novel comparison between mechanisms for representing, learning and inference on object spatial configurations using spatial relations. (2) An evaluation of the use of these mechanisms for augmenting a robot's vision based \textit{perceptual system} (PS). (3) A new large 3D annotated table-top benchmark dataset.
