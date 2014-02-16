@@ -23,6 +23,7 @@
 %\usepackage{amssymb}  % assumes amsmath package installed
 \usepackage{subfig}
 \usepackage{color}
+\usepackage{url}
 
 \graphicspath{{images/}}
 
@@ -62,43 +63,68 @@ Humans subconsciously exploit various strong correlations amidst different objec
 
 {\color{blue} AK: Needs shortening, has been modified from AAAI paper.}
 
-In the last decades, computers have amalgamated into human activities in all avenues of 
-life and the field of intelligent autonomous robotics shows high promise to behave in a 
-similar way in the near future. Autonomously learning about human environments involves: 
-Recognising the characteristic features and components of the environments, the modality 
-and motives of human interaction with these environments and finally, generalising the 
-learnt knowledge on new instances of the same environment class or on new environment 
-classes of similar characteristics. In this paper, we concentrate our discussions to 
+In the last decades, computers have become part of human activities in all avenues of 
+life and the field of intelligent autonomous robotics shows signs to follow in a 
+similar way in the near future. In this paper, we concentrate our discussions on 
 understanding and learning about indoor human environments, particularly office 
 environments and suggestively toward understanding about human interactions with such 
 environments.
 
-Human environments are comprised of objects of various functionalities. It is crucial for 
-robots to learn the configuration of the objects and understand their utility if they are 
-to augment human activities. Cutting-edge object recognition, classification -- depend on 
-machine learning systems trained on intrinsic descriptive features extracted on the 
-objects present in the environment \cite{INCLUDE CITATION = refer to AAAI paper}. 
-Intrinsic feature based systems are susceptible to training noise, semantic noise and 
-systemic noise. More recently -- such systems also learn the statistics of co-occurrence 
-(extrinsic) of objects as additional features to gain robustness in performance.
-\cite{INCLUDE CITATION = AAAI paper}. The most recent aspect of object recognition based 
-scene classification and learning is to include the details of object co-occurrence in 
-terms of extrinsic geometrical features such as centroid distance vectors between 
-objects\cite{INCLUDE CITATION = Marina}, semantics based discretization of spatial 
-relations -- \textit{Next To}, \textit{In Front}, \textit{Left Of} etc. \cite{INCLUDE CITATION = relevant papers recently found}
+% This fits better in the related work section. At least it has to move down because it comes too abruptly here
+%
+%Human environments are comprised of objects of various functionalities. It is crucial for 
+%robots to learn the configuration of the objects and understand their utility if they are 
+%to augment human activities. Cutting-edge object recognition, classification -- depend on 
+%machine learning systems trained on intrinsic descriptive features extracted on the 
+%objects present in the environment \cite{INCLUDE CITATION = Refer to a paper that actually is the source of such a statement, i.e. not the AAAI paper}. 
+%Intrinsic feature based systems are susceptible to training noise, semantic noise and 
+%systemic noise. More recently -- such systems also learn the statistics of co-occurrence 
+%(extrinsic) of objects as additional features to gain robustness in performance.
+%\cite{INCLUDE CITATION = AAAI paper}. The most recent aspect of object recognition based 
+%scene classification and learning is to include the details of object co-occurrence in 
+%terms of extrinsic geometrical features such as centroid distance vectors between 
+%objects\cite{INCLUDE CITATION = Marina}, semantics based discretization of spatial 
+%relations -- \textit{Next To}, \textit{In Front}, \textit{Left Of} etc. \cite{INCLUDE CITATION = relevant papers recently found}
+
 
 % FROM AAAI -- State-of-the-art object recognition/classification typically relies on the extraction features to be matched against models built through machine learning techniques. As - the number of objects a given system is trained to recognise - increases, the uncertainty of individual recognition results tends to increase as greater number of objects increases the chance of overlapping features existence. The reliability of such recognisers is also affected when used on real robots in everyday environments, as objects may be partially occluded by scene clutter or only visible from certain angles, both potentially reducing the visibility of features for their trained models. In this paper we argue that the performance of a robot on an object recognition task can be increased by the addition of \emph{contextual knowledge} about the scene the objects are found in. In particular we demonstrate how models of the \emph{spatial configuration} of objects, learnt over prior observations of real scenes, can allow a robot to recognise the objects in unseen scenes more reliably. 
 
-Our research work is performed in the context of developing a mobile service robot for long-term autonomy in indoor human environments, from offices to hospitals (Section~\ref{sec:Motivating Scenario}). 
-The ability for a robot to run for weeks or months in its task environment opens up a new range of possibilities in terms of learning capabilities. In particular, the robot would expected to learn to perform an assigned task that is repetitive with weaning supervision and human interaction. The contextual knowledge the robot can gain from the repeated attempts can make it learn so that it's subsequent attempts on the same task are improved in accuracy and efficiency. 
-In this paper we consider the task of \emph{table-top scene understanding} as a first step to such robotic behaviour. Whilst the objects present on a single table may change in position, their overall arrangement has some regularity over time as influenced by the context and functionality of the table-top. For example, there is a general structure in office employee table-tops to that of cafeteria table-tops or kitchen table-tops. The differences derive from the variety of objects and their group-configurations on the table-tops with respect to time -- hours, days, weeks, months etc. For example: Office tables mainly have monitors, keyboards, mouse along with papers pens and coffee mugs within arm's reach which vary in particular instances and arrangement gradually over many days and minutely at different times of the day; However, cafeteria tables have cutlery, jugs, food, napkins etc.\ configurations of which don't vary over many days, weeks or years but vary in content and presence according to different times of every day.
-It is this structure and it's variants that we aim to exploit in order to improve the understanding of table-top scenes.
+Our research work is performed in the context of developing a mobile service robot for long-term autonomy in indoor human environments, from 
+offices to hospitals (Section~\ref{sec:Motivating Scenario}). 
+The ability for a robot to run for weeks or months in its task environment opens up a new range of possibilities in terms of learning 
+capabilities. In particular, the robot would expected to learn to perform an assigned task that is repetitive with weaning supervision and 
+human interaction. The contextual knowledge the robot can gain from the repeated attempts can make it learn so that it's subsequent attempts 
+on the same task are improved in accuracy and efficiency. 
+In this paper we study \emph{table-top scene understanding} as a first step to such robotic behaviour. Whilst the objects present on a 
+single table may change in position, their overall arrangement has some regularity over time as influenced by the context and functionality 
+of the table-top. For example, there is a general structure in office employee table-tops to that of cafeteria table-tops or kitchen table-
+tops. The differences derive from the variety of objects and their group-configurations on the table-tops with respect to time -- hours, 
+days, weeks, months etc. For example: Office tables typically have monitors, keyboards, mouse along with papers and pens and coffee mugs 
+configured such that the monitors can be viewed, the keyboard typed at and the mouse easily accessed from the keyboard. The spatial 
+configuration vary in particular instances and the arrangement change gradually over many days and minutely at different times of the day; 
+However, cafeteria tables have cutlery, jugs, food, napkins etc.\ configurations of which don't vary over many days, weeks or years but vary 
+in content and presence according to different times of every day. It is this structure and it's variants that we aim to exploit in order to 
+improve the understanding of table-top scenes.
 
-Bluntly modelling the absolute positions of objects (assuming ideal performance from vision based perception systems for object recognition), could very likely yield no unique results because such structure is improbable to generalise across a range of different types and instances of tables over numerous observations wrt. time. We are investigating \emph{relational} models of space, i.e. ways of encoding the position of a target object relative to the position of one or more landmark objects and believe that long term autonomy can be effective only with such rough discretizations of metric measurement space inherently encoding the generality of structure in the feature set. For example: Given -- "Keyboard is \textit{In Front} of a Monitor"; Depending on the size and span of the table and given the knowledge about the functionalities and sizes of monitors and keyboards, humans can generally estimate a probable location for both objects on an unseen table.
+Bluntly modelling the absolute positions of objects on tables, is likely to fail because such structure is improbable to 
+generalise across a range of different types and instances of tables over numerous observations wrt.\ time. We are instead 
+investigating qualitative \emph{relational} models of space, i.e. ways of encoding the qualitative position of a target object relative to 
+the position of one or more landmark objects. For example: Given -- "A Keyboard is \textit{In Front} of a Monitor"; Depending on the size 
+and span of the table and given knowledge about the functionalities and sizes of monitors and keyboards, humans can generally estimate a 
+probable location for both objects on an unseen table. We believe that representations that are to support long term autonomy and ability to 
+generalize knowledge require such rough discretizations of metric measurement space inherently encoding the generality of structure in the 
+information. 
 
-We want to design autonomous learning systems to behave similar to this. We have constructed a novel benchmark 3D data set of office type table-top scenes called \textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-TOTAL) observing the same set of select tables, over many times a day and over many days in a month. Objects-of-interest (OOI) have been manually 3D-ly annotated to provide ground truth data.
+As a mean to study this, we have constructed a novel benchmark 3D data set of office type 
+table-top scenes called \textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-
+TOTAL)\footnote{\url{http://www.cas.kth.se/data/3D-TOTAL/}} observing the same set of select tables, over many times a day and over many 
+days in a month. Objects-of-interest have been manually annotated in 3D to provide ground truth data. The 3D-TOTAL dataset and the 
+accompanying analysis are the two most important contributions of this paper.
 
-Having provided an introduction in this section, we provide a brief summary of the related work in Section~\ref{sec:Related Work} and a particular example scenario for such systems in Section~\ref{sec:Motivating Scenario}. In Section~\ref{sec:Dataset} we exhibit 3D-TOTAL in depth and provide some analysis with results matching intuitions in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
+The rest of the paper is structured in the following way: We survey the related work in Section~\ref{sec:Related Work} and present an 
+example scenario for in Section~\ref{sec:Motivating Scenario}. In Section~\ref{sec:Dataset} we exhibit 3D-TOTAL in 
+depth and provide an analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
+
 
 % FROM AAAI -- (described in Section~\ref{sec:Dataset}), in this paper we explore the performance of a variety of representations for relative object position, plus inference techniques for operating on them, on the task of table-top scene understanding (Section \ref{sec:Techniques}). In particular we investigate representations that use varying forms of spatial relations, from geometric ones such as distances and angles to more qualitative spatial relations such as \textit{Left} and \textit{Behind} as a means for capturing observations of object configurations over time. The contributions this paper makes are: (1) A novel comparison between mechanisms for representing, learning and inference on object spatial configurations using spatial relations. (2) An evaluation of the use of these mechanisms for augmenting a robot's vision based \textit{perceptual system} (PS). (3) A new large 3D annotated table-top benchmark dataset.
 
