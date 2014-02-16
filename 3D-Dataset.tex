@@ -229,26 +229,34 @@ system using expert knowledge from humans.
 \label{sec:Motivating Scenario}
 
 {\color{blue} AK: I do not know if Patric wrote this part :-o.}
+{\color{red} PJ: I did but it is not very grand in its current form}
 
 We are investigating systems that operate for long periods of time in environments populated by humans. 
 As a motivating scenario we will look at security guard in an office building. The robot patrols the working environment and should learn 
-models of what the environment normally looks like and what variations there are. In an implementation of such a system the robot tell when 
-something differs from the ordinary too much and then raise an alarm. Initially we will focus on desktop scenes. We are interested in models 
-for individual desks and as well as general models of desks. Our working hypotheses is that there is some general rules for how desks are 
-organized that we want to be able to extract and later exploit when building the models. We expect that object will change place, within certain semantic bounds. Some objects could be missing at times (coffee mug) which is normal, but some other objects are rarely moved (monitor).
+models of what the environment normally looks like and what variations there are. In an implementation of such a system the robot should be 
+able to raise an alarm when something is not as expected. Initially we will focus on office table-top scenes. We are interested in models 
+for individual desks and as well as general models of desks. Our working hypothesis is that there are some structures that govern how desks 
+are organized. We want to extract and later exploit these when building the models. As mentioned above, we expect most desks to have a 
+monitor, a keyboard and a mouse and that these are arranged in a certain way. Many people will have the mouse ot the right of the keyboard. This is an example of a spatial structure we want to learn. Some people have a laptop on their desk and they bring this 
+laptop home in the evening. This is an example of a dynamic property of a desk that we want to learn.
 
-Another aim is to be able to transfer knowledge from one environment to the next. This would allow a robot that just entered a new 
-environment to be functional from the start. Concretely this would correspond to having a reasonable prior which can then be adapted when 
-new observations are available. What information is general and what is environment specific? How do we represent the knowledge in a way that caters for the knowledge transfer, the ability to learn from few samples and adapting existing models? These are some further examples of questions that we want to study.
+Another aim is to be able to transfer knowledge from one desk to another and ultimately from one environment to to the next. That is, if the 
+robot encounters a desk that it has not seen before, it should be able to make use of the models other desks to bootstrap the learning. This 
+way, the robot would be able to perform some its functions even after a single observation, making it significantly more useful. The model 
+of a newly observed desk would start out with relatively large uncertainty regarding what can be considered normal for that desk but this 
+would improve over time as the model is adapted by new observations. To summarize, we strive to develop representations that caters for the 
+knowledge transfer, the ability to learn from few samples and adapting existing models.
 
-To study these questions we need data to learn from. The data need to capture both variations across different desks but also over time. None of the datasets available (see Section~/ref{sec:Related Work}) meet these requirements which is the motivation for the work behind the dataset that we present in this paper.
+To study these questions we need data to learn from. The data need to capture both variations across different desks but also over time. 
+None of the datasets available (see Section~/ref{sec:Related Work}) meet these requirements which is the motivation for the work behind the 
+dataset that we present in this paper.
 
-\subsubsection*{Points Discussed}
-\begin{enumerate}
-	\item This section should stress why it is important to gather to such datasets
-	\item what type of data do we really need? - hint it
-	\item reference to related work section to show that this dataset is unique.
-\end{enumerate}
+%\subsubsection*{Points Discussed}
+%\begin{enumerate}
+%	\item This section should stress why it is important to gather to such datasets
+%	\item what type of data do we really need? - hint it
+%	\item reference to related work section to show that this dataset is unique.
+%\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dataset}
