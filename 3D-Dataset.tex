@@ -279,14 +279,19 @@ dataset that we present in this paper.
 \end{center}
 \end{figure*}
 
-Most of the human outdoor and especially indoor environments, are characterized by a supporting surface on which all relevant objects are placed e.g. Land - buildings, living room floor - furniture, dining table - cutlery and dishes etc. It is hence convenient to perceive a structure for the object arrangement in the human environments to be as if on a "nested table-top system". Table-tops are the most commonly present large objects in any floor map. They provide for a favourable prototypical example for analysis of object organization structure. Moreover, it is highly likely that objects on a "table" have more semantic and organizational correlation amidst them, than when compared to those objects not on that same "table" e.g. \textit{Pen} has more semantic/functional correlation with a \textit{Laptop} (on the table) than a \textit{Couch} (not on that table, here the "table" references to the floor of the room).
+Most of the human outdoor and especially indoor environments, are characterized by a supporting surface on which relevant objects are placed 
+e.g. Land - buildings, living room floor - furniture, dining table - cutlery and dishes etc. It is hence convenient to perceive a structure 
+for the object arrangement in the human environments to be as if on a "nested table-top system". Table-tops provide for a favourable 
+prototypical example for analysis of object organization structure. 
+% The below part is pushing in a direction which is not central to the paper and is reaching quite far without proper backup
+%Moreover, it is highly likely that objects on a "table" have more semantic and organizational correlation amidst them, than when compared to those objects not on that same "table" e.g. \textit{Pen} has more semantic/functional correlation with a \textit{Laptop} (on the table) than a \textit{Couch} (not on that table, here the "table" references to the floor of the room).
 
-With the aim of exploring possibilities to understand, learn and model these organizational formalities amongst objects in human indoor environments, a first, pertinent dataset called 3D-TOTAL, has been composed by periodically capturing observations of entire table-tops of a fixed set of researchers at a computer science research facility. A singular observation of a table-top of one person at a single instance in time, captured in image format, is termed as a \textit{scene}.
-%% Blind %%
-%KTH University.
-These scenes have been captured with intervals of few hours, over many days and various instances of object classes. The dataset therefore captures the individual and group variation in object position and pose due to humans and their interaction with the environment. The required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets either are of individual objects or singular instances of entire rooms.
-
-It is required for such a long-term autonomous learning to have entire views of the scenes to model the interrelations amidst the member objects. Apart from being variant over object instances across different scenes, the data needed to be periodic over time at a scale of couple of hours so as to capture the individual and group variations in position and pose when there has been regular/irregular human interaction involved. The currently available datasets either are of individual objects or single instances of entire rooms. The required regularity in instances and time was the main motivation for the construction of this dataset (Section~\ref{sec:Related Work}).
+With the aim of exploring possibilities to understand, learn and model these organizational structures amongst objects in human indoor 
+environments, a first, pertinent dataset called 3D-TOTAL, has been composed by periodically capturing observations of a fixed set of entire 
+table-tops in an office environment. In what follows we define a \textit{scene} as a single observation of a table-top instance at a single 
+instance in time. The scenes have been captured as is\footnote{People have been asked to step aside not to contribute to the occlusion of 
+the table-top.} with intervals of a few hours, over many days and populated with various instances of object classes. The dataset therefore 
+captures the individual and group variation in object pose due to humans and their regular/irregular interaction with the environment. The required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets either are of individual objects or single instances of tables or entire rooms. This regularity in sampling and extent over time is important when studying modeling interrelations amidst the member objects in a long-term autonomous learning. 
 
 \subsection{Dataset Design and Concept}
 \label{ssec:Dataset Design and Concept}
@@ -299,11 +304,24 @@ It is required for such a long-term autonomous learning to have entire views of 
 %	\item different times of the day
 %	\item We want the data to have these properties and hence we designed the dataset in this way.
 %\end{enumerate}
-The target research groups to benefit from this dataset are of the kind that develops artificial intelligence for autonomous robots augmenting human activities (especially if they are fatiguing) within indoor human environments. Hence, it becomes essential for robotic learning to pay attention to variances in human environments wrt. scales of time, space and instances in the same space. The dataset has been composed by capturing and manually annotating 3D images of office type table-tops, for a fixed set of people, at fixed times of the day and for a span of many days.
-
-Observing the table-tops of the same set of people at different times of the day gives insight about the daily interactions a human has with his table and over many days gives an understanding of the gradual variances in their table-top setups. If the data is observed for an entire week, including weekends, features in the table-top configurations, that can be used for estimation of the type of the day of the week, can be extracted (e.g.\ Weekdays, Fridays, Weekends). Table-top models can also be learnt for all the people put together -- which gives a gross functional representation of a typical table-top in general for research employees in office environments -- or for individual people which helps to gain functional representations of office table-tops for individuals, seniority, gender and so on (Figure~\ref{fig:Example Scenes}). Finally, when trying to find general models over any of these types of data partition, the model learns to be able to generalize over different instances of a fixed set of object classes. In summary: When the dataset is partitioned in different ways with respect to time, people or instances, it richly yields knowledge and hence representations of table-tops in office environments.
-
-As explained in Section~\ref{sec:Motivating Scenario} our research intentions are to provide intelligence to an long-term operating, autonomous, human activity augmenting robot for indoor human environments. Thusly, the concept of composing the 3D-TOTAL dataset follows naturally from this research motivation.
+%The target research groups to benefit from this dataset are of the kind that develops artificial intelligence for autonomous robots 
+%augmenting human activities (especially if they are fatiguing) within indoor human environments. Hence, it becomes essential for robotic 
+%learning to pay attention to variances in human environments wrt. scales of time, space and instances in the same space. 
+As explained in Section~\ref{sec:Motivating Scenario} our research intentions are to provide intelligence to an long-term operating, 
+autonomous robot for indoor human environments. Thus, the concept of composing the 3D-TOTAL dataset follows naturally from this research 
+motivation. The dataset has been composed by capturing and manually annotating 3D point clouds of office type table-tops, for a fixed set of 
+people, at fixed times of the 
+day and for a span of weeks. Observing the table-tops of the same set of people at different times of the day gives insight about the daily 
+interactions a human has with his table and over many days gives an understanding of the gradual variances of their table-tops. If the data 
+is observed for an entire week, including weekends, features in the table-top configurations, that can be used for estimation of the type of 
+the day of the week, can be extracted (e.g.\ Weekdays, Fridays, Weekends). Table-top models can also be learnt for all the people put 
+together -- which gives a gross functional representation of an office table-top in general in office environments -- or for individual 
+people which helps to build functional representations of office table-tops for individuals, for different activities and so on 
+(Figure~\ref{fig:Example Scenes}). 
+%Finally, when trying to find general models over any of these types of data partitions, the model learns 
+%to be able to generalize over different instances of a fixed set of object classes. 
+In summary: When the dataset is partitioned in different ways with respect to time, people or object instances, it richly yields knowledge 
+of table-tops in office environments supporting building representations of the same.
 
 \subsection{Dataset Realization}
 \label{ssec:Dataset Realization}
@@ -313,13 +331,21 @@ As explained in Section~\ref{sec:Motivating Scenario} our research intentions ar
 %	\item Tools for collecting Asus Scenect
 %	\item 
 %\end{enumerate}
-In 3D-TOTAL, 3D images of scenes were captured regularly at 3 times a day for 19 days for 20 people. Each scene has been manually annotated to obtain information about common objects-of-interest generally and regularly present, when observed across the many scenes.
+In 3D-TOTAL, 3D point clouds representing 20 people's desks were captured regularly 3 times a day for 19 days. The data was collected by 
+carefully scanning each table-top using an \textit{Asus Xtion Pro Live} RGB-D camera. The raw RGB-D data stream is aggregated into a single 
+high resolution point cloud (.pcd format) using the \textit{SCENECT} software~\cite{Buerkler:Online2012}.
 
-The data was collected using the \textit{SCENECT} software~\cite{Buerkler:Online2012} and an \textit{Asus Xtion Pro} RGB-D camera. There is one 3D colour point cloud per scene (.pcd format). Every scene is a reconstructed version of the raw data stream obtained by manual detailed scanning of a table-top with real time visual feedback using SCENECT. The software has in-built -- real-time sampling, registration and de-noising algorithms to output the final high resolution point cloud.
+The scenes were recorded as periodically as possible and at three fixed times each day: \emph{Morning} (09:00 hrs), \emph{Afternoon} (13:00 
+hrs) and \emph{Evening} (18:00 hrs). Scenes contain tables of 20 different people collected over 19 days including weekends. 
+A \textit{Scene\_ID} is attached to each scene to indicate who the table belongs to and the date and time of the recording. These Scene\_IDs help in partitioning the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, person \{Carl, Nils, \dots\}, or day \{2013-11-01, 2013-11-06, 2013-11-13, \dots\}.
 
-The scenes were recorded as periodically as possible and at three fixed time instances of the day: \emph{Morning} (09:00 hrs), \emph{Afternoon} (13:00 hrs) and \emph{Evening} (18:00 hrs). Scenes contain tables of 20 different people collected over 19 days including weekends. A \textit{Scene\_ID} is attached to each scene to indicate who the table belongs to and the date and time of the recording. These Scene\_IDs help in partitioning the dataset with respect to time of the day \{Morning, Afternoon, Evening\}, person \{Anna, Bob, Carl, \dots\}, or day \{2013-11-01, 2013-11-06, 2013-11-13, \dots\}.
-
-A 3D annotation tool was developed for manually segmenting out objects-of-interest from the point clouds. On average, 12 different objects were labelled, including repeating instances of the same object class, per scene depending upon feasibility and occurrence. The objects belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Cellphone, Keys, Headphones, Telephone, Pencil, Eraser, Notebook, Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and object is available in  XML and JSON formats. Each scene has a nested list of object data containing \{Position, Orientation, Size, Date and Time of recording, Person ID, Point Indices of the point cloud that have been labelled as belonging to the Object\}. This manual annotation provides the required ground truth data for long term autonomous learning.
+A 3D annotation tool was developed for manually segmenting out objects-of-interest from the point clouds. On average, 12 different objects 
+were labelled, including repeating instances of the same object class, per scene depending upon feasibility and occurrence. The objects 
+belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Cellphone, Keys, Headphones, Telephone, Pencil, Eraser, Notebook, 
+Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and 
+object is available in  XML and JSON formats. Each scene has a nested list of object data containing \{Position, Orientation, Size, Date and 
+Time of recording, Person ID, Point Indices of the points in the point cloud that have been labelled as belonging to the Object\}. This 
+manual annotation provides the required ground truth data for long term autonomous learning.
 
 \subsection{Dataset Summary}
 \label{ssec:Dataset Summary}
