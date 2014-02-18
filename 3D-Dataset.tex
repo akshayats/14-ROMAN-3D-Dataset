@@ -101,12 +101,14 @@ the position of one or more landmark objects are investigated. For example, the 
 generalize knowledge require such rough discretizations of metric measurement space inherently encoding the generality of structure in the 
 information. 
 
-The main contribution of this paper is the quantitative analysis of indoor environments to characterise some of these structures in table
-top scenes. This is an important contribution if one wants to design a representation to build and model of space and to reason about space. 
-The prevailing approach has been to assume structures exist and define some descriptors/features that capture different aspects of these. We 
-instead propose to carefully study the structures and do so over long time and across several similar scenes to be able to characterise the 
-dynamics and variability. The output of this paper can thus serve as the foundation for designing efficient representations and inference algorithms. As a basis for our study, we have constructed a novel benchmark 3D data set of office type 
-table-top scenes called \textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-
+The main contribution of this paper is the quantitative analysis of indoor environments to characterise some of these structures. This is an 
+important contribution if one wants to design a representation to build and model of space and to reason about space. 
+The prevailing approach has been to assume structures exist and define a set of descriptors/features that capture different aspects of 
+these. We instead propose to carefully study the structures and do so over long time and across several similar scenes to be able to 
+characterise the dynamics and variability. The output of this paper can thus serve as the foundation for designing efficient representations 
+and inference algorithms. To limit the scope we study table-top scenes in this paper. As a basis for our study, we have constructed a 
+benchmark 3D data set of office type table-top scenes called 
+\textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-
 TOTAL)\footnote{\url{http://www.cas.kth.se/data/3D-TOTAL/}} observing the same set of select tables, over many times a day and over many 
 days in a month. Objects-of-interest have been manually annotated in 3D to provide ground truth data. 
 
@@ -133,8 +135,22 @@ analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Secti
 
 \section{Related Work}
 \label{sec:Related Work}
-The dataset constructed in this work is motivated mainly by research pertaining to automatic learning about indoor human environments for 
-long term autonomous robots. This requires certain characteristics of a dataset.
+Scene learning and understanding can become a very expensive task if the raw data acquired by the 
+sensors is used in terms of metric measurements. Many recent works have investigated how learning and modelling human 
+environments increase in efficacy if qualitative spatial features are used instead of metric ones. Spatial relations have been used 
+previously to provide contextual information to vision-related work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations 
+alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are 
+commonly used in activity recognition from video streams~\cite{Krishna:ECAI2010, Behera2012}. Recent work has used object co-occurrence to 
+provide context in visual tasks such as activity recognition~\cite{Li:2012}. Apart from using the mere statistics of co-occurrence, a lot of 
+information can be exploited from \textit{how} the objects co-occur in the scene. Recent work in 3D semantic labelling has used such 
+geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification 
+accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based 
+on contextual information is conducted by~\cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, 
+furniture and locations is used for pruning in object search problems in human environments. In~\cite{Southey:2007,kasper:2011} the authors 
+utilise both geometric features on objects and spatial relations between objects for scene understanding.
+
+As describe in the introduction our aim is to find and exploit the spatial structures inherent in indoor environments. Two important aspects
+are expose over long time and to many similar but not identical scenes. Several dataset have been constructed for various purposes. However, we argue that none of the existing datasets captures these two important aspects.
 
 The \textit{B3DO dataset}~\cite{Janoch:ICCV2011} contains many single-snapshot instances of indoor human 
 environments having a variety in viewpoints, object-classes, scene-classes and instances. This dataset is in the form of RGB and depth image 
@@ -144,7 +160,7 @@ The \textit{NYU Depth V1-2}\cite{Silberman:ECCV2012} datasets contain different 
 captured with RGB+D images. Automated pixel clustering is conducted by using features in the RGB and D images separately and annotation of 
 the clusters has been done manually, thereby assigning a semantic label to every pixel. The dataset contains a wide range of singular 
 snapshots of indoor scenes from commercial and residential buildings. This dataset is primarily aimed at evaluating VPS aiming at automatic 
-semantic segmentation and scene classification.
+semantic segmentation and scene classification. 
 
 The \textit{3D IKEA database}~\cite{Swadzba:RAS2012} has been collected using a robot moving in different scene-class instances. The 
 aim is to test scene-classification algorithms based on large, furniture level objects. 3D point clouds are formed by 
@@ -161,85 +177,51 @@ annotations to the image components provided manually.
 The Kinect@Home project~\cite{Goransson13a} has collected a large set of crowd sourced data. People having access to a kinect like sensor 
 have captured and uploaded data from their own environments. The data is in the form of RGB-D video sequences. The data covers a large 
 variety of different scene types and range from single objects to whole rooms. No annotation is availble.
-
 The dataset provided by~\cite{Sun:ECCV2010} contains a collection of 3D images of a few table-top objects in clear view and cluttered view. 
 This dataset has been constructed to aid VPS for object classification and segmentation functioning on 3D data. Other datasets that have 
 been developed have mainly been for training VPS for robust indoor object classification on 3D data~\cite{WillowGarage:2011,Kimmel:ACCV2010}.
-However, none of these datasets contain the following three properties in their scenes:
+
+To summarize, our dataset contributes the following three important properties:
 \begin{itemize}
-	\item complete 3D scene instances of a particular scene type (e.g.\ office table-tops, office rooms, cafeteria tables, hospital ward-
-	rooms etc.)
-	\item instances of subsets of objects-of-interest co-occurring in the scenes -- manually annotated for ground truth.
-	\item long term periodic observations of the same set of scenes.
+	\item captures full 3D scene instances of a particular scene type (in our case office table-tops)
+	\item contains instances of subsets of objects-of-interest co-occurring in the scenes manually annotated for ground truth
+	\item provides long term periodic observations of the same set of scenes
+	\item contains observations at several different times of day
 \end{itemize}
-which are key for long-term autonomous scene model learning.
 
-Scene learning and understanding can become a very expensive task if the raw data acquired by the 
-sensors is used in terms of metric measurements. Many recent works have investigated how learning and modelling human 
-environments increase in efficacy if qualitative spatial features are used instead of metric ones. Spatial relations have been used 
-previously to provide contextual information to vision-related work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations 
-alongside descriptive features to support multiple object detections in a single image. Spatial relations and contextual information are 
-commonly used in activity recognition from video streams~\cite{Krishna:ECAI2010, Behera2012}. Recent work has used object co-occurrence to 
-provide context in visual tasks such as activity recognition~\cite{Li:2012}. Apart from using the mere statistics of co-occurrence, a lot of 
-information can be exploited from \textit{how} the objects co-occur in the scene. Recent work in 3D semantic labelling has used such 
-geometric information along with descriptive intrinsic appearance features~\cite{Koppula:NIPS2011}. They achieve a high classification 
-accuracy for a large set of object-classes belonging to home and office environments. Scene similarity measurement and classification based 
-on contextual information is conducted by~\cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial relations between smaller objects, 
-furniture and locations is used for pruning in object search problems in human environments. In~\cite{Southey:2007,kasper:2011} the authors 
-utilise both geometric features on objects and spatial relations between objects for scene understanding.
+Our dataset opens up the possibility to study the structures that govern how space is organized. We want to extract and later exploit these 
+when building the models. While our dataset only captures table-tops we believe that many of our findings can be transferred to other types 
+of scenes. As mentioned above, we expect most desks to have a monitor, a keyboard and a mouse and that these are arranged in a certain way. 
+Many people will have the mouse ot the right of the keyboard. This is an example of a spatial structure we want to learn. Some people have a 
+laptop on their desk and they bring this laptop home in the evening. This is an example of a dynamic property of a desk that we want to 
+learn. We believe that when combined this type of information will allow us to reason about activities as well.
 
-In our future work we aim to provide different representations of spatial context for a novel, long-term, learning task. Additionally the 
-usage of such features leads to increased compatibility for robots to function using semi-supervised learning and in this way bootstrap the 
-system using expert knowledge from humans.
+Another aim is to be able to transfer knowledge from one part of an environment to another and ultimately from one environment to the 
+next. For example, if the robot encounters a desk that it has not seen before, it should be able to make use of the models of other desks to get a good prior for what to expect. This way, the robot would also be able to reason more efficiently about desks that it has not yet seen but which, for example, might be referenced by a human.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Motivating Scenario}
-\label{sec:Motivating Scenario}
-We are investigating systems that operate for long periods of time in environments populated by humans. 
-As a motivating scenario we will look at security guard in an office building. The robot patrols the working environment and should learn 
-models of what the environment normally looks like and what variations there are. In an implementation of such a system the robot should be 
-able to raise an alarm when something is not as expected. Initially we will focus on office table-top scenes. We are interested in models 
-for individual desks and as well as general models of desks. Our working hypothesis is that there are some structures that govern how desks 
-are organized. We want to extract and later exploit these when building the models. As mentioned above, we expect most desks to have a 
-monitor, a keyboard and a mouse and that these are arranged in a certain way. Many people will have the mouse ot the right of the keyboard. This is an example of a spatial structure we want to learn. Some people have a laptop on their desk and they bring this 
-laptop home in the evening. This is an example of a dynamic property of a desk that we want to learn.
-
-Another aim is to be able to transfer knowledge from one desk to another and ultimately from one environment to to the next. That is, if the 
-robot encounters a desk that it has not seen before, it should be able to make use of the models other desks to bootstrap the learning. This 
-way, the robot would be able to perform some its functions even after a single observation, making it significantly more useful. The model 
-of a newly observed desk would start out with relatively large uncertainty regarding what can be considered normal for that desk but this 
-would improve over time as the model is adapted by new observations. To summarize, we strive to develop representations that caters for the 
-knowledge transfer, the ability to learn from few samples and adapting existing models.
-
-To study these questions we need data to learn from. The data need to capture both variations across different desks but also over time. 
-None of the datasets available (see Section~/ref{sec:Related Work}) meet these requirements which is the motivation for the work behind the 
-dataset that we present in this paper.
+In conclusion our dataset allows us to develop representations that caters for the knowledge transfer, the ability to learn from few samples and adapting existing models. In the next section we describe the design and construction of the dataset.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Dataset}
 \label{sec:Dataset}
-Most of the human outdoor and especially indoor environments, are characterized by a supporting surface on which relevant objects are placed 
-e.g. Land - buildings, living room floor - furniture, dining table - cutlery and dishes etc. It is hence convenient to perceive a structure 
-for the object arrangement in the human environments to be as if on a "nested table-top system". Table-tops provide for a favourable 
-prototypical example for analysis of object organization structure. 
-% The below part is pushing in a direction which is not central to the paper and is reaching quite far without proper backup
-%Moreover, it is highly likely that objects on a "table" have more semantic and organizational correlation amidst them, than when compared to those objects not on that same "table" e.g. \textit{Pen} has more semantic/functional correlation with a \textit{Laptop} (on the table) than a \textit{Couch} (not on that table, here the "table" references to the floor of the room).
+We focus on table-top scenes in our dataset because in an office environment the tables represent the work space of people. Table-tops are also well defined spatially and there are many instances of them within a single environment which means that capturing variation across instances is made easier.
 
 With the aim of exploring possibilities to understand, learn and model these organizational structures amongst objects in human indoor 
-environments, a first, pertinent dataset called 3D-TOTAL, has been composed by periodically capturing observations of a fixed set of entire 
+environments, we present the dataset 3D-TOTAL, which has been composed by periodically capturing observations of a fixed set of entire 
 table-tops in an office environment. In what follows we define a \textit{scene} as a single observation of a table-top instance at a single 
 instance in time. The scenes have been captured as is\footnote{People have been asked to step aside not to contribute to the occlusion of 
 the table-top.} with intervals of a few hours, over many days and populated with various instances of object classes. The dataset therefore 
-captures the individual and group variation in object pose due to humans and their regular/irregular interaction with the environment. The required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets either are of individual objects or single instances of tables or entire rooms. This regularity in sampling and extent over time is important when studying modeling interrelations amidst the member objects in a long-term autonomous learning. 
+captures the individual and group variation in object pose due to humans and their regular/irregular interaction with the environment. The 
+required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets 
+either are of individual objects or single instances of tables or entire rooms. This regularity in sampling and extent over time is 
+important when studying modelling interrelations amidst the member objects in a long-term autonomous learning. 
 
 \subsection{Dataset Design and Concept}
 \label{ssec:Dataset Design and Concept}
-As explained in Section~\ref{sec:Motivating Scenario} our research intentions are to provide intelligence to an long-term operating, 
-autonomous robot for indoor human environments. Thus, the concept of composing the 3D-TOTAL dataset follows naturally from this research 
-motivation. The dataset has been composed by capturing and manually annotating 3D point clouds of office type table-tops, for a fixed set of 
+We want to provide intelligence to an long-term operating, autonomous robot for indoor human environments. The 3D-Total
+dataset has been composed by capturing and manually annotating 3D point clouds of office type table-tops, for a fixed set of 
 people, at fixed times of the 
 day and for a span of weeks. Observing the table-tops of the same set of people at different times of the day gives insight about the daily 
 interactions a human has with his table and over many days gives an understanding of the gradual variances of their table-tops. If the data 
@@ -248,7 +230,7 @@ the day of the week, can be extracted (e.g.\ Weekdays, Fridays, Weekends). Table
 together -- which gives a gross functional representation of an office table-top in general in office environments -- or for individual 
 people which helps to build functional representations of office table-tops for individuals, for different activities and so on 
 (Figure~\ref{fig:Example Scenes}). 
-In summary: When the dataset is partitioned in different ways with respect to time, people or object instances, it richly yields knowledge 
+In summary: When the dataset is designed such that when it is partitioned in different ways with respect to time, people or object instances, it richly yields knowledge 
 of table-tops in office environments supporting building representations of the same.
 
 \subsection{Dataset Realization}
@@ -293,7 +275,7 @@ This section gives a brief summary of the dataset to serve as a quick reference.
 
 \section{Analysis}
 \label{sec:Analysis}
-In this section we perform an analysis of the data to highlight some interesting aspects of it. In particular we want to show that 
+In this section we perform an analysis of the data to highlight some interesting aspects of it. In particular we will show that 
 there are structures in the data that can be exploited by a system for more efficient representations and better reasoning with less data.
 
 Figure ~\ref{fig:Example Scenes} shows three desktop scenes. Each column shows the same desk at two different times. The leftmost two columns 
@@ -315,22 +297,21 @@ In the top part of the figure, the green circles mark the position of the centro
 keyboard that exist in a scene where there is at least one mouse. The red square shows the mean position of all these centroids. The black 
 crosses show the position of all mice in scenes with at least one keyboard. In the bottom part of the figure the position of the mouse 
 relative to the keyboard is shown for each observed pair in the data. As expected most mice are qualitatively to the right of the keyboard. There are some outliers. However,  
-encoding the position of the mouse as being to the right of a keyboard would capture most of the information. The largest cluster of points in the lower part of Figure~\ref{fig:scatter-keyboard-mouse} contains 95\% (CHECK THIS!!!!) of all data points. Notice how this structure in the data is lost, at least visually, when looking at the position of the keyboard and mouse in the table frame (top figure) and how it pops out when looking at the relative positions (bottom figure). We want our representation to be able to capitalize of this structure. Clearly, in this case, the position of the keyboard contains almost all information that is needed to represent the position of the mouse as well.
+encoding the position of the mouse as being to the right of a keyboard would capture most of the information. The largest cluster of points in the lower part of Figure~\ref{fig:scatter-keyboard-mouse} contains 95\% (CHECK THIS!!!!) of all data points. Notice how this structure in the data is lost, at least visually, when looking at the position of the keyboard and mouse in the table frame (top figure) and how it pops out when looking at the relative positions (bottom figure). We want our representation to be able to capitalize of this structure. Clearly, in this case, the position of the keyboard contains almost all information that is needed to represent the position of the mouse as well. The figure also clearly shows how the distribution varies across instances (the different colours in the bottom part). Note how each person has a lot less spread in the distribution than when considering them all at once. This is a good illustration of the difference between general models of space and models of specific instances of space and how important it is that the training data is rich enough to capture this.
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{keyboard_mouse_raw-crop}
-\includegraphics[width=0.8\linewidth]{keyboard_mouse-crop}
+\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_mouse_clusters-crop}
 \end{center}
-\caption{Top: The green circles shows the positions keyboards(red square shows mean of keyboards). The black crosses show the position of all mice in these scenes. Bottom: Mean position of keyboards (red square) and relative position of mouse relative to it. The brown rectangle gives a rough idea about where the borders of a typical desk would be.} 
+\caption{This figures shows how a relative position representation (bottom) is able to expose a structure that is not as visible in absolyte coordinated (top). 
+Top: The green circles shows the positions keyboards(red square shows mean of keyboards). The black crosses show the position of all mice in these scenes. Bottom: Mean position of keyboards (red square) and relative position of mouse relative to it. Each color shows a different person. The brown rectangle gives a rough idea about where the borders of a typical desk would be.} 
 \label{fig:scatter-keyboard-mouse}
 \end{figure}
 
 To further investigate the correlation between different object classes, and thus look for other inherent structures in the data, we look at 
-the relative position of all objects of class $C_j$ w.r.t.\ to objects of class $C_i$ present in the same scene. To get a quick 
-overview of the type of distributions this results in we look at the entropy of these distributions. A large entropy (closer to uniform 
-distribution) would suggest that the objects are largely uncorrelated and a small entropy (a more peaky distribution) a stronger 
-correlation between the objects. We calculate the entropy as 
+the relative position of all objects of class $C_j$ w.r.t.\ to objects of class $C_i$ present in the same scene and turn to information theory for the analysis. We calculate the entropy for the distributions of relative positions. Entropy measures the predictability of the information. A low entropy means that there are informative features available to make prediction, i.e. there is an underlying structure. A large entropy on the other hand means that it is very hard to make predictions and the resulting distribution would be close to uniform.
+We calculate the entropy as 
 \begin{equation}
 E=-\sum (\frac{n_i}{N})ln(\frac{n_i}{N})
 \end{equation}
@@ -353,7 +334,7 @@ that the distribution for the relative position of papers w.r.t.\ to the keyboar
 \begin{center}
 \includegraphics[width=\linewidth]{entropy_matrix-crop}
 \end{center}
-\caption{The figure illustrates the entropy in the distribution of relative positions of one objects (column) w.r.t. to another objects (row). Dark red indicates high entropy (more uniform distr.) and dark blue low entropy (peakier distr.). We show this for a subset of objects from the database; 1:keyboard, 2:monitor, 3:mouse, 4:mug, 5:laptop, 6:papers, 7:book, 8:bottle, 9:jug, 10:notebook. }
+\caption{The figure illustrates the entropy in the distribution of relative positions of one objects (column) w.r.t. to another objects (row). Dark red indicates high entropy (more uniform distr.) and dark blue low entropy (peakier distr.). We show this for the most frequently occurring object pairs in the dataset (i.e. most statistics); 1:keyboard, 2:monitor, 3:mouse, 4:mug, 5:laptop, 6:papers, 7:book, 8:bottle, 9:jug, 10:notebook. }
 \label{fig:entropy}
 \end{figure}
 
@@ -375,9 +356,9 @@ that the distribution for the relative position of papers w.r.t.\ to the keyboar
 
 \begin{figure}
 \begin{center}
-\subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{raw-pdf/monitor_keyboard_clusters-crop}}\quad
-\subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{raw-pdf/keyboard_mug_clusters-crop}}\\
-\subfloat[][]{\label{fig:scatter-keyboard-papers}\includegraphics[width=0.8\linewidth]{raw-pdf/keyboard_papers_clusters-crop}}
+\subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/monitor_keyboard_clusters-crop}}\quad
+\subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_mug_clusters-crop}}\\
+\subfloat[][]{\label{fig:scatter-keyboard-papers}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_papers_clusters-crop}}
 \end{center}
 \caption{The figures show the relative position of a) keyboard w.r.t. monitor, b) mug w.r.t. keyboard and c) papers w.r.t. keyboard. Qualitatively keyboards are mostly infront of monitors, mugs are around the keyboard and the position of papers is mostly independent on the position of the keyboard. The different colors/markers show data from different people in the data.} 
 \label{fig:scatter-rest}
