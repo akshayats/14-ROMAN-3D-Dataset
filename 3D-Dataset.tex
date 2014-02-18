@@ -48,12 +48,30 @@ Preparation of Papers for IEEE Sponsored Conferences \& Symposia*
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-\begin{quote}\
-{\color{blue} AK: Not yet written, this is from the previous paper.}
-
-Humans subconsciously exploit various strong correlations amidst different object instances, classes and between different object classes and scene types when analysing indoor environments. Correlations in naive, logical object co-occurrences have been exploited along with the extraction of vision based object-intrinsic descriptive features in previous research. In this paper, we present several alternative learning techniques to model and make estimates of scenes based on a variety of spatial relations - geometric extrinsic features with different amounts of discretization, which capture \textit{how} the objects co-occur; and compare their efficacy in the context of object classification in real-world table-top scenes. We investigate the possibilities of using such techniques to refine the results from a traditional vision-perception system. We also contribute a unique, long-term periodic, large 3D dataset of 20 office table-top scenes, manually annotated with 18 object classes. Apart from our current comparison, we foresee that the dataset will be useful for applications such as generalized learning of spatial models, learning object data structuring based on semantic hierarchy, learning best suited semantic abstractions and grammar for long term autonomy, ground truth for vision-perception systems etc.
-
-\end{quote}
+bla bla bla bla bla blabla bla bla bla bla blabla bla bla bla bla bla
+bla bla bla bla bla blabla bla bla bla bla blabla bla bla bla bla bla
+bla bla bla bla bla blabla bla bla bla bla blabla bla bla bla bla blabla 
+bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
+bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
+bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
+bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
+bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
+bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla bla
+bla bla bla bla bla  bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla  bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
+bla bla bla bla bla bla bla bla bla bla bla bla
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,110 +79,60 @@ Humans subconsciously exploit various strong correlations amidst different objec
 \section{Introduction}
 \label{sec:Introduction}
 
-{\color{blue} AK: Needs shortening, has been modified from AAAI paper.}
-{\color{red} PJ: Shorted and removed some things that are central to this paper. I think that the aim should be that this paper is cited not only for the dataset BUT also for showing, with hard data and not hand waving, that there are structures that can be exploited when building models and performing inference.}
-
-In the last decades, computers have become part of human activities in all avenues of 
-life and the field of intelligent autonomous robotics shows signs to follow in a 
-similar way in the near future. In this paper, we concentrate our discussions on 
-understanding and learning about indoor human environments, particularly office 
-environments and suggestively toward understanding about human interactions with such 
-environments.
-
-% This fits better in the related work section. At least it has to move down because it comes too abruptly here
-%
-%Human environments are comprised of objects of various functionalities. It is crucial for 
-%robots to learn the configuration of the objects and understand their utility if they are 
-%to augment human activities. Cutting-edge object recognition, classification -- depend on 
-%machine learning systems trained on intrinsic descriptive features extracted on the 
-%objects present in the environment \cite{INCLUDE CITATION = Refer to a paper that actually is the source of such a statement, i.e. not the AAAI paper}. 
-%Intrinsic feature based systems are susceptible to training noise, semantic noise and 
-%systemic noise. More recently -- such systems also learn the statistics of co-occurrence 
-%(extrinsic) of objects as additional features to gain robustness in performance.
-%\cite{INCLUDE CITATION = AAAI paper}. The most recent aspect of object recognition based 
-%scene classification and learning is to include the details of object co-occurrence in 
-%terms of extrinsic geometrical features such as centroid distance vectors between 
-%objects\cite{INCLUDE CITATION = Marina}, semantics based discretization of spatial 
-%relations -- \textit{Next To}, \textit{In Front}, \textit{Left Of} etc. \cite{INCLUDE CITATION = relevant papers recently found}
-
-
-% FROM AAAI -- State-of-the-art object recognition/classification typically relies on the extraction features to be matched against models built through machine learning techniques. As - the number of objects a given system is trained to recognise - increases, the uncertainty of individual recognition results tends to increase as greater number of objects increases the chance of overlapping features existence. The reliability of such recognisers is also affected when used on real robots in everyday environments, as objects may be partially occluded by scene clutter or only visible from certain angles, both potentially reducing the visibility of features for their trained models. In this paper we argue that the performance of a robot on an object recognition task can be increased by the addition of \emph{contextual knowledge} about the scene the objects are found in. In particular we demonstrate how models of the \emph{spatial configuration} of objects, learnt over prior observations of real scenes, can allow a robot to recognise the objects in unseen scenes more reliably. 
-
-Our research work is performed in the context of developing a mobile service robot for long-term autonomy in indoor human environments, from 
-offices to hospitals (Section~\ref{sec:Motivating Scenario}). 
+In this paper, we deal with the problem of endowing a robot with the ability to understand and learn about indoor human environments. Our research work is performed in the context of developing a mobile service robot for long-term autonomy in indoor human environments, from 
+offices to hospitals. 
 The ability for a robot to run for weeks or months in its task environment opens up a new range of possibilities in terms of learning 
 capabilities. In particular, the robot would expected to learn to perform an assigned task that is repetitive with weaning supervision and 
 human interaction. The contextual knowledge the robot can gain from the repeated attempts can make it learn so that it's subsequent attempts 
 on the same task are improved in accuracy and efficiency. 
-In this paper we study \emph{table-top scene understanding} as a first step to such robotic behaviour. Whilst the objects present on a 
-single table may change in position, their overall arrangement has some regularity over time as influenced by the context and functionality 
-of the table-top. For example, there is a general structure in office employee table-tops to that of cafeteria table-tops or kitchen table-
+
+In this paper we study spatial understand derived from the configuration of objects in a scene. Whilst objects often change in position, their overall arrangement typically have some regularity over time as influenced by the context and functionality of that part of space.
+For example, there is a general structure in office employee table-tops to that of cafeteria table-tops or kitchen table-
 tops. The differences derive from the variety of objects and their group-configurations on the table-tops with respect to time -- hours, 
 days, weeks, months etc. For example: Office tables typically have monitors, keyboards, mouse along with papers and pens and coffee mugs 
 configured such that the monitors can be viewed, the keyboard typed at and the mouse easily accessed from the keyboard. The spatial 
 configuration vary in particular instances and the arrangement change gradually over many days and minutely at different times of the day; 
 However, cafeteria tables have cutlery, jugs, food, napkins etc.\ configurations of which don't vary over many days, weeks or years but vary 
 in content and presence according to different times of every day. It is this structure and it's variants that we aim to exploit in order to 
-improve the understanding of table-top scenes.
+improve the understanding of space.
 
-Bluntly modelling the absolute positions of objects on tables, is likely to fail because such structure is improbable to 
-generalise across a range of different types and instances of tables over numerous observations w.r.t.\ time. We are instead 
-investigating qualitative \emph{relational} models of space, i.e. ways of encoding the qualitative position of a target object relative to 
-the position of one or more landmark objects. For example: Given -- "A Keyboard is \textit{In Front} of a Monitor"; Depending on the size 
-and span of the table and given knowledge about the functionalities and sizes of monitors and keyboards, humans can generally estimate a 
-probable location for both objects on an unseen table. We believe that representations that are to support long term autonomy and ability to 
+Such structures have been exploited before in the literature for a number of different applications, such as object recognition, image retrieval and objects search. The intuition is that bluntly modelling the absolute positions of objects, is likely to fail because such structure is improbable to generalise across a range of different scenes over numerous observations w.r.t.\ time. Instead qualitative \emph{relational} models of space, i.e. ways of encoding the qualitative position of a target object relative to 
+the position of one or more landmark objects are investigated. For example, the chair is at the desk and the pillow on the bed. The exact coordinates are largely irrelevant. We believe that representations that are to support long term autonomy and ability to 
 generalize knowledge require such rough discretizations of metric measurement space inherently encoding the generality of structure in the 
 information. 
 
-As a mean to study this, we have constructed a novel benchmark 3D data set of office type 
+The main contribution of this paper is the quantitative analysis of indoor environments to characterise some of these structures in table
+top scenes. This is an important contribution if one wants to design a representation to build and model of space and to reason about space. 
+The prevailing approach has been to assume structures exist and define some descriptors/features that capture different aspects of these. We 
+instead propose to carefully study the structures and do so over long time and across several similar scenes to be able to characterise the 
+dynamics and variability. The output of this paper can thus serve as the foundation for designing efficient representations and inference algorithms. As a basis for our study, we have constructed a novel benchmark 3D data set of office type 
 table-top scenes called \textit{\textbf{3D T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm \textbf{A}utonomous \textbf{L}earning} (3D-
 TOTAL)\footnote{\url{http://www.cas.kth.se/data/3D-TOTAL/}} observing the same set of select tables, over many times a day and over many 
 days in a month. Objects-of-interest have been manually annotated in 3D to provide ground truth data. 
 
-The main contributions of this paper are 3D-TOTAL dataset and the accompanying analysis that clearly show the potential presented by the 
-structures that are inherent in the scenes for building models and for performing inference. 
 The rest of the paper is structured in the following way: We survey the related work in Section~\ref{sec:Related Work} and present an 
 example scenario for in Section~\ref{sec:Motivating Scenario}. In Section~\ref{sec:Dataset} we exhibit 3D-TOTAL in depth and provide an 
 analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
 
 
-% FROM AAAI -- (described in Section~\ref{sec:Dataset}), in this paper we explore the performance of a variety of representations for relative object position, plus inference techniques for operating on them, on the task of table-top scene understanding (Section \ref{sec:Techniques}). In particular we investigate representations that use varying forms of spatial relations, from geometric ones such as distances and angles to more qualitative spatial relations such as \textit{Left} and \textit{Behind} as a means for capturing observations of object configurations over time. The contributions this paper makes are: (1) A novel comparison between mechanisms for representing, learning and inference on object spatial configurations using spatial relations. (2) An evaluation of the use of these mechanisms for augmenting a robot's vision based \textit{perceptual system} (PS). (3) A new large 3D annotated table-top benchmark dataset.
-
-%\subsubsection*{Points discussed}
-%\begin{enumerate}
-%	\item \textbf{Make this more "Human Oriented"}
-%	\item Overview of the problem - why?
-%	\begin{enumerate}
-%		\item Not only desktops
-%		\item How do we treat object classification
-%	\end{enumerate}
-%	\item Generalize and Transfer Knowledge
-%	\item How are objects correlated, search becomes easier
-%	\item Understanding a model for inter object influence for inference
-%	\item No benchmarks yet or datasets having 3D spatial information
-%	\begin{itemize}
-%		\item time
-%		\item complete scenes
-%		\item different people
-%		\item different types of people
-%	\end{itemize}
-%	\item need to structure data -- metric is tedious, because of large amounts of data
-%	\item Contributions:
-%	\begin{itemize}
-%		\item A big 3D data set, annotated -- benchmark for results, folding data, classification.
-%		\item suggest SR and QSR
-%		\item something that could augment perception systems
-%	\end{itemize}
-%\end{enumerate}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure*}[bhtp]
+\begin{center}
+\includegraphics[height=2.5cm]{David_Mor_131110} \quad
+\includegraphics[height=2.5cm]{Nils_Mor_131111} \quad
+\includegraphics[height=2.5cm]{Puren_Eve_131029}\\ \smallskip
+\includegraphics[height=2.5cm]{David_Eve_131110} \enskip
+\includegraphics[height=2.5cm]{Nils_Eve_131111} \enskip
+\includegraphics[height=2.5cm]{Puren_Mor_131110}
+\caption{Each column shows a different person's office table at two different times. The tables in the first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 days apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit.}
+\label{fig:Example Scenes}
+\end{center}
+\end{figure*}
+
 
 \section{Related Work}
 \label{sec:Related Work}
-
-{\color{blue} AK: Maybe needs shortening.}
-{\color{red} PJ: Edited and shorted a bit.}
-
 The dataset constructed in this work is motivated mainly by research pertaining to automatic learning about indoor human environments for 
 long term autonomous robots. This requires certain characteristics of a dataset.
 
@@ -228,10 +196,6 @@ system using expert knowledge from humans.
 
 \section{Motivating Scenario}
 \label{sec:Motivating Scenario}
-
-{\color{blue} AK: I do not know if Patric wrote this part :-o.}
-{\color{red} PJ: I did but it is not very grand in its current form}
-
 We are investigating systems that operate for long periods of time in environments populated by humans. 
 As a motivating scenario we will look at security guard in an office building. The robot patrols the working environment and should learn 
 models of what the environment normally looks like and what variations there are. In an implementation of such a system the robot should be 
@@ -252,33 +216,11 @@ To study these questions we need data to learn from. The data need to capture bo
 None of the datasets available (see Section~/ref{sec:Related Work}) meet these requirements which is the motivation for the work behind the 
 dataset that we present in this paper.
 
-%\subsubsection*{Points Discussed}
-%\begin{enumerate}
-%	\item This section should stress why it is important to gather to such datasets
-%	\item what type of data do we really need? - hint it
-%	\item reference to related work section to show that this dataset is unique.
-%\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Dataset}
 \label{sec:Dataset}
-
-
-{\color{blue} AK: COMPLETED - needs refining.}
-
-\begin{figure*}
-\begin{center}
-\includegraphics[height=2.5cm]{David_Mor_131110} \quad
-\includegraphics[height=2.5cm]{Nils_Mor_131111} \quad
-\includegraphics[height=2.5cm]{Puren_Eve_131029}\\ \smallskip
-\includegraphics[height=2.5cm]{David_Eve_131110} \enskip
-\includegraphics[height=2.5cm]{Nils_Eve_131111} \enskip
-\includegraphics[height=2.5cm]{Puren_Mor_131110}
-\caption{Each column shows a different person's office table in top view at two different times. The tables in the first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 days apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit.}
-\label{fig:Example Scenes}
-\end{center}
-\end{figure*}
-
 Most of the human outdoor and especially indoor environments, are characterized by a supporting surface on which relevant objects are placed 
 e.g. Land - buildings, living room floor - furniture, dining table - cutlery and dishes etc. It is hence convenient to perceive a structure 
 for the object arrangement in the human environments to be as if on a "nested table-top system". Table-tops provide for a favourable 
@@ -295,18 +237,6 @@ captures the individual and group variation in object pose due to humans and the
 
 \subsection{Dataset Design and Concept}
 \label{ssec:Dataset Design and Concept}
-%\subsubsection*{Points Discussed}
-%\begin{enumerate}
-%	\item Why did we collect it the way we did?
-%	\item What did we collect?
-%	\item Time and people level slicings
-%	\item weekends and weekdays
-%	\item different times of the day
-%	\item We want the data to have these properties and hence we designed the dataset in this way.
-%\end{enumerate}
-%The target research groups to benefit from this dataset are of the kind that develops artificial intelligence for autonomous robots 
-%augmenting human activities (especially if they are fatiguing) within indoor human environments. Hence, it becomes essential for robotic 
-%learning to pay attention to variances in human environments wrt. scales of time, space and instances in the same space. 
 As explained in Section~\ref{sec:Motivating Scenario} our research intentions are to provide intelligence to an long-term operating, 
 autonomous robot for indoor human environments. Thus, the concept of composing the 3D-TOTAL dataset follows naturally from this research 
 motivation. The dataset has been composed by capturing and manually annotating 3D point clouds of office type table-tops, for a fixed set of 
@@ -318,19 +248,11 @@ the day of the week, can be extracted (e.g.\ Weekdays, Fridays, Weekends). Table
 together -- which gives a gross functional representation of an office table-top in general in office environments -- or for individual 
 people which helps to build functional representations of office table-tops for individuals, for different activities and so on 
 (Figure~\ref{fig:Example Scenes}). 
-%Finally, when trying to find general models over any of these types of data partitions, the model learns 
-%to be able to generalize over different instances of a fixed set of object classes. 
 In summary: When the dataset is partitioned in different ways with respect to time, people or object instances, it richly yields knowledge 
 of table-tops in office environments supporting building representations of the same.
 
 \subsection{Dataset Realization}
 \label{ssec:Dataset Realization}
-%\subsubsection*{Points Discussed}
-%\begin{enumerate}
-%	\item Annotation Tool
-%	\item Tools for collecting Asus Scenect
-%	\item 
-%\end{enumerate}
 In 3D-TOTAL, 3D point clouds representing 20 people's desks were captured regularly 3 times a day for 19 days. The data was collected by 
 carefully scanning each table-top using an \textit{Asus Xtion Pro Live} RGB-D camera. The raw RGB-D data stream is aggregated into a single 
 high resolution point cloud (.pcd format) using the \textit{SCENECT} software~\cite{Buerkler:Online2012}.
@@ -371,10 +293,6 @@ This section gives a brief summary of the dataset to serve as a quick reference.
 
 \section{Analysis}
 \label{sec:Analysis}
-
-
-{\color{blue} AK: Patric wrote this part, I am yet to look at it.}
-
 In this section we perform an analysis of the data to highlight some interesting aspects of it. In particular we want to show that 
 there are structures in the data that can be exploited by a system for more efficient representations and better reasoning with less data.
 
@@ -457,11 +375,11 @@ that the distribution for the relative position of papers w.r.t.\ to the keyboar
 
 \begin{figure}
 \begin{center}
-\subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{monitor_keyboard-crop}}\quad
-\subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{keyboard_mug-crop}}\\
-\subfloat[][]{\label{fig:scatter-keyboard-papers}\includegraphics[width=0.8\linewidth]{keyboard_papers-crop}}
+\subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{raw-pdf/monitor_keyboard_clusters-crop}}\quad
+\subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{raw-pdf/keyboard_mug_clusters-crop}}\\
+\subfloat[][]{\label{fig:scatter-keyboard-papers}\includegraphics[width=0.8\linewidth]{raw-pdf/keyboard_papers_clusters-crop}}
 \end{center}
-\caption{The figures show the relative position of a) keyboard w.r.t. monitor, b) mug w.r.t. keyboard and c) papers w.r.t. keyboard. Qualitatively keyboards are mostly infront of monitors, mugs are around the keyboard and the position of papers is mostly independent on the position of the keyboard.} 
+\caption{The figures show the relative position of a) keyboard w.r.t. monitor, b) mug w.r.t. keyboard and c) papers w.r.t. keyboard. Qualitatively keyboards are mostly infront of monitors, mugs are around the keyboard and the position of papers is mostly independent on the position of the keyboard. The different colors/markers show data from different people in the data.} 
 \label{fig:scatter-rest}
 \end{figure}
 
@@ -473,17 +391,6 @@ an extended period of time will be able to learn quite a lot about the habits of
 many cases. It is important to differentiate between typical knowledge, i.e., knowledge about what the world typically is like and specific 
 instance knowledge, i.e., knowledge about a particular scene at a specific time. It is to capture the first kind of knowledge that we 
 believe  qualitative spatial representations will be most beneficial. 
-
-%\subsubsection*{Points Discussed}
-%\begin{enumerate}
-%	\item \textbf{figure} Scatter plot for variation within person ID
-%	\item \textbf{figure} Scatter plot for variation wrt object type
-%	\item \textbf{figure} Scatter plot for variation considering different landmark - trajectors.
-%	\item \textbf{figure} Scatter plot of 2D footprints of objects
-%	\item General conclusions about above figures.
-%	\item 
-%	\item 
-%\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
@@ -506,7 +413,12 @@ believe  qualitative spatial representations will be most beneficial.
 \section{Acknowledgements}
 \label{sec:Acknowledgements}
 {\color{blue} AK: Not yet written, put the content in the correct format.}
-CVAP-KTH, Accel Partners, STRANDS project
+The research leading to these results has received funding from the European
+Union Seventh Framework Programme (FP7/2007-2013) under grant agreement No 600623, STRANDS,
+the Sweidhs Research Council and the Swedish Foundation for Strategic Research through its Centre for Autonomous Systems.
+
+CVAP-KTH, Accel Partners
+
 
 \bibliographystyle{ieeetr}
 \bibliography{references}
