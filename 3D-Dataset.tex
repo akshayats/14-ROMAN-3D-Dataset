@@ -339,6 +339,20 @@ efficient representations and better reasoning with less data.  This
 analysis then gives us insight into what we will later be able to
 learn from this dataset and how to design such learning.
 
+\begin{figure*}[bhtp]
+\begin{center}
+\includegraphics[height=2.5cm]{131024} \smallskip
+\includegraphics[height=2.5cm]{131028} \smallskip
+\includegraphics[height=2.5cm]{131108} \\
+\includegraphics[height=2.5cm]{131113} \smallskip
+\includegraphics[height=2.5cm]{131114} \smallskip
+\includegraphics[height=2.5cm]{131116} 
+\caption{This is the table of a single person, observed during the evening over many days: \{24 Oct, 28 Oct, 08 Nov, 13 Nov, 14 Nov, 16 Nov 2013\}. }
+%Each column shows a different person's office table at two different times. The tables in the first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 days apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit.}
+\label{fig:Variation_Over_Days}
+\end{center}
+\end{figure*}
+
 Figure ~\ref{fig:Example Scenes} shows three desktop scenes. Each column shows the same desk at two different times. The leftmost two columns 
 contain scenes from the same day, whereas the two scenes in the third column were sampled 12 days apart in time. Notice in Column 1: the slight changes in 
 position of the keyboard, mouse, papers and pen; Column 2: the relatively big changes in position of laptop, mouse, papers, pen, keyboard, 
@@ -393,13 +407,70 @@ is in fact often placed at arms length from the person working on the desk to ke
 reach. We see a bias towards the right side, probably a result of most people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see 
 that the distribution for the relative position of papers w.r.t.\ to the keyboard is almost uniform, suggesting that they are largely uncorrelated. The fact that there are often many papers in a scene adds to the uniformity.
 
-\begin{figure}
+%\begin{figure}
+%\begin{center}
+%\includegraphics[width=\linewidth]{entropy_matrix-crop} \quad
+%\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|}
+%\hline
+%& key & mon & mou & mug & lap & pap & boo & bot & jug & not \\ \hline \hline
+%key & 0.76 & 3.54 & 2.79 & 4.01 & 3.56 & 4.57 & 4.00 & 3.25 & 2.95 & 3.78\\ \hline
+%mon & 3.41 & 1.65 & 3.35 & 4.06 & 3.39 & 4.63 & 4.19 & 3.37 & 2.95 & 3.86\\ \hline
+%mou & 2.89 & 3.59 & 0.73 & 3.81 & 3.59 & 4.56 & 3.96 & 3.27 & 2.93 & 3.84 \\ \hline
+%mug & 4.08 & 4.21 & 3.71 & 0.74 & 3.67 & 4.47 & 3.99 & 3.17 & 3.08 & 3.73 \\ \hline
+%lap & 3.79 & 3.60 & 3.67 & 3.70 & 0.05 & 4.34 & 3.67 & 3.30 & 2.47 & 3.23 \\ \hline
+%pap & 4.45 & 4.50 & 4.22 & 4.41 & 4.01 & 2.76 & 4.30 & 3.72 & 3.36 & 3.84 \\ \hline
+%boo & 3.96 & 3.93 & 3.81 & 3.86 & 3.67 & 4.49 & 0.77 & 3.35 & 2.81 & 3.42 \\ \hline
+%bot & 3.47 & 3.64 & 3.44 & 3.42 & 3.17 & 4.03 & 3.33 & 1.03 & 2.74 & 2.58 \\ \hline
+%jug & 3.05 & 3.34 & 2.85 & 3.11 & 2.54 & 3.56 & 2.81 & 2.95 & 0.00 & 1.97 \\ \hline
+%not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hline
+%\end{tabular}
+%\end{center}
+%\caption{The figure illustrates the entropy in the distribution of relative positions of one object (column) w.r.t. to another object (row). Dark red indicates high entropy (more uniform distr.) and dark blue low entropy (peakier distr.). We show this for the most frequently occurring object pairs in the dataset (i.e. most statistics); 1:keyboard, 2:monitor, 3:mouse, 4:mug, 5:laptop, 6:papers, 7:book, 8:bottle, 9:jug, 10:notebook. }
+%\label{fig:entropy}
+%\end{figure}
+
+%\begin{figure*}
+%\begin{center}
+%\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|}
+%\hline
+%& $C_{1}$ & $C_{2}$ & $C_{3}$ & $C_{4}$ & $C_{5}$ & $C_{6}$ & $C_{7}$ & $C_{8}$ & $C_{9}$ & $C_{10}$ \\ \hline \hline
+%$C_1$: keyboard & 0.76 & 3.54 & 2.79 & 4.01 & 3.56 & 4.57 & 4.00 & 3.25 & 2.95 & 3.78\\ \hline
+%$C_2$: monitor & 3.41 & 1.65 & 3.35 & 4.06 & 3.39 & 4.63 & 4.19 & 3.37 & 2.95 & 3.86\\ \hline
+%$C_3$: mouse & 2.89 & 3.59 & 0.73 & 3.81 & 3.59 & 4.56 & 3.96 & 3.27 & 2.93 & 3.84 \\ \hline
+%$C_4$: mug & 4.08 & 4.21 & 3.71 & 0.74 & 3.67 & 4.47 & 3.99 & 3.17 & 3.08 & 3.73 \\ \hline
+%$C_5$: laptop & 3.79 & 3.60 & 3.67 & 3.70 & 0.05 & 4.34 & 3.67 & 3.30 & 2.47 & 3.23 \\ \hline
+%$C_6$: papers & 4.45 & 4.50 & 4.22 & 4.41 & 4.01 & 2.76 & 4.30 & 3.72 & 3.36 & 3.84 \\ \hline
+%$C_7$: book & 3.96 & 3.93 & 3.81 & 3.86 & 3.67 & 4.49 & 0.77 & 3.35 & 2.81 & 3.42 \\ \hline
+%$C_{8}$: bottle & 3.47 & 3.64 & 3.44 & 3.42 & 3.17 & 4.03 & 3.33 & 1.03 & 2.74 & 2.58 \\ \hline
+%$C_{9}$: jug & 3.05 & 3.34 & 2.85 & 3.11 & 2.54 & 3.56 & 2.81 & 2.95 & 0.00 & 1.97 \\ \hline
+%$C_{10}$: notebook & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hline
+%\end{tabular}
+%\label{fig:entropy}
+%\caption{The table shows the entropy in the spread in positions that results when looking at the position of one object (columns) with respect to that of another one (rows). As we can see papers have high entropy in combination with all other objects which indicates that the distribution of relative positions is close to uniform. Other combinations such as Keyboard and Mouse have much lower entropy, that is, more peaky distribution showing a stronger correlation.}
+%\end{center}
+%\end{figure*}
+
+\begin{figure*}
 \begin{center}
-\includegraphics[width=\linewidth]{entropy_matrix-crop}
-\end{center}
-\caption{The figure illustrates the entropy in the distribution of relative positions of one object (column) w.r.t. to another object (row). Dark red indicates high entropy (more uniform distr.) and dark blue low entropy (peakier distr.). We show this for the most frequently occurring object pairs in the dataset (i.e. most statistics); 1:keyboard, 2:monitor, 3:mouse, 4:mug, 5:laptop, 6:papers, 7:book, 8:bottle, 9:jug, 10:notebook. }
+\includegraphics[width=0.5\linewidth]{entropy_matrix-crop} \quad
+\begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& key & mon & mou & mug & lap & pap & boo & bot & jug & not \\ \hline \hline
+key & 0.76 & 3.54 & 2.79 & 4.01 & 3.56 & 4.57 & 4.00 & 3.25 & 2.95 & 3.78\\ \hline
+mon & 3.41 & 1.65 & 3.35 & 4.06 & 3.39 & 4.63 & 4.19 & 3.37 & 2.95 & 3.86\\ \hline
+mou & 2.89 & 3.59 & 0.73 & 3.81 & 3.59 & 4.56 & 3.96 & 3.27 & 2.93 & 3.84 \\ \hline
+mug & 4.08 & 4.21 & 3.71 & 0.74 & 3.67 & 4.47 & 3.99 & 3.17 & 3.08 & 3.73 \\ \hline
+lap & 3.79 & 3.60 & 3.67 & 3.70 & 0.05 & 4.34 & 3.67 & 3.30 & 2.47 & 3.23 \\ \hline
+pap & 4.45 & 4.50 & 4.22 & 4.41 & 4.01 & 2.76 & 4.30 & 3.72 & 3.36 & 3.84 \\ \hline
+boo & 3.96 & 3.93 & 3.81 & 3.86 & 3.67 & 4.49 & 0.77 & 3.35 & 2.81 & 3.42 \\ \hline
+bot & 3.47 & 3.64 & 3.44 & 3.42 & 3.17 & 4.03 & 3.33 & 1.03 & 2.74 & 2.58 \\ \hline
+jug & 3.05 & 3.34 & 2.85 & 3.11 & 2.54 & 3.56 & 2.81 & 2.95 & 0.00 & 1.97 \\ \hline
+not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hline
+\end{tabular}
 \label{fig:entropy}
-\end{figure}
+\caption{The table shows the entropy in the spread in positions that results when looking at the position of one object (columns) with respect to that of another one (rows). As we can see papers have high entropy in combination with all other objects which indicates that the distribution of relative positions is close to uniform. Other combinations such as Keyboard and Mouse have much lower entropy, that is, more peaky distribution showing a stronger correlation.}
+\end{center}
+\end{figure*}
 
 %\begin{itemize}	
 %\item keyboard
