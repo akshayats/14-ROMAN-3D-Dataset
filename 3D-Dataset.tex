@@ -32,7 +32,7 @@ KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Auto
  Learning
 }
 
-\author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Kaushik Desai$^{1}$, Adria Gallart del Burgo$^{1}$, \\Janardhan Haryadi Ramesh$^{2}$, Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
+\author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Adria Gallart del Burgo$^{1}$, Janardhan Haryadi Ramesh$^{2}$, \\Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
 \thanks{$^{1}$ KTH Royal Institute of Technology
         {\tt\small akshaya@kth.se}}%
 \thanks{$^{2}$ MS Ramaiah Institute of Technology, V.T.U-Bangalore}%
@@ -47,30 +47,34 @@ KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Auto
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-bla bla bla bla bla blabla bla bla bla bla blabla bla bla bla bla bla
-bla bla bla bla bla blabla bla bla bla bla blabla bla bla bla bla bla
-bla bla bla bla bla blabla bla bla bla bla blabla bla bla bla bla blabla 
-bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
-bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
-bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
-bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
-bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla blabla 
-bla bla bla bla  blabla bla bla bla bla blabla bla bla bla bla bla
-bla bla bla bla bla  bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla  bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
-bla bla bla bla bla bla bla bla bla bla bla bla
+
+%We have shown that there is structure in the way that objects are
+%arranged in scenes.  We can expect that robots operating over long
+%times repeatedly observing the same place will be able to learn models
+%of this structure.  The annotated 3D data set we provide is unique in
+%capturing the temporal and instance variation in the scenes.
+%
+%Our plans for this data are to learn model of the spatial relation
+%contained therein.  These can then be used by our and our partner's
+%robots while they operate over months at various sites.  These will
+%allow such things as anomaly detection, and context recognition.
+
+Long-term autonomous learning of human environments entails modelling 
+and generalizing over distinct variations in: object instances in different scenes, 
+and different scenes with respect to space and time. It is crucial for the 
+robot to recognize the structure and context in spatial arrangements and 
+exploit it to learn models capturing the essence of these distinct variations.
+Table-tops posses a typical structure repeatedly seen in human environments
+and are identified by characteristics of being personal spaces of diverse
+functionalities and dynamically changing due to human interactions. In this
+paper, we present a 3D dataset of 20 office table-tops observed 3 times a 
+day for 19 days (1140 scenes), manually annotated with 18 different object 
+classes, including multiple instances. We analyse the dataset to discover 
+spatial structures and patterns in their variations. We plan to utilize 
+this data to learn the spatial relations between objects with the 
+aim of obtaining long-term environment models and autonomous structuring 
+of environmental components which will provide for applications such 
+as activity recognition, context recognition and anomaly detection.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,15 +133,15 @@ dynamics and variability. The output of this paper can thus serve as
 the foundation for designing efficient representations and inference
 algorithms. To limit the scope we study table-top scenes in this
 paper. As a basis for our study, we have constructed a benchmark 3D
-data set of office type table-top scenes called \textit{\textbf{3D
+data set of office type table-top scenes called \textit{\textbf{KTH-3D
     T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm
-  \textbf{A}utonomous \textbf{L}earning} (3D-
-TOTAL)\footnote{\url{http://www.cas.kth.se/data/3D-TOTAL/}} observing
+  \textbf{A}utonomous \textbf{L}earning} (KTH-3D-
+TOTAL)\footnote{\url{http://www.cas.kth.se/data/KTH-3D-TOTAL/}} observing
 the same set of select tables, over many times a day and over many
 days in a month. Objects-of-interest have been manually annotated in
 3D to provide ground truth data.
 
-The rest of the paper is structured in the following way: We survey the related work in Section~\ref{sec:Related Work}. In Section~\ref{sec:Dataset} we exhibit 3D-TOTAL in depth and provide an 
+The rest of the paper is structured in the following way: We survey the related work in Section~\ref{sec:Related Work}. In Section~\ref{sec:Dataset} we exhibit KTH-3D-TOTAL in depth and provide an 
 analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
 
 
@@ -264,8 +268,8 @@ In conclusion our dataset allows us to develop representations that caters for t
 \label{sec:Dataset}
 We focus on table-top scenes in our dataset because in an office environment the tables represent the work space of people. Table-tops are also well defined spatially and there are many instances of them within a single environment which means that capturing variation across instances is made easier.
 
-With the aim of exploring possibilities to understand, learn and model these organizational structures amongst objects in human indoor 
-environments, we present the dataset 3D-TOTAL, which has been composed by periodically capturing observations of a fixed set of entire 
+With the aim of exploring possibilities to understand, learn and model these organisational structures amongst objects in human indoor 
+environments, we present the dataset KTH-3D-TOTAL, which has been composed by periodically capturing observations of a fixed set of entire 
 table-tops in an office environment. In what follows we define a \textit{scene} as a single observation of a table-top instance at a single 
 instance in time. The scenes have been captured as is\footnote{People have been asked to step aside not to contribute to the occlusion of 
 the table-top.} with intervals of a few hours, over many days and populated with various instances of object classes. The dataset therefore 
@@ -276,7 +280,7 @@ important when studying modelling interrelations amidst the member objects in a 
 
 \subsection{Dataset Design and Concept}
 \label{ssec:Dataset Design and Concept}
-We want to provide intelligence to an long-term operating, autonomous robot for indoor human environments. The 3D-Total
+We want to provide intelligence to an long-term operating, autonomous robot for indoor human environments. The KTH-3D-Total
 dataset has been composed by capturing and manually annotating 3D point clouds of office type table-tops, for a fixed set of 
 people, at fixed times of the 
 day and for a span of weeks. Observing the table-tops of the same set of people at different times of the day gives insight about the daily 
@@ -291,7 +295,7 @@ of table-tops in office environments supporting building representations of the 
 
 \subsection{Dataset Realization}
 \label{ssec:Dataset Realization}
-In 3D-TOTAL, 3D point clouds representing 20 people's desks were captured regularly 3 times a day for 19 days. The data was collected by 
+In KTH-3D-TOTAL, 3D point clouds representing 20 people's desks were captured regularly 3 times a day for 19 days. The data was collected by 
 carefully scanning each table-top using an \textit{Asus Xtion Pro Live} RGB-D camera. The raw RGB-D data stream is aggregated into a single 
 high resolution point cloud (.pcd format) using the \textit{SCENECT} software~\cite{Buerkler:Online2012}.
 
@@ -310,7 +314,7 @@ manual annotation provides the required ground truth data for long term autonomo
 \subsection{Dataset Summary}
 \label{ssec:Dataset Summary}
 This section gives a brief summary of the dataset to serve as a quick reference.
-\noindent 3D-TOTAL has:
+\noindent KTH-3D-TOTAL has:
 \begin{itemize}
 	\item scenes collected from 20 unique tables, 3 times a day for 19 days and hence in total, approximately 1140 scenes.
 	\item each scene manually annotated with 18 possible object classes and an average of 12 object instances, from these classes, annotated per scene.
@@ -514,15 +518,12 @@ We have shown that there is structure in the way that objects are
 arranged in scenes.  We can expect that robots operating over long
 times repeatedly observing the same place will be able to learn models
 of this structure.  The annotated 3D data set we provide is unique in
-capturing the temporial and instance varation in the scenes.
+capturing the temporal and instance variation in the scenes.
 
-Our plans for this data are to learn model of the spatical relation
+Our plans for this data are to learn model of the spatial relation
 contained therein.  These can then be used by our and our partner's
 robots while they operate over months at various sites.  These will
-allow such things as anomaly detection, and context recogntion.
-
-
-
+allow such things as anomaly detection, and context recognition.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsubsection*{Points Discussed}
@@ -534,12 +535,10 @@ allow such things as anomaly detection, and context recogntion.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
 \label{sec:Acknowledgements}
-{\color{blue} AK: Not yet written, put the content in the correct format.}
 The research leading to these results has received funding from the European
 Union Seventh Framework Programme (FP7/2007-2013) under grant agreement No 600623, STRANDS,
-the Sweidhs Research Council and the Swedish Foundation for Strategic Research through its Centre for Autonomous Systems.
-
-CVAP-KTH, Accel Partners
+the Swedish Research Council and the Swedish Foundation for Strategic Research through its Centre for Autonomous Systems.
+We thank CVAP/CAS, KTH Royal Institute of technology, Stockholm, Sweden for participating in the dataset and Accel Partners, Bangalore, India for providing vital logistical help.
 
 
 \bibliographystyle{ieeetr}
