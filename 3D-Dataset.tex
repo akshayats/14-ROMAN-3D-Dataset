@@ -154,7 +154,7 @@ different scenes from numerous observations w.r.t.\ time and instance. Instead
 qualitative \emph{relational} models of space, i.e. ways of encoding
 the qualitative position of a target object relative to the position
 of one or more landmark objects are investigated. For example, "the
-chair is \textit{at} the desk" and "the pillow \textit{on} the bed". 
+chair is \textit{at} the table" and "the pillow \textit{on} the bed". 
 The exact coordinates of these objects are semantically irrelevant. We believe that 
 representations that are to support long-term autonomy and ability 
 to generalize knowledge require such rough discretizations of metric 
@@ -195,7 +195,7 @@ analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Secti
 \includegraphics[height=2.5cm]{David_Eve_131110} \enskip
 \includegraphics[height=2.5cm]{Nils_Eve_131111} \enskip
 \includegraphics[height=2.5cm]{Puren_Mor_131110}
-\caption{Each column shows a different person's office table at two different times. The tables in the first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 days apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit.}
+\caption{Each column shows a different person's office table at two different times. The tables in the first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 days apart. We can see distinct differences between different person's table but there are also many commonalities that a system should exploit.}
 \label{fig:Example Scenes}
 \end{center}
 \end{figure*}
@@ -282,19 +282,19 @@ Thusly, our dataset contributes with the following three important properties:
 
 Our dataset opens up the possibility to study the structures that govern how space is organised. We want to extract and later exploit these 
 when building the models. While our dataset only captures table-tops we believe that many of our findings can be transferred to other types 
-of scenes. As mentioned above, we expect most desks to have a monitor, a keyboard and a mouse and that these are arranged in a certain way. 
+of scenes. As mentioned above, we expect most tables to have a monitor, a keyboard and a mouse and that these are arranged in a certain way. 
 Many people will have the mouse to the right of the keyboard. This is an example of a spatial structure we want to learn. Some people have a 
-laptop on their desk and they bring this laptop home in the evening. This is an example of a dynamic property of a desk that we want to 
+laptop on their table and they bring this laptop home in the evening. This is an example of a dynamic property of a table that we want to 
 learn. We believe that, when combined, this type of information will allow us to reason about activities as well.
 
 Another aim is to be able to transfer knowledge from one part of an
 environment to another and ultimately from one environment to the
-next. For example, if the robot encounters a desk that it has not seen
-before, it should be able to make use of the models of other desks to
+next. For example, if the robot encounters a table that it has not seen
+before, it should be able to make use of the models of other tables to
 get a good prior for what to expect. In the same way that the reader
-can form a mental picture of a typical office desk arrangement.
+can form a mental picture of a typical office table arrangement.
 This way, the robot would also be able to reason more efficiently
-about desks that it has not yet seen but which, for example, might be
+about tables that it has not yet seen but which, for example, might be
 referenced by a human.
 
 In conclusion, our dataset allows us to provide training data 
@@ -348,7 +348,7 @@ of table-tops in office environments supporting building representations of the 
 
 \subsection{Dataset Realization}
 \label{ssec:Dataset Realization}
-In KTH-3D-TOTAL, 3D point clouds representing 20 people's desks were captured regularly 3 times a day for 19 days. The data was collected by 
+In KTH-3D-TOTAL, 3D point clouds representing 20 people's tables were captured regularly 3 times a day for 19 days. The data was collected by 
 carefully scanning each table-top using an \textit{Asus Xtion Pro Live} RGB-D camera. The raw RGB-D data stream is aggregated into a single 
 high resolution point cloud (.pcd format) using the \textit{SCENECT} software~\cite{Buerkler:Online2012}.
 
@@ -403,32 +403,51 @@ learn from this dataset and how to design such learning.
 \includegraphics[height=2.5cm]{131113} \smallskip
 \includegraphics[height=2.5cm]{131114} \smallskip
 \includegraphics[height=2.5cm]{131116} 
-\caption{This is the table of a single person, observed during the evening over many days: \{24 Oct, 28 Oct, 08 Nov, 13 Nov, 14 Nov, 16 Nov 2013\}. }
+\caption{This is the table of a single person, observed during the evening over many days: \{L to R -- Row 1: 24 Oct, 28 Oct, 08 Nov; Row 2: 13 Nov, 14 Nov, 16 Nov 2013\}. }
 \label{fig:Variation_Over_Days}
 \end{center}
 \end{figure*}
 
-Figure ~\ref{fig:Example Scenes} shows three desktop scenes. Each column shows the same desk at two different times. The leftmost two columns 
+Figure~\ref{fig:Example Scenes} shows three table-top scenes. Each column shows the same table at two different times. The leftmost two columns 
 contain scenes from the same day, whereas the two scenes in the third column were sampled 12 days apart in time. Notice in Column 1: the slight changes in 
 position of the keyboard, mouse, papers and pen; Column 2: the relatively big changes in position of laptop, mouse, papers, pen, keyboard, 
 lamp. When objects in columns 1,2,3 are compared there is a certain generality in structure (keyboards are in front of monitors), but 
-also a specificity for each person (occurrence of headphones, position of mouse w.r.t.\ keyboard, etc.). Studying the scenes could also allow a system to 
-infer the activity of people. We can see that there are changes to the first desk suggesting that someone 
-was there during the day and that this person is quite well-ordered. The second table misses the laptop in the second observation. This might suggest that 
-the person has left the desk, maybe for the day. The third desk seems to be occupied by someone that is less sensitive to 
-clutter. With only two observations of each desks these are just speculations but by looking at the data over 19 days stronger claims coud be made.
+also a specificity for each person (occurrence of headphones, position of mouse w.r.t.\ keyboard, etc.). 
+
+Studying the scenes could also allow a system to 
+infer the activity of people. We can see that there are changes to the first table 
+suggesting that someone was there during the day. Consider the table scenes in 
+Figure~\ref{fig:Variation_Over_Days}, which captures the variations over the same person's
+table over many days. Notice that between 28 Oct and 08 Nov the setup of the table does 
+not change very much -- this reflects the ground truth that this person was working in 
+another lab (room) and visited her table only to maybe, check emails. Now 
+consider the variations between 08 Nov and 13 Nov -- this clearly indicates 
+that the person was at her table and involved in working on the computer, 
+reading and referring to papers and books, etc.\ There is a normal, day's 
+worth of variation in between the images of 13 Nov and 14 Nov, however there 
+is almost no variation between 14 Nov and 16 Nov -- which indicates that the 
+person was absent over the weekend -- again a desirable property that ought 
+to be captured by the long term autonomous systems.
+
+Observing the tables can also infer a little about the working style of the 
+people. In Figure~\ref{fig:Example Scenes}, the first table suggests that 
+this person is tidy. The second table is missing the laptop in the second 
+observation. This might suggest that 
+the person has left the table, maybe for the day. The third table seems to 
+be occupied by someone that is less sensitive to 
+clutter. With only two observations of each tables these are just 
+speculations but by looking at the data over 19 days stronger claims could be made.
 
 One of our hypotheses is that a qualitative model will be needed to achieve efficient and powerful representations of 
 space, at least if the amount of data is limited as it will be in realistic cases. Such qualitative models could allow some of the inherent 
 structure in the environment be encoded in the representation itself. We have already seen in Figure~\ref{fig:Example Scenes} that monitors 
 are typically in the back while a keyboard is usually in front of it and the leftmost table shows an example of a mouse being to the right of a keyboard. Figure~\ref{fig:scatter-keyboard-mouse} shows a scatter plot 
-over the position of keyboards and mice when found in the same scene. The table outline gives an example of a prototypical desk to make it easier to interpret the data. 
+over the position of keyboards and mice when found in the same scene. The table outline gives an example of a prototypical table to make it easier to interpret the data. 
 In the top part of the figure, the green circles mark the position of the centroid of each 
 keyboard that exist in a scene where there is at least one mouse. The red square shows the mean position of all these centroids. The black 
 crosses show the position of all mice in scenes with at least one keyboard. In the bottom part of the figure the position of the mouse 
 relative to the keyboard is shown for each observed pair in the data. As expected most mice are qualitatively to the right of the keyboard. There are some outliers. However,  
-encoding the position of the mouse as being to the right of a keyboard would capture most of the information. The largest cluster of points in the lower part of Figure~\ref{fig:scatter-keyboard-mouse} contains 95\% 
-%(CHECK THIS!!!!)
+encoding the position of the mouse as being to the right of a keyboard would capture most of the information. The largest cluster of points in the lower part of Figure~\ref{fig:scatter-keyboard-mouse} contains about 95\% 
 of all data points. Notice how this structure in the data is lost, at least visually, when looking at the position of the keyboard and mouse in the table frame (top figure) and how it pops out when looking at the relative positions (bottom figure). We want our representation to be able to capitalize of this structure. Clearly, in this case, the position of the keyboard contains almost all information that is needed to represent the position of the mouse as well. The figure also clearly shows how the distribution varies across instances (the different colours in the bottom part). Note how each person has a lot less spread in the distribution than when considering them all at once. This is a good illustration of the difference between general models of space and models of specific instances of space and how important it is that the training data is rich enough to capture this.
 
 \begin{figure}
@@ -437,7 +456,7 @@ of all data points. Notice how this structure in the data is lost, at least visu
 \includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_mouse_clusters-crop}
 \end{center}
 \caption{This figures shows how a relative position representation (bottom) is able to expose a structure that is not visible in absolute coordinated (top). 
-Top: The green circles shows the positions keyboards(red square shows mean of keyboards). The black crosses show the position of all mice in these scenes. Bottom: Mean position of keyboards (red square) and relative position of mouse relative to it. Each color shows a different person. The brown rectangle gives a rough idea about where the borders of a typical desk would be.} 
+Top: The green circles shows the positions keyboards(red square shows mean of keyboards). The black crosses show the position of all mice in these scenes. Bottom: Mean position of keyboards (red square) and relative position of mouse relative to it. Each color shows a different person. The brown rectangle gives a rough idea about where the borders of a typical table would be.} 
 \label{fig:scatter-keyboard-mouse}
 \end{figure}
 
@@ -458,7 +477,7 @@ In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. Figu
 the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are placed mostly in front of monitors is supported by data. 
 Figure~\ref{fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ the keyboard. We see that the mug is rarely very close to the center of the 
 keyboard but rather positioned around the keyboard. Taking function into account the data might suggest that the mug 
-is in fact often placed at arms length from the person working on the desk to keep it at safe distance from the keyboard but still within 
+is in fact often placed at arms length from the person working on the table to keep it at safe distance from the keyboard but still within 
 reach. We see a bias towards the right side, probably a result of most people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see 
 that the distribution for the relative position of papers w.r.t.\ to the keyboard is almost uniform, suggesting that they are largely uncorrelated. The fact that there are often many papers in a scene adds to the uniformity.
 
@@ -556,8 +575,8 @@ not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hl
 To summarize the analysis, we have shown that the data has many structural properties that a method for representing and reasoning about 
 space should exploit. If the aim is to represent typical configuration of objects, this preliminary analysis suggests that a significant 
 part of such knowledge can be encoded well with qualitative spatial relations, such as the mouse is to the right of the keyboard, while 
-keeping in mind that this represents the typical case and not the only possible situation. We can also see that a system that observes these desks for 
-an extended period of time will be able to learn quite a lot about the habits of the owners of the desks and even the current activity in 
+keeping in mind that this represents the typical case and not the only possible situation. We can also see that a system that observes these tables for 
+an extended period of time will be able to learn quite a lot about the habits of the owners of the tables and even the current activity in 
 many cases. It is important to differentiate between typical knowledge, i.e., knowledge about what the world typically is like and specific 
 instance knowledge, i.e., knowledge about a particular scene at a specific time. It is to capture the first kind of knowledge that we 
 believe  qualitative spatial representations will be most beneficial. 
