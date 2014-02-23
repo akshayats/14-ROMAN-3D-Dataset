@@ -481,30 +481,70 @@ of space; and the importance of the richness of the training data to provide for
 \includegraphics[width=0.8\linewidth]{keyboard_mouse_raw-crop}
 \includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_mouse_clusters-crop}
 \end{center}
-\caption{This figures shows how a relative position representation (bottom) is able to expose a structure that is not visible in absolute coordinated (top). 
-Top: The green circles shows the positions keyboards(red square shows mean of keyboards). The black crosses show the position of all mice in these scenes. Bottom: Mean position of keyboards (red square) and relative position of mouse relative to it. Each color shows a different person. The brown rectangle gives a rough idea about where the borders of a typical table would be.} 
+\caption{This figures shows how a relative position representation (bottom) 
+is able to expose a structure that is not visible in absolute coordinated 
+(top). 
+Top: The green circles shows the positions keyboards(red square shows mean 
+of keyboards). The black crosses show the position of all mice in these 
+scenes. Bottom: Mean position of keyboards (red square) and relative 
+position of mouse relative to it. Each color shows a different person. The 
+brown rectangle gives a rough idea about where the borders of a typical 
+table would be.} 
 \label{fig:scatter-keyboard-mouse}
 \end{figure}
 
-To further investigate the correlation between different object classes, and thus look for other inherent structures in the data, we look at 
-the relative position of all objects of class $C_j$ w.r.t.\ to objects of class $C_i$ present in the same scene and turn to information theory for the analysis. We calculate the entropy over the histogram of the distributions of relative positions (i.e.\ histogram over bottom figure in Figure~\ref{fig:scatter-keyboard-mouse}, for instance). Entropy measures the predictability of the information. A low entropy means that there are informative features available to make prediction, i.e. there is an underlying structure. A large entropy on the other hand means that it is very hard to make predictions and the resulting distribution would be close to uniform.
+To further investigate the correlation between different object classes, and 
+thus look for other inherent structures in the data, we look at 
+the relative position of all objects of class $C_j$ w.r.t.\ to objects of 
+class $C_i$ present in the same scene and turn to information theory for the 
+analysis. We calculate the entropy over the histogram of the distributions 
+of relative positions (i.e.\ histogram over bottom figure in 
+Figure~\ref{fig:scatter-keyboard-mouse}, for instance). Entropy measures the 
+predictability of the information. A low entropy means that there are 
+informative features available to make prediction, i.e. there is an 
+underlying structure. A large entropy on the other hand means that it is 
+very hard to make predictions and the resulting distribution would be close 
+to uniform.
 We calculate the entropy as 
 \begin{equation}
 E=-\sum (\frac{n_i}{N})ln(\frac{n_i}{N})
 \end{equation}
-where $n_i$ is the number of samples that fall in cell $i$ in a grid discretization of the table and N is the total number of samples. Each 
-sample correspond to one object pair in one scene. The true entropy will only be estimated well when $N$ is large. We therefore limit this 
-investigation to pairs of objects that occur more than a certain number of times in the data. Figure~\ref{fig:entropy} shows these entropies 
-for 10 of the objects in the dataset. From this figure we can, for example, see the low entropy in the relation between keyboard and mouse (elements 1,3 and 3,1 in the matrix). The relative positions of monitors and keyboards also have a fairly low entropy. We also see that the 
-position of papers is largely uncorrelated with many other objects (uniform distribution gives high entropy). 
+where $n_i$ is the number of samples that fall in cell $i$ in a grid 
+discretization of the table and N is the total number of samples. Each 
+sample corresponds to one object pair in one scene. The true entropy will 
+only be estimated well when $N$ is large. We therefore limit this 
+investigation to pairs of objects that occur more than a certain number of 
+times in the data. Figure~\ref{fig:entropy} shows these entropies 
+for 10 of the objects in the dataset. From this figure we can, for example, 
+see the low entropy in the relation between keyboard and mouse (elements 1,3 
+and 3,1 in the matrix). The relative positions of monitors and keyboards 
+also have a fairly low entropy. We also see that the 
+position of papers is largely uncorrelated with many other objects (uniform 
+distribution gives high entropy). The values from such an entropy matrix 
+could give suggestions toward hypothesizing a possible hierarchy in data 
+organisation for the robots. Those objects that have a lot of positional 
+variance could be described as target objects with respect to landmark 
+objects that do not vary as much. This organising tree structure could also 
+potentially be autonomously learnt -- leading to more than one landmark object in a scene. A keyboard-mouse-monitor-laptop could be organised in a parallel sub-tree alongside a mug-glass-jug-flask sub-tree. We make these suggestions purely based on conjecture, which we aim to verify in our following research work.
 
-In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. Figure~\ref{fig:scatter-monitor-keyboard} shows the position of 
-the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are placed mostly in front of monitors is supported by data. 
-Figure~\ref{fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ the keyboard. We see that the mug is rarely very close to the center of the 
-keyboard but rather positioned around the keyboard. Taking function into account the data might suggest that the mug 
-is in fact often placed at arms length from the person working on the table to keep it at safe distance from the keyboard but still within 
-reach. We see a bias towards the right side, probably a result of most people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see 
-that the distribution for the relative position of papers w.r.t.\ to the keyboard is almost uniform, suggesting that they are largely uncorrelated. The fact that there are often many papers in a scene adds to the uniformity.
+In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. 
+Figure~\ref{fig:scatter-monitor-keyboard} shows the position of 
+the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are 
+placed mostly in front of monitors is supported by data. 
+Figure~\ref{fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ 
+the keyboard. We see that the mug is rarely very close to the center of the 
+keyboard but rather positioned around the keyboard. Taking function into 
+account the data might suggest that the mug 
+is in fact often placed at arms length from the person working on the table 
+to keep it at safe distance from the keyboard but still within 
+reach. We see a bias towards the right side, probably a result of most 
+people being right-handed. In Figure~\ref{fig:scatter-keyboard-papers} we see 
+that the distribution for the relative position of papers w.r.t.\ to the 
+keyboard is almost uniform, suggesting that they are largely uncorrelated. 
+Upon keener observations we can see that there are some clusters of similar 
+markers which indicate that papers are not as dynamic as the mouse or mug, 
+and hold their place usually for a couple of days on average. 
+The fact that there are often many papers in a scene adds to the uniformity.
 
 %\begin{figure}
 %\begin{center}
@@ -551,7 +591,7 @@ that the distribution for the relative position of papers w.r.t.\ to the keyboar
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=0.5\linewidth]{entropy_matrix-crop} \quad
+\includegraphics[width=0.5\linewidth]{entropy_matrix-crop} \bigbreak
 \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 & key & mon & mou & mug & lap & pap & boo & bot & jug & not \\ \hline \hline
@@ -565,8 +605,8 @@ boo & 3.96 & 3.93 & 3.81 & 3.86 & 3.67 & 4.49 & 0.77 & 3.35 & 2.81 & 3.42 \\ \hl
 bot & 3.47 & 3.64 & 3.44 & 3.42 & 3.17 & 4.03 & 3.33 & 1.03 & 2.74 & 2.58 \\ \hline
 jug & 3.05 & 3.34 & 2.85 & 3.11 & 2.54 & 3.56 & 2.81 & 2.95 & 0.00 & 1.97 \\ \hline
 not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hline
-\end{tabular}
-\caption{The table shows the entropy in the spread in positions that results when looking at the position of one object (columns) with respect to that of another one (rows). As we can see papers have high entropy in combination with all other objects which indicates that the distribution of relative positions is close to uniform. Other combinations such as Keyboard and Mouse have much lower entropy, that is, more peaky distribution showing a stronger correlation.}
+\end{tabular}\bigbreak
+\caption{The figure illustrates the entropy value in the distribution of relative positions of one object (column) w.r.t. to another object (row). Dark red indicates high entropy (more uniform distribution) and dark blue low entropy (more peaky distribution). We show this for the most frequently occurring object pairs in the dataset (i.e. most statistics). The table shows the actual entropy values corresponding to the above illustration.}
 \label{fig:entropy}
 \end{center}
 \end{figure*}
@@ -587,7 +627,7 @@ not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hl
 %\item flask
 %\end{itemize}
 
-\begin{figure}
+\begin{figure}[t]
 \begin{center}
 \subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/monitor_keyboard_clusters-crop}}\quad
 \subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_mug_clusters-crop}}\\
@@ -597,13 +637,20 @@ not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hl
 \label{fig:scatter-rest}
 \end{figure}
 
-To summarize the analysis, we have shown that the data has many structural properties that a method for representing and reasoning about 
-space should exploit. If the aim is to represent typical configuration of objects, this preliminary analysis suggests that a significant 
-part of such knowledge can be encoded well with qualitative spatial relations, such as the mouse is to the right of the keyboard, while 
-keeping in mind that this represents the typical case and not the only possible situation. We can also see that a system that observes these tables for 
-an extended period of time will be able to learn quite a lot about the habits of the owners of the tables and even the current activity in 
-many cases. It is important to differentiate between typical knowledge, i.e., knowledge about what the world typically is like and specific 
-instance knowledge, i.e., knowledge about a particular scene at a specific time. It is to capture the first kind of knowledge that we 
+To summarize the analysis, we have shown that the data has many structural 
+properties that a method for representing and reasoning about 
+space should exploit. If the aim is to represent typical configuration of 
+objects, this preliminary analysis suggests that a significant 
+part of such knowledge can be encoded well with qualitative spatial 
+relations, such as the mouse is to the \textit{right of} the keyboard, while 
+keeping in mind that this represents the typical case and not the only 
+possible situation. We can also see that a system that observes these tables for 
+an extended period of time will be able to learn quite a lot about the 
+habits of the owners of the tables and even the current activity in 
+many cases. It is important to differentiate between typical knowledge, 
+i.e., knowledge about what the world typically is like and specific 
+instance knowledge, i.e., knowledge about a particular scene at a specific 
+time. It is to capture the first kind of knowledge that we 
 believe  qualitative spatial representations will be most beneficial. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -611,31 +658,24 @@ believe  qualitative spatial representations will be most beneficial.
 \label{sec:Conclusions}
 
 We have shown that there is structure in the way that objects are
-arranged in scenes.  We can expect that robots operating over long
-times repeatedly observing the same place will be able to learn models
-of this structure.  The annotated 3D dataset we provide is unique in
-capturing the temporal and instance variation in the scenes.
+arranged in scenes.  We can expect that robots operating over long periods 
+of time, repeatedly observing the same scenes and types of scenes, 
+will be able to learn models of this structure -- preserving the temporal 
+and instance variations in the scenes. 
+The large, manually annotated benchmark 3D dataset we present, is one-of-a-kind -- 
+providing to train long-term autonomous learning systems for spatial understanding.
 
-Our plans for this data are to learn model of the spatial relation
-contained therein.  These can then be used by our and our partner's
-robots while they operate over months at various sites.  These will
-allow such things as anomaly detection, and context recognition.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsubsection*{Points Discussed}
-%\begin{enumerate}
-%	\item Room level dataset
-%	\item Which QSR for which purpose?
-%\end{enumerate}
+Our immediate research plans for this data are to learn and model the spatial relations amidst objects contained in the scenes therein. Such models and spatial relations can subsequently be tested, verified and also used by the autonomous robots in our collaborative research project (STRANDS) while they operate over months at various sites.  These will
+allow for activity recognition, anomaly detection, and context recognition which are the crux of such long-term autonomous service robots.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
 \label{sec:Acknowledgements}
+
 The research leading to these results has received funding from the European
 Union Seventh Framework Programme (FP7/2007-2013) under grant agreement No 600623, STRANDS,
 the Swedish Research Council and the Swedish Foundation for Strategic Research through its Centre for Autonomous Systems.
 We thank CVAP/CAS, KTH Royal Institute of technology, Stockholm, Sweden for participating in the dataset and Accel Partners, Bangalore, India for providing vital logistical help.
-
 
 \bibliographystyle{ieeetr}
 \bibliography{references}
