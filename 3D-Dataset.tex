@@ -73,7 +73,7 @@ KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Auto
  Learning
 }
 
-\author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Adria Gallart del Burgo$^{1}$, Janardhan Haryadi Ramesh$^{2}$, \\Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
+\author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Adri\`a Gallart del Burgo$^{1}$, Janardhan Haryadi Ramesh$^{2}$, \\Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
 \thanks{$^{1}$ KTH Royal Institute of Technology, Stockholm:
         {\tt\small akshaya@kth.se}}%
 \thanks{$^{2}$ M.S. Ramaiah Institute of Technology, V.T.U, Bangalore}%
@@ -286,48 +286,63 @@ when building the models. While our dataset only captures table-tops we believe 
 of scenes. As mentioned above, we expect most desks to have a monitor, a keyboard and a mouse and that these are arranged in a certain way. 
 Many people will have the mouse to the right of the keyboard. This is an example of a spatial structure we want to learn. Some people have a 
 laptop on their desk and they bring this laptop home in the evening. This is an example of a dynamic property of a desk that we want to 
-learn. We believe that when combined this type of information will allow us to reason about activities as well.
+learn. We believe that, when combined, this type of information will allow us to reason about activities as well.
 
 Another aim is to be able to transfer knowledge from one part of an
 environment to another and ultimately from one environment to the
 next. For example, if the robot encounters a desk that it has not seen
 before, it should be able to make use of the models of other desks to
 get a good prior for what to expect. In the same way that the reader
-can form a mental picture of a typicical office desk arrangement.
+can form a mental picture of a typical office desk arrangement.
 This way, the robot would also be able to reason more efficiently
 about desks that it has not yet seen but which, for example, might be
 referenced by a human.
 
-In conclusion our dataset allows us to develop representations that caters for the knowledge transfer, the ability to learn from few samples and adapting existing models. In the next section we describe the design and construction of the dataset.
-
+In conclusion, our dataset allows us to provide training data 
+for spatial understanding models and spatial relations. It also helps 
+to develop representations that caters for: knowledge transfer, 
+the ability to learn from few samples and adapting existing models.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Dataset}
 \label{sec:Dataset}
-We focus on table-top scenes in our dataset because in an office environment the tables represent the work space of people. Table-tops are also well defined spatially and there are many instances of them within a single environment which means that capturing variation across instances is made easier.
+We focus on table-top scenes in our dataset because in an office 
+environment the tables represent the work space of people. Each 
+table-top is unique to that person but still similar to the others 
+semantically and continuously changing. Table-tops are also well 
+defined spatially and there are many instances of them within a 
+single environment which means that capturing variation across 
+instances is made more convenient.
 
 With the aim of exploring possibilities to understand, learn and model these organisational structures amongst objects in human indoor 
 environments, we present the dataset KTH-3D-TOTAL, which has been composed by periodically capturing observations of a fixed set of entire 
-table-tops in an office environment. In what follows we define a \textit{scene} as a single observation of a table-top instance at a single 
-instance in time. The scenes have been captured as is\footnote{People have been asked to step aside not to contribute to the occlusion of 
-the table-top.} with intervals of a few hours, over many days and populated with various instances of object classes. The dataset therefore 
-captures the individual and group variation in object pose due to humans and their regular/irregular interaction with the environment. The 
+table-tops in an office environment. In what follows, we define a \textit{scene} as a single observation of a table-top instance at a single 
+instance in time. The dataset captures the individual and group variations in object pose due to humans and their regular/irregular interaction with their environment. The 
 required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets 
 either are of individual objects or single instances of tables or entire rooms. This regularity in sampling and extent over time is 
-important when studying modelling interrelations amidst the member objects in a long-term autonomous learning. 
+important when studying and modelling interrelations amidst the member objects in a long-term autonomous learning. 
 
 \subsection{Dataset Design and Concept}
 \label{ssec:Dataset Design and Concept}
-We want to provide intelligence to an long-term operating, autonomous robot for indoor human environments. The KTH-3D-Total
-dataset has been composed by capturing and manually annotating 3D point clouds of office type table-tops, for a fixed set of 
-people, at fixed times of the 
-day and for a span of weeks. Observing the table-tops of the same set of people at different times of the day gives insight about the daily 
-interactions a human has with his table and over many days gives an understanding of the gradual variances of their table-tops. If the data 
-is observed for an entire week, including weekends, features in the table-top configurations, that can be used for estimation of the type of 
-the day of the week, can be extracted (e.g.\ Weekdays, Fridays, Weekends). Table-top models can also be learnt for all the people put 
-together -- which gives a gross functional representation of an office table-top in general in office environments -- or for individual 
-people which helps to build functional representations of office table-tops for individuals, for different activities and so on 
+We want to provide intelligence to a long-term operating, autonomous 
+robot for indoor human environments. The KTH-3D-TOTAL dataset has 
+been composed by capturing and manually annotating 3D point clouds 
+of office type table-tops, for a fixed set of people, at fixed times of the 
+day and for a span of weeks. Observing\footnote{Data collection protocol: At the 
+designated collection times, people amidst their activities were asked to abruptly step 
+aside from their tables and not allowed to alter the table-top or contribute to the 
+occlusion of the table-top.} the table-tops of the same set of people at 
+different times of the day gives insight about the daily interactions a 
+human has with his table and over many days gives an understanding of the gradual 
+variances of the configuration of these table-tops. If the data is observed for an entire week, 
+including weekends, features in the table-top configurations, 
+that can be used for estimation of the type of the day of the week, 
+can be extracted (e.g.\ Weekdays, Fridays, Weekends). Table-top models can 
+also be learnt for all the people put together -- which gives a gross functional
+representation of an office table-top in general in office environments -- 
+or for individual people which helps to build unique functional representations of 
+office table-tops for individuals, for different activities and so on 
 (Figure~\ref{fig:Example Scenes}). 
 In summary: When the dataset is designed such that when it is partitioned in different ways with respect to time, people or object instances, it richly yields knowledge 
 of table-tops in office environments supporting building representations of the same.
