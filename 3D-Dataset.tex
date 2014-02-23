@@ -2,52 +2,51 @@
 %2345678901234567890123456789012345678901234567890123456789012345678901234567890
 %        1         2         3         4         5         6         7         8
 %
-%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
-%
-%%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
-%
-%\IEEEoverridecommandlockouts                              % This command is only needed if 
-%                                                          % you want to use the \thanks command
-%
-%\overrideIEEEmargins                                      % Needed to meet printer requirements.
-%
-%% See the \addtolength command later in the file to balance the column lengths
-%% on the last page of the document
-%
-%% The following packages can be found on http:\\www.ctan.org
-%\usepackage{graphics} % for pdf, bitmapped graphics files
-%\usepackage{graphicx} % for pdf, bitmapped graphics files
-%\usepackage{epsfig} % for postscript graphics files
-%%\usepackage{mathptmx} % assumes new font selection scheme installed
-%%\usepackage{times} % assumes new font selection scheme installed
-%%\usepackage{amsmath} % assumes amsmath package installed
-%%\usepackage{amssymb}  % assumes amsmath package installed
-%\usepackage{subfig}
-%\usepackage{color}
-%\usepackage{url}
-%\usepackage{caption}
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
 
-\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{graphics}
-\usepackage{blkarray}
-\usepackage{booktabs}
-\usepackage{xcolor} 
-\usepackage{caption}
-\usepackage{multirow}
-\usepackage{comment}
-\usepackage{epstopdf}
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+% The following packages can be found on http:\\www.ctan.org
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{graphicx} % for pdf, bitmapped graphics files
 \usepackage{epsfig} % for postscript graphics files
-\usepackage{tikz}
-\usepackage{todonotes}
-\usetikzlibrary{arrows,matrix,positioning}
-\graphicspath{{./figures/}}
-\usepackage{caption}
-\usepackage[labelformat=simple]{subcaption}
-\usepackage{soul}
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{subfig}
+\usepackage{color}
 \usepackage{url}
+\usepackage{caption}
+
+% Suggested by Michele:
+%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+%\usepackage{amssymb}
+%\usepackage{amsmath}
+%\usepackage{graphics}
+%\usepackage{blkarray}
+%\usepackage{booktabs}
+%\usepackage{xcolor} 
+%\usepackage{caption}
+%\usepackage{multirow}
+%\usepackage{comment}
+%\usepackage{epstopdf}
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{tikz}
+%\usepackage{todonotes}
+%\usetikzlibrary{arrows,matrix,positioning}
+%\graphicspath{{./figures/}}
+%\usepackage{caption}
+%\usepackage{soul}
+%\usepackage{url}
 
 %mods
 \DeclareCaptionLabelSeparator{periodspace}{.\quad}
@@ -361,19 +360,19 @@ A 3D annotation tool was developed for manually segmenting out objects-of-intere
 were labelled, including repeating instances of the same object class, per scene depending upon feasibility and occurrence. The objects 
 belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Cellphone, Keys, Headphones, Telephone, Pencil, Eraser, Notebook, 
 Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and 
-object is available in  XML and JSON formats. Each scene has a nested list of object data containing \{Position, Orientation, Size, Date and 
+object is available in  XML and JSON formats. In these files, each scene has a nested list of object data containing \{Position, Orientation, Size, Date and 
 Time of recording, Person ID, Point Indices of the points in the point cloud that have been labelled as belonging to the Object\}. This 
 manual annotation provides the required ground truth data for long-term autonomous learning.
 
 \subsection{Dataset Summary}
 \label{ssec:Dataset Summary}
-This section gives a brief summary of the dataset to serve as a quick reference.
+This section gives a bullet-summary of the dataset to serve as a quick reference.
 \noindent KTH-3D-TOTAL has:
 \begin{itemize}
 	\item scenes collected from 20 unique tables, 3 times a day for 19 days and hence in total, approximately 1140 scenes.
-	\item each scene manually annotated with 18 possible object classes and an average of 12 object instances, from these classes, annotated per scene.
-	\item has annotation stored in XML and JSON formats containing scene instance and it's object instances' specifications.
-	\item occurrences of object instances as depicted in Figure~\ref{fig:HistOfObjects} and annotations as exemplified in Figure~\ref{fig:RawPCD},\ref{fig:RawPCDAnnotated}
+	\item each scene manually annotated with 18 possible object classes and an average of 12 object instances, from these classes, annotated per scene, including multiple instances
+	\item annotations stored in XML and JSON formats containing scene instance and it's object instances' specifications.
+	\item occurrences of object instances as depicted in Figure~\ref{fig:HistOfObjects} and annotations as exemplified in Figure~\ref{fig:RawPCD},~\ref{fig:RawPCDAnnotated}
 \end{itemize}
 
 \begin{figure}[t]
@@ -405,7 +404,6 @@ learn from this dataset and how to design such learning.
 \includegraphics[height=2.5cm]{131114} \smallskip
 \includegraphics[height=2.5cm]{131116} 
 \caption{This is the table of a single person, observed during the evening over many days: \{24 Oct, 28 Oct, 08 Nov, 13 Nov, 14 Nov, 16 Nov 2013\}. }
-%Each column shows a different person's office table at two different times. The tables in the first two columns are captured in the morning and evening of the same day, whereas the table in the last column is captured 12 days apart. We can see distinct differences between different person's desk but there are also many commonalities that a system should exploit.}
 \label{fig:Variation_Over_Days}
 \end{center}
 \end{figure*}
@@ -524,8 +522,8 @@ bot & 3.47 & 3.64 & 3.44 & 3.42 & 3.17 & 4.03 & 3.33 & 1.03 & 2.74 & 2.58 \\ \hl
 jug & 3.05 & 3.34 & 2.85 & 3.11 & 2.54 & 3.56 & 2.81 & 2.95 & 0.00 & 1.97 \\ \hline
 not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hline
 \end{tabular}
-\label{fig:entropy}
 \caption{The table shows the entropy in the spread in positions that results when looking at the position of one object (columns) with respect to that of another one (rows). As we can see papers have high entropy in combination with all other objects which indicates that the distribution of relative positions is close to uniform. Other combinations such as Keyboard and Mouse have much lower entropy, that is, more peaky distribution showing a stronger correlation.}
+\label{fig:entropy}
 \end{center}
 \end{figure*}
 
