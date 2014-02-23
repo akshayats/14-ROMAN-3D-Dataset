@@ -68,8 +68,7 @@
 \graphicspath{{images/}}
 
 \title{\LARGE \bf
-KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Autonomous
- Learning
+KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures\\for Long-Term Autonomous Learning
 }
 
 \author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Adri\`a Gallart del Burgo$^{1}$, Janardhan Haryadi Ramesh$^{2}$, \\Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
@@ -525,7 +524,7 @@ potentially be autonomously learnt -- leading to more than one landmark object i
 
 In Figure~\ref{fig:scatter-rest} we look closer at some of these relations. 
 Figure~\ref{fig:scatter-monitor-keyboard} shows the position of 
-the keyboard w.r.t.\ to the monitors. Our intuition that keyboards are 
+the keyboard w.r.t.\ to the monitor. Our intuition that keyboards are 
 placed mostly in front of monitors is supported by data. 
 Figure~\ref{fig:scatter-keyboard-mug} shows the position of the mug w.r.t\ 
 the keyboard. We see that the mug is rarely very close to the center of the 
@@ -638,16 +637,16 @@ properties that a method for representing and reasoning about
 space should exploit. If the aim is to represent typical configuration of 
 objects, this preliminary analysis suggests that a significant 
 part of such knowledge can be encoded well with qualitative spatial 
-relations, such as the mouse is to the \textit{right of} the keyboard, while 
+relations, such as the mouse is to the \textit{right of} the keyboard and 
+the keyboard is \textit{in front} of the monitor, while 
 keeping in mind that this represents the typical case and not the only 
-possible situation. We can also see that a system that observes these tables for 
-an extended period of time will be able to learn quite a lot about the 
-habits of the owners of the tables and even the current activity in 
-many cases. It is important to differentiate between typical knowledge, 
+possible situation. It is important to differentiate between typical knowledge, 
 i.e., knowledge about what the world typically is like and specific 
 instance knowledge, i.e., knowledge about a particular scene at a specific 
-time. It is to capture the first kind of knowledge that we 
-believe  qualitative spatial representations will be most beneficial. 
+time. We can also see that a system that observes these table-tops for 
+an extended period of time will be able to learn quite a lot about the 
+habits of the owners of the tables and even the current activity in 
+many cases.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
@@ -662,7 +661,7 @@ The large, manually annotated, benchmark 3D dataset we present, is one-of-a-kind
 providing the means to train long-term autonomous learning systems for spatial understanding.
 
 Our immediate research plans for this data are to learn and model the spatial relations amidst objects contained in the scenes. Such models and spatial relations can subsequently be tested, verified and also used by the autonomous robots in our collaborative research project (STRANDS) while they operate over months at various sites.  These will
-allow for activity recognition, anomaly detection, and context recognition which are the crux of such long-term autonomous service robots.
+allow for activity recognition, anomaly detection, and context recognition.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
@@ -673,6 +672,7 @@ Union Seventh Framework Programme (FP7/2007-2013) under grant agreement No 60062
 the Swedish Research Council and the Swedish Foundation for Strategic Research through its Centre for Autonomous Systems.
 We thank CVAP/CAS, KTH Royal Institute of technology, Stockholm, Sweden for participating in the dataset and Accel Partners, Bangalore, India for providing vital logistical help.
 
+\IEEEtriggeratref{10}
 \bibliographystyle{ieeetr}
 \bibliography{references}
 
