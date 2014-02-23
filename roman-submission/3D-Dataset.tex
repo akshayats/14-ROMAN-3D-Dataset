@@ -24,15 +24,15 @@
 \graphicspath{{images/}}
 
 \title{\LARGE \bf
-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Autonomous
+KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Autonomous
  Learning
 }
 
-%\author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Adri\`a Gallart del Burgo$^{1}$, Janardhan Haryadi Ramesh$^{2}$, \\Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
-%\thanks{$^{1}$ KTH Royal Institute of Technology, Stockholm:
-%        {\tt\small akshaya@kth.se}}%
-%\thanks{$^{2}$ M.S. Ramaiah Institute of Technology, V.T.U, Bangalore}%
-%}
+\author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Adri\`a Gallart del Burgo$^{1}$, Janardhan Haryadi Ramesh$^{2}$, \\Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
+\thanks{$^{1}$ KTH Royal Institute of Technology, Stockholm:
+        {\tt\small akshaya@kth.se}}%
+\thanks{$^{2}$ M.S. Ramaiah Institute of Technology, V.T.U, Bangalore}%
+}
 
 \begin{document}
 
@@ -129,14 +129,13 @@ dynamics and variability. The output of this paper can thus serve as
 the foundation for designing efficient representations and inference
 algorithms. To limit the scope, we study table-top scenes in this
 paper. As a basis for our study, we have constructed a large, manually annotated 
-benchmark 3D dataset of office type table-top scenes called \textit{\textbf{3D-T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm
-%  \textbf{A}utonomous \textbf{L}earning} (KTH-3D-TOTAL)\footnote{\url{http://www.cas.kth.se/data/KTH-3D-TOTAL/}} observing
-  \textbf{A}utonomous \textbf{L}earning} (3D-TOTAL)\footnote{\url{http://link.to.data.set/data/3D-TOTAL/}} observing
+benchmark 3D dataset of office type table-top scenes called \textit{\textbf{KTH-3D-T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm
+  \textbf{A}utonomous \textbf{L}earning} (KTH-3D-TOTAL)\footnote{\url{http://www.cas.kth.se/data/KTH-3D-TOTAL/}} observing
 the same set of select tables, over many times a day and over many
 days in a month. Objects-of-interest have been manually annotated in
 3D to provide ground truth data.
 
-The rest of the paper is composed in the following way: We survey the related work in Section~\ref{sec:Related Work}. In Section~\ref{sec:Dataset} we exhibit 3D-TOTAL in depth and provide an 
+The rest of the paper is composed in the following way: We survey the related work in Section~\ref{sec:Related Work}. In Section~\ref{sec:Dataset} we exhibit KTH-3D-TOTAL in depth and provide an 
 analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
 
 
@@ -270,7 +269,7 @@ single environment which means that capturing variation across
 instances is made more convenient.
 
 With the aim of exploring possibilities to understand, learn and model these organisational structures amongst objects in human indoor 
-environments, we present the dataset 3D-TOTAL, which has been composed by periodically capturing observations of a fixed set of entire 
+environments, we present the dataset KTH-3D-TOTAL, which has been composed by periodically capturing observations of a fixed set of entire 
 table-tops in an office environment. In what follows, we define a \textit{scene} as a single observation of a table-top instance at a single 
 instance in time. The dataset captures the individual and group variations in object pose due to humans and their regular/irregular interaction with their environment. The 
 required regularity in instances and time was the main motivation for the construction of this dataset, as currently available datasets 
@@ -280,7 +279,7 @@ important when studying and modelling interrelations amidst the member objects i
 \subsection{Dataset Design and Concept}
 \label{ssec:Dataset Design and Concept}
 We want to provide intelligence to a long-term operating, autonomous 
-robot for indoor human environments. The 3D-TOTAL dataset has 
+robot for indoor human environments. The KTH-3D-TOTAL dataset has 
 been composed by capturing and manually annotating 3D point clouds 
 of office type table-tops, for a fixed set of people, at fixed times of the 
 day and for a span of weeks. Observing\footnote{Data collection protocol: At the 
@@ -303,7 +302,7 @@ of table-tops in office environments supporting building representations of the 
 
 \subsection{Dataset Realization}
 \label{ssec:Dataset Realization}
-In 3D-TOTAL, 3D point clouds representing 20 people's tables were captured regularly 3 times a day for 19 days. The data was collected by 
+In KTH-3D-TOTAL, 3D point clouds representing 20 people's tables were captured regularly 3 times a day for 19 days. The data was collected by 
 carefully scanning each table-top using an \textit{Asus Xtion Pro Live} RGB-D camera. The raw RGB-D data stream is aggregated into a single 
 high resolution point cloud (.pcd format) using the \textit{SCENECT} software~\cite{Buerkler:Online2012}.
 
@@ -322,7 +321,7 @@ manual annotation provides the required ground truth data for long-term autonomo
 \subsection{Dataset Summary}
 \label{ssec:Dataset Summary}
 This section gives a bullet-summary of the dataset to serve as a quick reference.
-\noindent 3D-TOTAL has:
+\noindent KTH-3D-TOTAL has:
 \begin{itemize}
 	\item scenes collected from 20 unique tables, 3 times a day for 19 days and hence in total, approximately 1140 scenes.
 	\item each scene manually annotated with 18 possible object classes and an average of 12 object instances, from these classes, annotated per scene, including multiple instances
@@ -627,12 +626,10 @@ allow for activity recognition, anomaly detection, and context recognition which
 \section{Acknowledgements}
 \label{sec:Acknowledgements}
 
-(Left blank for blind review process.)
-
-%The research leading to these results has received funding from the European
-%Union Seventh Framework Programme (FP7/2007-2013) under grant agreement No 600623, STRANDS,
-%the Swedish Research Council and the Swedish Foundation for Strategic Research through its Centre for Autonomous Systems.
-%We thank CVAP/CAS, KTH Royal Institute of technology, Stockholm, Sweden for participating in the dataset and Accel Partners, Bangalore, India for providing vital logistical help.
+The research leading to these results has received funding from the European
+Union Seventh Framework Programme (FP7/2007-2013) under grant agreement No 600623, STRANDS,
+the Swedish Research Council and the Swedish Foundation for Strategic Research through its Centre for Autonomous Systems.
+We thank CVAP/CAS, KTH Royal Institute of technology, Stockholm, Sweden for participating in the dataset and Accel Partners, Bangalore, India for providing vital logistical help.
 
 \bibliographystyle{ieeetr}
 \bibliography{references}
