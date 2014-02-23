@@ -157,7 +157,7 @@ the qualitative position of a target object relative to the position
 of one or more landmark objects are investigated. For example, "the
 chair is \textit{at} the desk" and "the pillow \textit{on} the bed". 
 The exact coordinates of these objects are semantically irrelevant. We believe that 
-representations that are to support long term autonomy and ability 
+representations that are to support long-term autonomy and ability 
 to generalize knowledge require such rough discretizations of metric 
 measurement space forming a "feature set" inherently encapsulating the generality
 of structure.
@@ -173,8 +173,8 @@ periods of time and across several similar scenes to be able to characterise the
 dynamics and variability. The output of this paper can thus serve as
 the foundation for designing efficient representations and inference
 algorithms. To limit the scope, we study table-top scenes in this
-paper. As a basis for our study, we have constructed a benchmark 3D
-dataset of office type table-top scenes called \textit{\textbf{KTH-3D
+paper. As a basis for our study, we have constructed a large, manually annotated 
+benchmark 3D dataset of office type table-top scenes called \textit{\textbf{KTH-3D
     T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm
   \textbf{A}utonomous \textbf{L}earning} (KTH-3D-
 TOTAL)\footnote{\url{http://www.cas.kth.se/data/KTH-3D-TOTAL/}} observing
@@ -182,7 +182,7 @@ the same set of select tables, over many times a day and over many
 days in a month. Objects-of-interest have been manually annotated in
 3D to provide ground truth data.
 
-The rest of the paper is structured in the following way: We survey the related work in Section~\ref{sec:Related Work}. In Section~\ref{sec:Dataset} we exhibit KTH-3D-TOTAL in depth and provide an 
+The rest of the paper is composed in the following way: We survey the related work in Section~\ref{sec:Related Work}. In Section~\ref{sec:Dataset} we exhibit KTH-3D-TOTAL in depth and provide an 
 analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Section~\ref{sec:Conclusions}.
 
 
@@ -203,18 +203,18 @@ analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Secti
 
 \section{Related Work}
 \label{sec:Related Work}
-Learning a model for a type of scene is difficult task if the raw data
+Learning a model for a type of scene is a difficult task if the raw data
 acquired by the sensors is used in terms of metric measurements. Many
 recent works have investigated how learning and modelling human
 environments increase in efficacy if qualitative spatial features are
-used instead of metric ones. Spatial relations have been used
+used instead of and/or alongside, metric ones. Spatial relations have been used
 previously to provide contextual information to vision-related
 work;~\cite{MyungJin:CVPR2010} used a hierarchy of spatial relations
 alongside descriptive features to support multiple object detections
 in a single image. Spatial relations and contextual information are
 commonly used in activity recognition from video
 streams~\cite{Krishna:ECAI2010, Behera2012}. Recent work has used
-object co-occurrence to provide context in visual tasks such as
+object co-occurrence to provide contexts in visual tasks such as
 activity recognition~\cite{Li:2012}. Apart from using the mere
 statistics of co-occurrence, a lot of information can be exploited
 from \textit{how} the objects co-occur in the scene. Recent work in 3D
@@ -224,19 +224,19 @@ features~\cite{Koppula:NIPS2011}. They achieve a high classification
 accuracy for a large set of object-classes belonging to home and
 office environments. Scene similarity measurement and classification
 based on contextual information is conducted
-by~\cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011} spatial
+by~\cite{Fisher:ACMT2011}. In~\cite{Aydemir:ICRA2011}, spatial
 relations between smaller objects, furniture and locations is used for
-pruning in object search problems in human
+pruning -- in object search problems in human
 environments. In~\cite{Southey:2007,kasper:2011} the authors utilise
 both geometric features on objects and spatial relations between
 objects for scene understanding.
 
 As described in the introduction our aim is to find and exploit the
-spatial structures inherent in indoor environments. Two important
-aspects are scenes observed over long times and to many similar but
-not identical scenes. Several dataset have been constructed for
-various purposes. However, these existing datasets are lacking in
-these two important aspects.
+spatial structures inherent in indoor environments. Three important
+aspects are: complete scenes, same scenes observed over long times 
+and to many similar but not identical scenes. Several datasets have 
+been constructed for various researches. However, these existing 
+datasets lack these three important aspects together.
 
 The \textit{B3DO dataset}~\cite{Janoch:ICCV2011} contains many
 single-snapshot instances of indoor human environments having a
@@ -245,7 +245,7 @@ instances. This dataset is in the form of RGB and depth image pairs
 with manual 2D annotations of object classes. It captures single
 snapshots of unique scenes for which scene classification and object
 classification is difficult for vision based perception systems (VPS).
-The \textit{NYU Depth V1-2}\cite{Silberman:ECCV2012} datasets contain
+The \textit{NYU Depth V1-2}~\cite{Silberman:ECCV2012} datasets contain
 different instance examples of object-classes and scene-classes
 captured with RGB+D images. Automated pixel clustering is conducted by
 using features in the RGB and D images separately and annotation of
@@ -255,7 +255,7 @@ snapshots of indoor scenes from commercial and residential
 buildings. This dataset is primarily aimed at evaluating VPS aiming at
 automatic semantic segmentation and scene classification.
 
-The \textit{3D IKEA database}~\cite{Swadzba:RAS2012} has been collected using a robot moving in different scene-class instances. The 
+The \textit{3D IKEA database}~\cite{Swadzba:RAS2012} has been collected using a robot -- moving in different scene-class instances. The 
 aim is to test scene-classification algorithms based on large, furniture level objects. 3D point clouds are formed by 
 stitching a series of RGB+D images. There are very few small objects in the scenes and the annotations are provided at the 
 scene-class level. The \textit{WRGBD dataset}~\cite{Lai:ICRA2011} is aimed to support object classification methods and contains many scene 
@@ -267,25 +267,24 @@ on 2D images as input. The system infers 3D information from the scene using the
 in the image. The generated dataset thus includes a large set of singular scenes, indoor and outdoor from very particular viewpoints, with 
 annotations to the image components provided manually.
 
-The Kinect@Home project~\cite{Goransson13a} has collected a large set of crowd sourced data. People having access to a kinect like sensor 
+The \textit{Kinect@Home project}~\cite{Goransson13a} has collected a large set of crowd sourced data. People having access to a kinect like sensor 
 have captured and uploaded data from their own environments. The data is in the form of RGB-D video sequences. The data covers a large 
-variety of different scene types and range from single objects to whole rooms. No annotation is availble.
+variety of different scene types and range from single objects to whole rooms. No annotation is available.
 The dataset provided by~\cite{Sun:ECCV2010} contains a collection of 3D images of a few table-top objects in clear view and cluttered view. 
 This dataset has been constructed to aid VPS for object classification and segmentation functioning on 3D data. Other datasets that have 
 been developed have mainly been for training VPS for robust indoor object classification on 3D data~\cite{WillowGarage:2011,Kimmel:ACCV2010}.
 
-Our dataset contributes the following three important properties:
+Thusly, our dataset contributes with the following three important properties:
 \begin{itemize}
 	\item captures full 3D scene instances of a particular scene type (in our case office table-tops)
-	\item contains instances of subsets of objects-of-interest co-occurring in the scenes manually annotated for ground truth
-	\item provides long term periodic observations of the same set of scenes
-	\item contains observations at several different times of day
+	\item contains instances of subsets of objects-of-interest co-occurring in the scenes -- manually annotated for ground truth
+	\item provides long-term periodic observations of the same set of scenes at different times of the day, for several days.
 \end{itemize}
 
-Our dataset opens up the possibility to study the structures that govern how space is organized. We want to extract and later exploit these 
+Our dataset opens up the possibility to study the structures that govern how space is organised. We want to extract and later exploit these 
 when building the models. While our dataset only captures table-tops we believe that many of our findings can be transferred to other types 
 of scenes. As mentioned above, we expect most desks to have a monitor, a keyboard and a mouse and that these are arranged in a certain way. 
-Many people will have the mouse ot the right of the keyboard. This is an example of a spatial structure we want to learn. Some people have a 
+Many people will have the mouse to the right of the keyboard. This is an example of a spatial structure we want to learn. Some people have a 
 laptop on their desk and they bring this laptop home in the evening. This is an example of a dynamic property of a desk that we want to 
 learn. We believe that when combined this type of information will allow us to reason about activities as well.
 
@@ -349,7 +348,7 @@ belong to the following super set - \{Mouse, Keyboard, Monitor, Laptop, Cellphon
 Papers,  Book, Pen, Highlighter, Marker, Folder, Pen-Stand, Lamp, Mug, Flask, Glass, Jug, Bottle\}. The information about every scene and 
 object is available in  XML and JSON formats. Each scene has a nested list of object data containing \{Position, Orientation, Size, Date and 
 Time of recording, Person ID, Point Indices of the points in the point cloud that have been labelled as belonging to the Object\}. This 
-manual annotation provides the required ground truth data for long term autonomous learning.
+manual annotation provides the required ground truth data for long-term autonomous learning.
 
 \subsection{Dataset Summary}
 \label{ssec:Dataset Summary}
