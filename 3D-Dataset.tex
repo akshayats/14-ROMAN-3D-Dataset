@@ -74,11 +74,10 @@ KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Auto
 }
 
 \author{Akshaya Thippur$^{1}$, Rares Ambrus$^{1}$, Gaurav Agrawal$^{2}$, Adria Gallart del Burgo$^{1}$, Janardhan Haryadi Ramesh$^{2}$, \\Mayank Kumar Jha$^{2}$, Malepati Bala Siva Sai Akhil$^{2}$,  Nishan Bhavanishankar Shetty$^{2}$, \\John Folkesson $^{1}$ and Patric Jensfelt$^{1}$% <-this % stops a space
-\thanks{$^{1}$ KTH Royal Institute of Technology
+\thanks{$^{1}$ KTH Royal Institute of Technology, Stockholm:
         {\tt\small akshaya@kth.se}}%
-\thanks{$^{2}$ MS Ramaiah Institute of Technology, V.T.U-Bangalore}%
+\thanks{$^{2}$ M.S. Ramaiah Institute of Technology, V.T.U, Bangalore}%
 }
-
 
 \begin{document}
 
@@ -89,22 +88,11 @@ KTH-3D-TOTAL: A 3D Dataset for Discovering Spatial Structures for Long-Term Auto
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-%We have shown that there is structure in the way that objects are
-%arranged in scenes.  We can expect that robots operating over long
-%times repeatedly observing the same place will be able to learn models
-%of this structure.  The annotated 3D data set we provide is unique in
-%capturing the temporal and instance variation in the scenes.
-%
-%Our plans for this data are to learn model of the spatial relation
-%contained therein.  These can then be used by our and our partner's
-%robots while they operate over months at various sites.  These will
-%allow such things as anomaly detection, and context recognition.
-
 Long-term autonomous learning of human environments entails modelling 
 and generalizing over distinct variations in: object instances in different scenes, 
 and different scenes with respect to space and time. It is crucial for the 
 robot to recognize the structure and context in spatial arrangements and 
-exploit it to learn models capturing the essence of these distinct variations.
+exploit it to learn models which capture the essence of these distinct variations.
 Table-tops posses a typical structure repeatedly seen in human environments
 and are identified by characteristics of being personal spaces of diverse
 functionalities and dynamically changing due to human interactions. In this
@@ -115,7 +103,8 @@ spatial structures and patterns in their variations. We plan to utilize
 this data to learn the spatial relations between objects with the 
 aim of obtaining long-term environment models and autonomous structuring 
 of environmental components which will provide for applications such 
-as activity recognition, context recognition and anomaly detection.
+as activity recognition, context and functionality estimation and anomaly detection.
+
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,44 +126,55 @@ contextual knowledge the robot can gain from the repeated attempts can
 make it learn so that it's subsequent attempts on the same task are
 improved in accuracy and efficiency.
 
-In this paper we study spatial understanding derived from the configuration of objects in a scene. Whilst objects often change in position, their overall arrangement typically have some regularity over time as influenced by the context and functionality of that part of space.
-For example, there is a general structure in office employee table-tops to that of cafeteria table-tops or kitchen table-
-tops. The differences derive from the variety of objects and their group-configurations on the table-tops with respect to time -- hours, 
-days, weeks, months etc. For example: Office tables typically have monitors, keyboards, mouse along with papers and pens and coffee mugs 
-configured such that the monitors can be viewed, the keyboard typed at and the mouse easily accessed from the keyboard. The spatial 
-configuration vary in particular instances and the arrangement change gradually over many days and minutely at different times of the day; 
-However, cafeteria tables have cutlery, jugs, food, napkins etc.\ configurations of which don't vary over many days, weeks or years but vary 
-in content and presence according to different times of every day. It is this structure and it's variants that we aim to exploit in order to 
-improve the understanding of space.
+In this paper we study spatial understanding derived from the 
+configuration of objects in a scene. Whilst objects often change 
+in position, their overall arrangement typically have some regularity 
+over time as influenced by the context and functionality of that 
+part of space. For example, there is a general structure in office 
+employee table-tops to that of cafeteria table-tops or kitchen table-tops.
+The differences derive from the variety of objects and their 
+group-configurations on the table-tops with respect to time -- hours, 
+days, weeks, months etc. For example: Office tables typically 
+have monitors, keyboards, mouse along with papers and pens 
+and coffee mugs arranged such that the monitors can be viewed, the 
+keyboard typed at and the mouse easily accessed from the keyboard. 
+The spatial configurations vary in particular instances and the 
+arrangement change gradually over many days and minutely at different 
+times of the day; However, cafeteria tables have cutlery, jugs, food, 
+napkins etc.\ configurations of which don't vary over many days, 
+weeks or years but vary in content and presence according to different 
+times of every day. It is this structure and it's variants that we aim 
+to exploit in order to improve the understanding of space.
 
 Such structures have been exploited before in the literature for a
 number of different applications, such as object recognition, activity
-recognition, image retrieval and objects search. The intuition is that
+recognition, image retrieval and objects search. The intuition is that:
 bluntly modelling the absolute positions of objects, is likely to fail
-because such structure is improbable to generalise across a range of
-different scenes over numerous observations w.r.t.\ time. Instead
+because such a model is improbable to generalise across a range of
+different scenes from numerous observations w.r.t.\ time and instance. Instead
 qualitative \emph{relational} models of space, i.e. ways of encoding
 the qualitative position of a target object relative to the position
-of one or more landmark objects are investigated. For example, the
-chair is at the desk and the pillow on the bed. The exact coordinates
-are largely irrelevant. We believe that representations that are to
-support long term autonomy and ability to generalize knowledge require
-such rough discretizations of metric measurement space inherently
-encoding the generality of structure in the information.
+of one or more landmark objects are investigated. For example, "the
+chair is \textit{at} the desk" and "the pillow \textit{on} the bed". 
+The exact coordinates of these objects are semantically irrelevant. We believe that 
+representations that are to support long term autonomy and ability 
+to generalize knowledge require such rough discretizations of metric 
+measurement space forming a "feature set" inherently encapsulating the generality
+of structure.
 
-The main contribution of this paper is the quantitative analysis of
+The main contribution of this paper is the quantitative and qualitative analysis of
 indoor environments to characterise some of these structures. This is
 an important contribution if one wants to design a representation to
-build and model of space and to reason about space.  The prevailing
+build a model of space and to reason about space.  The prevailing
 approach has been to assume structures exist and define a set of
 descriptors/features that capture different aspects of these. We
 instead propose to carefully study the structures and do so over long
-time and across several similar scenes to be able to characterise the
+periods of time and across several similar scenes to be able to characterise the
 dynamics and variability. The output of this paper can thus serve as
 the foundation for designing efficient representations and inference
-algorithms. To limit the scope we study table-top scenes in this
+algorithms. To limit the scope, we study table-top scenes in this
 paper. As a basis for our study, we have constructed a benchmark 3D
-data set of office type table-top scenes called \textit{\textbf{KTH-3D
+dataset of office type table-top scenes called \textit{\textbf{KTH-3D
     T}able-T\textbf{o}ps Dataset for Long \textbf{T}erm
   \textbf{A}utonomous \textbf{L}earning} (KTH-3D-
 TOTAL)\footnote{\url{http://www.cas.kth.se/data/KTH-3D-TOTAL/}} observing
@@ -557,7 +557,7 @@ believe  qualitative spatial representations will be most beneficial.
 We have shown that there is structure in the way that objects are
 arranged in scenes.  We can expect that robots operating over long
 times repeatedly observing the same place will be able to learn models
-of this structure.  The annotated 3D data set we provide is unique in
+of this structure.  The annotated 3D dataset we provide is unique in
 capturing the temporal and instance variation in the scenes.
 
 Our plans for this data are to learn model of the spatial relation
@@ -568,7 +568,7 @@ allow such things as anomaly detection, and context recognition.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsubsection*{Points Discussed}
 %\begin{enumerate}
-%	\item Room level data set
+%	\item Room level dataset
 %	\item Which QSR for which purpose?
 %\end{enumerate}
 
