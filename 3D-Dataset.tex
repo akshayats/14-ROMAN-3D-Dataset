@@ -1,31 +1,70 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %2345678901234567890123456789012345678901234567890123456789012345678901234567890
 %        1         2         3         4         5         6         7         8
+%
+%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+%
+%%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+%
+%\IEEEoverridecommandlockouts                              % This command is only needed if 
+%                                                          % you want to use the \thanks command
+%
+%\overrideIEEEmargins                                      % Needed to meet printer requirements.
+%
+%% See the \addtolength command later in the file to balance the column lengths
+%% on the last page of the document
+%
+%% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{graphicx} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%%\usepackage{mathptmx} % assumes new font selection scheme installed
+%%\usepackage{times} % assumes new font selection scheme installed
+%%\usepackage{amsmath} % assumes amsmath package installed
+%%\usepackage{amssymb}  % assumes amsmath package installed
+%\usepackage{subfig}
+%\usepackage{color}
+%\usepackage{url}
+%\usepackage{caption}
 
-\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{blkarray}
+\usepackage{booktabs}
+\usepackage{xcolor} 
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{epstopdf}
+\usepackage{epsfig} % for postscript graphics files
+\usepackage{tikz}
+\usepackage{todonotes}
+\usetikzlibrary{arrows,matrix,positioning}
+\graphicspath{{./figures/}}
+\usepackage{caption}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{soul}
+\usepackage{url}
 
-%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+%mods
+\DeclareCaptionLabelSeparator{periodspace}{.\quad}
+\captionsetup{font=small,labelsep=periodspace,singlelinecheck=true}
+\captionsetup[sub]{font=small,singlelinecheck=true}
+\renewcommand\thesubfigure{(\alph{subfigure})}
 
-\IEEEoverridecommandlockouts                              % This command is only needed if 
-                                                          % you want to use the \thanks command
-
-\overrideIEEEmargins                                      % Needed to meet printer requirements.
-
+%\usepackage{cite}
+                             % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
 % See the \addtolength command later in the file to balance the column lengths
 % on the last page of the document
-
-% The following packages can be found on http:\\www.ctan.org
-\usepackage{graphics} % for pdf, bitmapped graphics files
-\usepackage{graphicx} % for pdf, bitmapped graphics files
-\usepackage{epsfig} % for postscript graphics files
-%\usepackage{mathptmx} % assumes new font selection scheme installed
-%\usepackage{times} % assumes new font selection scheme installed
-%\usepackage{amsmath} % assumes amsmath package installed
-%\usepackage{amssymb}  % assumes amsmath package installed
-\usepackage{subfig}
-\usepackage{color}
-\usepackage{url}
-\usepackage{caption}
 
 \graphicspath{{images/}}
 
@@ -161,7 +200,6 @@ analysis of it in Section~\ref{sec:Analysis}. We summarize and conclude in Secti
 \label{fig:Example Scenes}
 \end{center}
 \end{figure*}
-%\vspace*{-5cm}
 
 \section{Related Work}
 \label{sec:Related Work}
