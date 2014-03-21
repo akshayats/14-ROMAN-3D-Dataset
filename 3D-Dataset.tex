@@ -372,7 +372,7 @@ This section gives a bullet-summary of the dataset to serve as a quick reference
 
 \begin{figure}[t]
 \begin{center}
-\subfloat[][]{\label{fig:HistOfObjects}\includegraphics[width=0.8\linewidth]{HistOfObjects_crp.pdf}}\\
+\subfloat[][]{\label{fig:HistOfObjects}\includegraphics[width=0.8\linewidth]{clean-data/HistOfObjects-crop.pdf}}\\
 \subfloat[][]{\label{fig:RawPCD}\includegraphics[width=0.7\linewidth]{pcd.png}}\\
 \subfloat[][]{\label{fig:RawPCDAnnotated}\includegraphics[width=0.7\linewidth]{pcd_annotated.png}}
 \caption{(a) Objects annotated in 3D Long-Term Dataset, sorted in descending order of count of occurrences. X-axis$=$Object Name, Y-axis$=$Occurrence Count. (b) Screenshot of one table scene, along with it's annotations in (c).}
@@ -392,13 +392,13 @@ learn from this dataset and how to design such learning.
 
 \begin{figure*}[bhtp]
 \begin{center}
-\includegraphics[height=2.5cm]{131024} \smallskip
-\includegraphics[height=2.5cm]{131028} \smallskip
-\includegraphics[height=2.5cm]{131108} \\
-\includegraphics[height=2.5cm]{131113} \smallskip
-\includegraphics[height=2.5cm]{131114} \smallskip
-\includegraphics[height=2.5cm]{131116} 
-\caption{This is the table of a single person, observed during the evening over many days: \{L to R -- Row 1: 24 Oct, 28 Oct, 08 Nov; Row 2: 13 Nov, 14 Nov, 16 Nov 2013\}. }
+\includegraphics[height=2.5cm]{clean-data/puren/131023} \smallskip
+\includegraphics[height=2.5cm]{clean-data/puren/131024} \smallskip
+\includegraphics[height=2.5cm]{clean-data/puren/131030} \\
+\includegraphics[height=2.5cm]{clean-data/puren/131106} \smallskip
+\includegraphics[height=2.5cm]{clean-data/puren/131109} \smallskip
+\includegraphics[height=2.5cm]{clean-data/puren/131116} 
+\caption{This is the table of a single person, observed during the afternoon over many days: \{L to R -- Row 1: 23 Oct, 24 Oct, 30 Oct; Row 2: 06 Nov, 09 Nov, 16 Nov 2013\}. }
 \label{fig:Variation_Over_Days}
 \end{center}
 \end{figure*}
@@ -473,8 +473,8 @@ of space; and the importance of the richness of the training data to provide for
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.8\linewidth]{keyboard_mouse_raw-crop}
-\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_mouse_clusters-crop}
+\includegraphics[width=0.8\linewidth]{clean-data/keyboard_mouse_raw-crop}
+\includegraphics[width=0.8\linewidth]{clean-data/keyboard_mouse_clusters-crop}
 \end{center}
 \caption{This figures shows how a relative position representation (bottom) 
 is able to expose a structure that is not visible in absolute coordinated 
@@ -586,11 +586,11 @@ The fact that there are often many papers in a scene adds to the uniformity.
 
 \begin{figure*}
 \begin{center}
-\includegraphics[width=0.5\linewidth]{entropy_matrix-crop} \bigbreak
+\includegraphics[width=0.5\linewidth]{clean-data/EntropyMat-crop} \bigbreak
 \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 & key & mon & mou & mug & lap & pap & boo & bot & jug & not \\ \hline \hline
-key & 0.76 & 3.54 & 2.79 & 4.01 & 3.56 & 4.57 & 4.00 & 3.25 & 2.95 & 3.78\\ \hline
+key & 0.76 change the table values!!! & 3.54 & 2.79 & 4.01 & 3.56 & 4.57 & 4.00 & 3.25 & 2.95 & 3.78\\ \hline
 mon & 3.41 & 1.65 & 3.35 & 4.06 & 3.39 & 4.63 & 4.19 & 3.37 & 2.95 & 3.86\\ \hline
 mou & 2.89 & 3.59 & 0.73 & 3.81 & 3.59 & 4.56 & 3.96 & 3.27 & 2.93 & 3.84 \\ \hline
 mug & 4.08 & 4.21 & 3.71 & 0.74 & 3.67 & 4.47 & 3.99 & 3.17 & 3.08 & 3.73 \\ \hline
@@ -624,11 +624,11 @@ not & 3.90 & 3.99 & 3.68 & 3.70 & 3.29 & 4.16 & 3.59 & 2.62 & 1.97 & 0.28 \\ \hl
 
 \begin{figure}[t]
 \begin{center}
-\subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/monitor_keyboard_clusters-crop}}\quad
-\subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_mug_clusters-crop}}\\
-\subfloat[][]{\label{fig:scatter-keyboard-papers}\includegraphics[width=0.8\linewidth]{clusters/plots-for-paper/keyboard_papers_clusters-crop}}
+\subfloat[][]{\label{fig:scatter-monitor-keyboard}\includegraphics[width=0.8\linewidth]{clean-data/monitor_keyboard_clusters-crop}}\quad
+\subfloat[][]{\label{fig:scatter-keyboard-mug}\includegraphics[width=0.8\linewidth]{clean-data/keyboard_mug_clusters-crop}}\\
+\subfloat[][]{\label{fig:scatter-keyboard-papers}\includegraphics[width=0.8\linewidth]{clean-data/keyboard_papers_clusters-crop}}
 \end{center}
-\caption{The figures show the relative position of a) keyboard w.r.t. monitor, b) mug w.r.t. keyboard and c) papers w.r.t. keyboard. Qualitatively keyboards are mostly infront of monitors, mugs are around the keyboard and the position of papers is mostly independent on the position of the keyboard. The different colors/markers show data from different people in the data.} 
+\caption{The figures show the relative position of a) keyboard w.r.t. monitor, b) mug w.r.t. keyboard and c) papers w.r.t. keyboard. Qualitatively keyboards are mostly in front of monitors, mugs are around the keyboard and the position of papers is mostly independent on the position of the keyboard. The different colors/markers show data from different people in the data.} 
 \label{fig:scatter-rest}
 \end{figure}
 
